@@ -58,7 +58,7 @@ def get_prime_page_info(soup, movie):
             text=text.lstrip('Genres')
             movie['genres'] =','.join([item.strip() for item in text.split('\n')[-1].split(',')]) # genre
         elif 'Directors' in text:
-            text = text.lstrip('Directors')
+            text = text[9:]
             movie['director'] = ','.join([item.strip() for item in text.split('\n')[-1].split(',')]) # director
         elif 'Starring' in text:
             text = text.lstrip('Starring')
@@ -151,7 +151,7 @@ if __name__=="__main__":
         # a表示以“追加”的形式写入，如果是“w”的话，表示在写入之前会清空原文件中的数据
         # newline是数据之间不加空行
         # encoding='utf-8'表示编码格式为utf-8，如果不希望在excel中打开csv文件出现中文乱码的话，将其去掉不写也行。
-    with open('html_1.csv', 'w', newline='', encoding='utf-8') as f:
+    with open('html_1_test.csv', 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=header)  # 提前预览列名，当下面代码写入数据时，会将其一一对应。
         writer.writeheader()  # 写入列名
         writer.writerows(datas)  # 写入数据
