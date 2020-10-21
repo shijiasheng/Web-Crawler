@@ -22,7 +22,8 @@ if __name__ == '__main__':
               'Language', 'Run time', 'MPAA rating', 'Aspect Ratio', 'Language:', 'Date First Available',
               'Package Dimensions','Writers','Dubbed','Manufacturer','Item Weight','Original Release Date',
               'Label', 'Digital Copy Expiration Date', 'Audio Description', 'Publisher', 'ISBN-13', 'ISBN-10',
-              'Manufacturer recommended age', 'Department', 'International Shipping', 'Domestic Shipping']  # 字段名
+              'Manufacturer recommended age', 'Department', 'International Shipping', 'Domestic Shipping',
+              'Paperback', 'ColorOne Color', 'Batteries', 'Hardcover', 'SPARS Code', 'DVD Audio', 'Reading level', 'Grade Level']  # 字段名
     with open('test.csv', 'w', newline='', encoding='utf-8')as f:
         f_csv = csv.DictWriter(f, header)
         f_csv.writeheader()
@@ -58,20 +59,19 @@ if __name__ == '__main__':
                     # 一个text可能的格式为:
                     # ['', '', '', '', 'Product details', '', '', '', '', '', 'Aspect Ratio', ':', '', '1.33:1, 1.85:1', '', '', 'Is Discontinued By Manufacturer', ':', '', 'No', '', '', 'MPAA rating', ':', '', 's_medPG13 PG-13 (Parents Strongly Cautioned)', '', '', 'Product Dimensions', ':', '', '7.5 x 5.5 x 0.53 inches; 4 Ounces', '', '', 'Item model number', ':', '', '2226213', '', '', 'Director', ':', '', 'David Raynr', '', '', 'Media Format', ':', '', 'Closed-captioned, Color, Dolby, Full Screen, NTSC, Special Edition, Subtitled', '', '', 'Run time', ':', '', '1 hour and 34 minutes', '', '', 'Release date', ':', '', 'August 1, 2000', '', '', 'Actors', ':', '', 'Shane West, James Franco, Marla Sokoloff', '', '', 'Subtitles:', ':', '', 'English', '', '', 'Producers', ':', '', 'Paul Schiff', '', '', 'Language', ':', '', 'Unqualified', '', '', 'Studio', ':', '', 'Sony Pictures Home Entertainment', '', '', 'ASIN', ':', '', 'B00003CXGJ', '', '', 'Number of discs', ':', '', '1', '', '', '', '', '', '', 'Best Sellers Rank:', '', '#76,097 in Movies & TV (See Top 100 in Movies & TV)', '', ' #5,087 in Romance (Movies & TV)', ' #10,283 in Comedy (Movies & TV)', ' #16,980 in Drama DVDs', '', '', '', '', '', '', 'Customer Reviews:', '', '', '', '', '', '', '', '4.3 out of 5 stars', '', '', '', '', '', '', '', '', '253 ratings', '', '', '', '', '', '', '', '', '', '', '', '']
 
-
+                    # 去掉title和text所有的空元素
                     while '' in title:
                         title.remove('')
                     while '' in text:
                         text.remove('')
-
+                    # 去掉冒号和一些诸如Product details和Size:One Size的无关信息
                     while ':' in text:
                         text.remove(':')
                     while 'Product details' in text:
                         text.remove('Product details')
                     while 'Size:One Size' in text:
                         text.remove('Size:One Size')
-                    # print(text)
-                    # print(len(text))
+                    # 去掉Customer Reviews:
                     index = 0
                     while index < len(text):
                         if (text[index] == "Customer Reviews:"):
@@ -81,7 +81,7 @@ if __name__ == '__main__':
                         len_text = len(text)
                         for i in range(len_text - 1, index - 1, -1):
                             del text[i]
-
+                    # 去掉Best Sellers Rank:
                     index = 0
                     while index < len(text):
                         if (text[index] == "Best Sellers Rank:"):
@@ -91,47 +91,54 @@ if __name__ == '__main__':
                         len_text = len(text)
                         for i in range(len_text - 1, index - 1, -1):
                             del text[i]
+                    # 将text里面的双引号“替换成‘单引号（目的是字典处理时只认双引号
                     for i in range(len(text)):
-                        text[i] = text[i].replace('"',"'")
-
+                        text[i] = text[i].replace('"', "'")
+                    # 去掉无关紧要的冒号（目的是后续统一加上冒号
                     for i in range(len(text)):
-                        if text[i]!=':':
-                            text[i] = text[i].replace(':','')
-                    # print(text)
+                        if text[i] != ':':
+                            text[i] = text[i].replace(':', '')
+                    # 将title里面的双引号“替换成‘单引号（目的是字典处理时只认双引号
+                    for i in range(0, len(title)):
+                        title[i] = title[i].replace('"', "'")
+                    for i in range(0, len(text)):
+                        text[i] = text[i].replace('"', "'")
+                    # 将title里面的逗号换成分号
+                    for i in range(0, len(title)):
+                        title[i] = title[i].replace(',', ';')
+                    for i in range(0, len(text)):
+                        text[i] = text[i].replace(',', ';')
+                    # 如果这项不在header里面，去掉
+                    for i in range(0, len(text), 2):
+                        if i < len(text):
+                            if (text[i] in header):
+                                sjs = 1
+                            else:
+                                del text[i + 1]
+                                del text[i]
+                    # 添加冒号，引号，逗号，都是字典查看的标识符
                     for i in range(0, len(text), 2):
                         text[i] = '"' + text[i] + '":'
                     for i in range(2, len(text), 2):
                         text[i] = ',' + text[i]
                     for i in range(1, len(text), 2):
                         text[i] = '"' + text[i] + '"'
-
-                    for i in range(0,len(title)):
-                        title[i] = title[i].replace('"',"'")
-                    # print(title[0])
-                    # title[0] = title[0].replace('"', "'")
-                    # print(title[0])
+                    # 在text最前端加上title
                     text.insert(0, '"title":' + '"' + title[0] + '",')
+                    # 在前后加上大括号
                     text.insert(0, '{')
                     text.append('}')
+                    # 将数组合并成一个大的字符串
                     text = "".join(text)
+                    # 将字符串中的斜杠换掉
                     text = text.replace('\\', '\\\\')
                     # print(text)
-                    # print(file[0:4])
+                    print(file[0:5])
+                    # 转换成字典
                     text_dict = json.loads(text)
-                    # print(text_dict)
-                    # texts.update(text_dict)
-                    # dict2.update(dict1)
-                    # texts = texts + text_dict
+                    # 写入csv文件
                     f_csv.writerow(text_dict)
 
-                    # 打印
-                    # print(title)
-                    # print(text)
-                    # with open('test.csv', 'w', newline='', encoding='utf-8')as f:
-                    #     f_csv = csv.writer(f)
-                    #     for data in lst:
-                    #         f_csv.writerow(data)
-                    # print("情况1:"+file)
                 except IndexError:
                     result=""
 
