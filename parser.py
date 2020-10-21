@@ -4,8 +4,8 @@ import csv
 #雏形
 
 # 文件夹路径
-path = 'D:/1111/'
-#path = 'H:/数据仓库数据集/html_0/'
+#path = 'D:/1111/'
+path = 'H:/数据仓库数据集/html_1/'
 header = ['id','title','release date','genres','director','producers','actor','supporting actors','media format','run time','MPAA rating','subtitles','studio','Item model number','Date First Available','IMDb','audio languages']
 datas=[]
 
@@ -108,7 +108,7 @@ def parser(html, asin):
         element = soup.find('h1', attrs={'data-automation-id': 'title'})
         #空页面
         if element is None: # Error
-            print("asin为空文件！")
+            print(asin+'为空文件！')
             return False
         else:
             #黑色的页面
@@ -151,7 +151,7 @@ if __name__=="__main__":
         # a表示以“追加”的形式写入，如果是“w”的话，表示在写入之前会清空原文件中的数据
         # newline是数据之间不加空行
         # encoding='utf-8'表示编码格式为utf-8，如果不希望在excel中打开csv文件出现中文乱码的话，将其去掉不写也行。
-    with open('test.csv', 'w', newline='', encoding='utf-8') as f:
+    with open('html_1.csv', 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=header)  # 提前预览列名，当下面代码写入数据时，会将其一一对应。
         writer.writeheader()  # 写入列名
         writer.writerows(datas)  # 写入数据
