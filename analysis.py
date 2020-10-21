@@ -4,9 +4,15 @@ import csv
 import json
 
 if __name__ == '__main__':
+    # 出错页面个数
+    errorCount=0
+    # 已处理页面
+    processCount=0
+
     # 更改工作目录
     question_files = []
-    os.chdir('F:\\电影数据\\新建文件夹\\html_0')
+    # os.chdir('F:\\电影数据\\新建文件夹\\html_0')
+    os.chdir('C:\\Users\\12549\\Desktop\\作业集合\\数据仓库\\data1')
     # print(os.listdir())
     directory = os.listdir()
     texts = {}
@@ -21,8 +27,18 @@ if __name__ == '__main__':
         f_csv = csv.DictWriter(f, header)
         f_csv.writeheader()
         for file in directory:
-            # print(file)
+            processCount+=1
+
+            # 查看特定页面问题
+            # if file!='603_B007QJAE0O.html':
+            #     continue
             # 打开html文件进行操作
+
+            # 避免报错后下一次用上一层的数据,造成混乱
+            text= ''
+            title=''
+            detail=''
+
             with open(file, 'r', encoding='utf-8') as f:
                 Soup = BeautifulSoup(f.read(), 'html.parser')
                 # 先处理经典情况的select
@@ -38,8 +54,10 @@ if __name__ == '__main__':
                     text = texts[0].text.splitlines()
                     # print(text)
                     title = titles[0].text.splitlines()
+                    # print(title)
                     # 一个text可能的格式为:
                     # ['', '', '', '', 'Product details', '', '', '', '', '', 'Aspect Ratio', ':', '', '1.33:1, 1.85:1', '', '', 'Is Discontinued By Manufacturer', ':', '', 'No', '', '', 'MPAA rating', ':', '', 's_medPG13 PG-13 (Parents Strongly Cautioned)', '', '', 'Product Dimensions', ':', '', '7.5 x 5.5 x 0.53 inches; 4 Ounces', '', '', 'Item model number', ':', '', '2226213', '', '', 'Director', ':', '', 'David Raynr', '', '', 'Media Format', ':', '', 'Closed-captioned, Color, Dolby, Full Screen, NTSC, Special Edition, Subtitled', '', '', 'Run time', ':', '', '1 hour and 34 minutes', '', '', 'Release date', ':', '', 'August 1, 2000', '', '', 'Actors', ':', '', 'Shane West, James Franco, Marla Sokoloff', '', '', 'Subtitles:', ':', '', 'English', '', '', 'Producers', ':', '', 'Paul Schiff', '', '', 'Language', ':', '', 'Unqualified', '', '', 'Studio', ':', '', 'Sony Pictures Home Entertainment', '', '', 'ASIN', ':', '', 'B00003CXGJ', '', '', 'Number of discs', ':', '', '1', '', '', '', '', '', '', 'Best Sellers Rank:', '', '#76,097 in Movies & TV (See Top 100 in Movies & TV)', '', ' #5,087 in Romance (Movies & TV)', ' #10,283 in Comedy (Movies & TV)', ' #16,980 in Drama DVDs', '', '', '', '', '', '', 'Customer Reviews:', '', '', '', '', '', '', '', '4.3 out of 5 stars', '', '', '', '', '', '', '', '', '253 ratings', '', '', '', '', '', '', '', '', '', '', '', '']
+
 
                     while '' in title:
                         title.remove('')
@@ -113,20 +131,85 @@ if __name__ == '__main__':
                     #     f_csv = csv.writer(f)
                     #     for data in lst:
                     #         f_csv.writerow(data)
+                    # print("情况1:"+file)
                 except IndexError:
+                    result=""
+
                     #     此处说明该页面不是经典的布局,启用第二种情况
                     titleSelect = "#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > h1"
-                    select = "#meta-info > div"
-                    texts = Soup.select(select)
-                    titles = Soup.select(titleSelect)
+                    select = "#meta-info > div > dl"
+                    detailSelect = "#btf-product-details > div > dl"
+                    runTimeSelect="#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > div._3QwtCH._16AW_S._2LF_6p.dv-node-dp-badges.uAeEjV._1qXS7N > span:nth-child(3) > span"
+                    typeSelect="#dv-action-box > div > div > div > div.abwJ5F.tFxybk._2LF_6p._32Y4AN > div > span._2cx-XY.dv-dp-node-watchlist._1qXS7N > form > input[type=hidden]:nth-child(2)"
+                    yearSelect="#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > div._3QwtCH._16AW_S._2LF_6p.dv-node-dp-badges.uAeEjV._1qXS7N > span:nth-child(4) > span"
                     try:
-                        text = texts[0].text.splitlines()
-                        title = titles[0].text.splitlines()
+                        texts = Soup.select(select)
+                        titles = Soup.select(titleSelect)
+                        details = Soup.select(detailSelect)
+                        types=Soup.select(typeSelect)
+                        runTime = Soup.select(runTimeSelect)
+                        year=Soup.select(yearSelect)
+
+
+                        # 还可以区分异常情况
+                        text = texts[0].text
+                        title=titles[0].text
+
+                        result+="title:"+title+","
+
+                        if "titleType=movie" in repr(types[0]):
+                            # 必然是movie
+                            result+="isMovie:true,"
+                            # movieType=repr(types[0])
+                            # index=movieType.find("titleType=")
+                            # print(movieType[index:index+20])
+                        if len(runTime) != 0:
+                            # 有运行时间
+                            result += "runTime:"+runTime[0].text+","
+                            # print(runTime[0].text)
+                        if len(year)!=0:
+                            result += "year:" + year[0].text + ","
+
+
+
+
+                        # print(texts[0].text)
+                        # print(texts[0].text.split('\n'))
+                        # text = texts[0].text.splitlines()
+                        # title = titles[0].text.splitlines()
+                        # detail=details[0].text.splitlines()
+
+                        for text in texts:
+                            text=text.text
+                            if "Directors" in text:
+                                text=text.replace("Directors","")
+                                result += "Directors:" + text + ","
+                            if "Starring" in text:
+                                text=text.replace("Starring","")
+                                result += "Starring:" + text + ","
+                            if "Genres" in text:
+                                text=text.replace("Genres","")
+                                result += "Genres:" + text + ","
+
+                        for detail in details:
+                            text = detail.text
+                            if "Supporting actors" in text:
+                                text=text.replace("Supporting actors","")
+                                result += "Supporting actors:" + text + ","
+                                print(text)
+                        # for detail in details:
+                        #     print(detail.text)
+                        # temp=texts[0].text
+                        # print("情况2:"+file)
+
+                        print(result)
                     except IndexError:
                         # 此处说明该页面不是经典的布局,启用第三种情况
                         # 未知,先打印文件名,手动查看,编写代码
-                        print(file)
-                        question_files.append(file)
+                        errorCount+=1
+                        # print(errorCount,processCount,sep='/')
+                        # print(file)
+                        # question_files.append(file)
             # 去除空元素
 
-    print(question_files)
+    # print(question_files)
