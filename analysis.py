@@ -4,6 +4,11 @@ import csv
 import json
 
 if __name__ == '__main__':
+    # 出错页面个数
+    errorCount=0
+    # 已处理页面
+    processCount=0
+
     # 更改工作目录
     question_files = []
     # os.chdir('F:\\电影数据\\新建文件夹\\html_0')
@@ -22,7 +27,11 @@ if __name__ == '__main__':
         f_csv = csv.DictWriter(f, header)
         f_csv.writeheader()
         for file in directory:
-            # print(file)
+            processCount+=1
+
+            # 查看特定页面问题
+            # if file!='21_B004P0N51C.html':
+            #     continue
             # 打开html文件进行操作
 
             # 避免报错后下一次用上一层的数据,造成混乱
@@ -45,6 +54,7 @@ if __name__ == '__main__':
                     text = texts[0].text.splitlines()
                     # print(text)
                     title = titles[0].text.splitlines()
+                    # print(title)
                     # 一个text可能的格式为:
                     # ['', '', '', '', 'Product details', '', '', '', '', '', 'Aspect Ratio', ':', '', '1.33:1, 1.85:1', '', '', 'Is Discontinued By Manufacturer', ':', '', 'No', '', '', 'MPAA rating', ':', '', 's_medPG13 PG-13 (Parents Strongly Cautioned)', '', '', 'Product Dimensions', ':', '', '7.5 x 5.5 x 0.53 inches; 4 Ounces', '', '', 'Item model number', ':', '', '2226213', '', '', 'Director', ':', '', 'David Raynr', '', '', 'Media Format', ':', '', 'Closed-captioned, Color, Dolby, Full Screen, NTSC, Special Edition, Subtitled', '', '', 'Run time', ':', '', '1 hour and 34 minutes', '', '', 'Release date', ':', '', 'August 1, 2000', '', '', 'Actors', ':', '', 'Shane West, James Franco, Marla Sokoloff', '', '', 'Subtitles:', ':', '', 'English', '', '', 'Producers', ':', '', 'Paul Schiff', '', '', 'Language', ':', '', 'Unqualified', '', '', 'Studio', ':', '', 'Sony Pictures Home Entertainment', '', '', 'ASIN', ':', '', 'B00003CXGJ', '', '', 'Number of discs', ':', '', '1', '', '', '', '', '', '', 'Best Sellers Rank:', '', '#76,097 in Movies & TV (See Top 100 in Movies & TV)', '', ' #5,087 in Romance (Movies & TV)', ' #10,283 in Comedy (Movies & TV)', ' #16,980 in Drama DVDs', '', '', '', '', '', '', 'Customer Reviews:', '', '', '', '', '', '', '', '4.3 out of 5 stars', '', '', '', '', '', '', '', '', '253 ratings', '', '', '', '', '', '', '', '', '', '', '', '']
 
@@ -121,17 +131,24 @@ if __name__ == '__main__':
                     #     f_csv = csv.writer(f)
                     #     for data in lst:
                     #         f_csv.writerow(data)
-                    print("情况1:"+file)
+                    # print("情况1:"+file)
                 except IndexError:
                     #     此处说明该页面不是经典的布局,启用第二种情况
                     titleSelect = "#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > h1"
                     select = "#meta-info > div > dl"
                     detailSelect = "#btf-product-details > div > dl"
-
+                    runTimeSelect="#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._2ytcUH > div > div._3QwtCH._16AW_S._2LF_6p.dv-node-dp-badges.uAeEjV._1qXS7N > span:nth-child(3) > span"
                     try:
                         texts = Soup.select(select)
                         titles = Soup.select(titleSelect)
                         details = Soup.select(detailSelect)
+
+                        # 占位,区分异常情况
+                        text=texts[0].text
+
+                        runTime=Soup.select(runTimeSelect)
+                        # if len(runTime)!=0:
+                        #     print(runTime[0].text)
                         # print(texts[0].text)
                         # print(texts[0].text.split('\n'))
                         # text = texts[0].text.splitlines()
@@ -142,11 +159,14 @@ if __name__ == '__main__':
                         #     print(text.text)
                         # for detail in details:
                         #     print(detail.text)
-                        print("情况2:"+file)
+                        # temp=texts[0].text
+                        # print("情况2:"+file)
                     except IndexError:
                         # 此处说明该页面不是经典的布局,启用第三种情况
                         # 未知,先打印文件名,手动查看,编写代码
-                        print(file)
+                        errorCount+=1
+                        print(errorCount,processCount,sep='/')
+                        # print(file)
                         # question_files.append(file)
             # 去除空元素
 
