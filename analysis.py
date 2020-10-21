@@ -6,7 +6,8 @@ import json
 if __name__ == '__main__':
     # 更改工作目录
     question_files = []
-    os.chdir('F:\\电影数据\\新建文件夹\\html_0')
+    # os.chdir('F:\\电影数据\\新建文件夹\\html_0')
+    os.chdir('C:\\Users\\12549\\Desktop\\作业集合\\数据仓库\\data1')
     # print(os.listdir())
     directory = os.listdir()
     texts = {}
@@ -23,6 +24,12 @@ if __name__ == '__main__':
         for file in directory:
             # print(file)
             # 打开html文件进行操作
+
+            # 避免报错后下一次用上一层的数据,造成混乱
+            text=''
+            title=''
+            detail=''
+
             with open(file, 'r', encoding='utf-8') as f:
                 Soup = BeautifulSoup(f.read(), 'html.parser')
                 # 先处理经典情况的select
@@ -41,70 +48,71 @@ if __name__ == '__main__':
                     # 一个text可能的格式为:
                     # ['', '', '', '', 'Product details', '', '', '', '', '', 'Aspect Ratio', ':', '', '1.33:1, 1.85:1', '', '', 'Is Discontinued By Manufacturer', ':', '', 'No', '', '', 'MPAA rating', ':', '', 's_medPG13 PG-13 (Parents Strongly Cautioned)', '', '', 'Product Dimensions', ':', '', '7.5 x 5.5 x 0.53 inches; 4 Ounces', '', '', 'Item model number', ':', '', '2226213', '', '', 'Director', ':', '', 'David Raynr', '', '', 'Media Format', ':', '', 'Closed-captioned, Color, Dolby, Full Screen, NTSC, Special Edition, Subtitled', '', '', 'Run time', ':', '', '1 hour and 34 minutes', '', '', 'Release date', ':', '', 'August 1, 2000', '', '', 'Actors', ':', '', 'Shane West, James Franco, Marla Sokoloff', '', '', 'Subtitles:', ':', '', 'English', '', '', 'Producers', ':', '', 'Paul Schiff', '', '', 'Language', ':', '', 'Unqualified', '', '', 'Studio', ':', '', 'Sony Pictures Home Entertainment', '', '', 'ASIN', ':', '', 'B00003CXGJ', '', '', 'Number of discs', ':', '', '1', '', '', '', '', '', '', 'Best Sellers Rank:', '', '#76,097 in Movies & TV (See Top 100 in Movies & TV)', '', ' #5,087 in Romance (Movies & TV)', ' #10,283 in Comedy (Movies & TV)', ' #16,980 in Drama DVDs', '', '', '', '', '', '', 'Customer Reviews:', '', '', '', '', '', '', '', '4.3 out of 5 stars', '', '', '', '', '', '', '', '', '253 ratings', '', '', '', '', '', '', '', '', '', '', '', '']
 
-                    while '' in title:
-                        title.remove('')
-                    while '' in text:
-                        text.remove('')
 
-                    while ':' in text:
-                        text.remove(':')
-                    while 'Product details' in text:
-                        text.remove('Product details')
-                    while 'Size:One Size' in text:
-                        text.remove('Size:One Size')
-                    # print(text)
-                    # print(len(text))
-                    index = 0
-                    while index < len(text):
-                        if (text[index] == "Customer Reviews:"):
-                            break
-                        index = index + 1
-                    if index != len(text):
-                        len_text = len(text)
-                        for i in range(len_text - 1, index - 1, -1):
-                            del text[i]
-
-                    index = 0
-                    while index < len(text):
-                        if (text[index] == "Best Sellers Rank:"):
-                            break
-                        index = index + 1
-                    if index != len(text):
-                        len_text = len(text)
-                        for i in range(len_text - 1, index - 1, -1):
-                            del text[i]
-                    for i in range(len(text)):
-                        text[i] = text[i].replace('"',"'")
-
-                    for i in range(len(text)):
-                        if text[i]!=':':
-                            text[i] = text[i].replace(':','')
-                    # print(text)
-                    for i in range(0, len(text), 2):
-                        text[i] = '"' + text[i] + '":'
-                    for i in range(2, len(text), 2):
-                        text[i] = ',' + text[i]
-                    for i in range(1, len(text), 2):
-                        text[i] = '"' + text[i] + '"'
-
-                    for i in range(0,len(title)):
-                        title[i] = title[i].replace('"',"'")
-                    # print(title[0])
-                    # title[0] = title[0].replace('"', "'")
-                    # print(title[0])
-                    text.insert(0, '"title":' + '"' + title[0] + '",')
-                    text.insert(0, '{')
-                    text.append('}')
-                    text = "".join(text)
-                    text = text.replace('\\', '\\\\')
-                    # print(text)
-                    # print(file[0:4])
-                    text_dict = json.loads(text)
-                    # print(text_dict)
-                    # texts.update(text_dict)
-                    # dict2.update(dict1)
-                    # texts = texts + text_dict
-                    f_csv.writerow(text_dict)
+                    # while '' in title:
+                    #     title.remove('')
+                    # while '' in text:
+                    #     text.remove('')
+                    #
+                    # while ':' in text:
+                    #     text.remove(':')
+                    # while 'Product details' in text:
+                    #     text.remove('Product details')
+                    # while 'Size:One Size' in text:
+                    #     text.remove('Size:One Size')
+                    # # print(text)
+                    # # print(len(text))
+                    # index = 0
+                    # while index < len(text):
+                    #     if (text[index] == "Customer Reviews:"):
+                    #         break
+                    #     index = index + 1
+                    # if index != len(text):
+                    #     len_text = len(text)
+                    #     for i in range(len_text - 1, index - 1, -1):
+                    #         del text[i]
+                    #
+                    # index = 0
+                    # while index < len(text):
+                    #     if (text[index] == "Best Sellers Rank:"):
+                    #         break
+                    #     index = index + 1
+                    # if index != len(text):
+                    #     len_text = len(text)
+                    #     for i in range(len_text - 1, index - 1, -1):
+                    #         del text[i]
+                    # for i in range(len(text)):
+                    #     text[i] = text[i].replace('"',"'")
+                    #
+                    # for i in range(len(text)):
+                    #     if text[i]!=':':
+                    #         text[i] = text[i].replace(':','')
+                    # # print(text)
+                    # for i in range(0, len(text), 2):
+                    #     text[i] = '"' + text[i] + '":'
+                    # for i in range(2, len(text), 2):
+                    #     text[i] = ',' + text[i]
+                    # for i in range(1, len(text), 2):
+                    #     text[i] = '"' + text[i] + '"'
+                    #
+                    # for i in range(0,len(title)):
+                    #     title[i] = title[i].replace('"',"'")
+                    # # print(title[0])
+                    # # title[0] = title[0].replace('"', "'")
+                    # # print(title[0])
+                    # text.insert(0, '"title":' + '"' + title[0] + '",')
+                    # text.insert(0, '{')
+                    # text.append('}')
+                    # text = "".join(text)
+                    # text = text.replace('\\', '\\\\')
+                    # # print(text)
+                    # # print(file[0:4])
+                    # text_dict = json.loads(text)
+                    # # print(text_dict)
+                    # # texts.update(text_dict)
+                    # # dict2.update(dict1)
+                    # # texts = texts + text_dict
+                    # f_csv.writerow(text_dict)
 
                     # 打印
                     # print(title)
@@ -113,20 +121,33 @@ if __name__ == '__main__':
                     #     f_csv = csv.writer(f)
                     #     for data in lst:
                     #         f_csv.writerow(data)
+                    print("情况1:"+file)
                 except IndexError:
                     #     此处说明该页面不是经典的布局,启用第二种情况
                     titleSelect = "#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > h1"
-                    select = "#meta-info > div"
-                    texts = Soup.select(select)
-                    titles = Soup.select(titleSelect)
+                    select = "#meta-info > div > dl"
+                    detailSelect = "#btf-product-details > div > dl"
+
                     try:
-                        text = texts[0].text.splitlines()
-                        title = titles[0].text.splitlines()
+                        texts = Soup.select(select)
+                        titles = Soup.select(titleSelect)
+                        details = Soup.select(detailSelect)
+                        # print(texts[0].text)
+                        # print(texts[0].text.split('\n'))
+                        # text = texts[0].text.splitlines()
+                        # title = titles[0].text.splitlines()
+                        # detail=details[0].text.splitlines()
+
+                        # for text in texts:
+                        #     print(text.text)
+                        # for detail in details:
+                        #     print(detail.text)
+                        print("情况2:"+file)
                     except IndexError:
                         # 此处说明该页面不是经典的布局,启用第三种情况
                         # 未知,先打印文件名,手动查看,编写代码
                         print(file)
-                        question_files.append(file)
+                        # question_files.append(file)
             # 去除空元素
 
-    print(question_files)
+    # print(question_files)
