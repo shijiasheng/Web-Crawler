@@ -12,11 +12,11 @@ if __name__ == '__main__':
     # 更改工作目录
     question_files = []
     # os.chdir('F:\\电影数据\\新建文件夹\\html_0')
-    os.chdir('C:\\Users\\12549\\Desktop\\作业集合\\数据仓库\\data1')
+    os.chdir('C:\\Users\\12549\\Desktop\\数据仓库\\data')
     # print(os.listdir())
     directory = os.listdir()
     texts = {}
-    # 对每个页面进行处理
+
     header = ['title', 'Studio', 'Actors', 'ASIN', 'Number of discs', 'Producers', 'Is Discontinued By Manufacturer',
               'Product Dimensions', 'Media Format', 'Subtitles', 'Item model number', 'Director', 'Release date',
               'Language', 'Run time', 'MPAA rating', 'Aspect Ratio', 'Language:', 'Date First Available',
@@ -24,15 +24,23 @@ if __name__ == '__main__':
               'Label', 'Digital Copy Expiration Date', 'Audio Description', 'Publisher', 'ISBN-13', 'ISBN-10',
               'Manufacturer recommended age', 'Department', 'International Shipping', 'Domestic Shipping',
               'Paperback', 'ColorOne Color', 'Batteries', 'Hardcover', 'SPARS Code', 'DVD Audio', 'Reading level', 'Grade Level']  # 字段名
-    with open('test.csv', 'w', newline='', encoding='utf-8')as f:
+
+    header2=['title','isMovie','runTime','year','Directors','Starring','Genres','Supporting actors']
+    with open('test.csv', 'w', newline='', encoding='utf-8')as f, \
+     open('test2.csv', 'w', newline='', encoding='utf-8') as f2:
         f_csv = csv.DictWriter(f, header)
         f_csv.writeheader()
+
+        f2_csv = csv.DictWriter(f2, header2)
+        f2_csv.writeheader()
+
         for file in directory:
             processCount+=1
 
             # 查看特定页面问题
-            # if file!='603_B007QJAE0O.html':
-            #     continue
+            #忽略csv文件
+            if file=='test.csv' or file=='test2.csv':
+                continue
             # 打开html文件进行操作
 
             # 避免报错后下一次用上一层的数据,造成混乱
@@ -40,6 +48,7 @@ if __name__ == '__main__':
             title=''
             detail=''
 
+            # 对每个页面进行处理
             with open(file, 'r', encoding='utf-8') as f:
                 Soup = BeautifulSoup(f.read(), 'html.parser')
                 # 先处理经典情况的select
@@ -132,8 +141,8 @@ if __name__ == '__main__':
                     text = "".join(text)
                     # 将字符串中的斜杠换掉
                     text = text.replace('\\', '\\\\')
-                    # print(text)
-                    print(file[0:5])
+                    # print("情况1:"+text)
+                    # print(file[0:5])
                     # 转换成字典
                     text_dict = json.loads(text)
                     # 写入csv文件
@@ -146,36 +155,55 @@ if __name__ == '__main__':
                     titleSelect = "#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > h1"
                     select = "#meta-info > div > dl"
                     detailSelect = "#btf-product-details > div > dl"
-                    runTimeSelect="#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > div._3QwtCH._16AW_S._2LF_6p.dv-node-dp-badges.uAeEjV._1qXS7N > span:nth-child(3) > span"
                     typeSelect="#dv-action-box > div > div > div > div.abwJ5F.tFxybk._2LF_6p._32Y4AN > div > span._2cx-XY.dv-dp-node-watchlist._1qXS7N > form > input[type=hidden]:nth-child(2)"
-                    yearSelect="#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > div._3QwtCH._16AW_S._2LF_6p.dv-node-dp-badges.uAeEjV._1qXS7N > span:nth-child(4) > span"
+                    runTimeSelect="#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > div._3QwtCH._16AW_S._2LF_6p.dv-node-dp-badges.uAeEjV._1qXS7N > span:nth-child(2) > span"
+                    yearSelect="#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > div._3QwtCH._16AW_S._2LF_6p.dv-node-dp-badges.uAeEjV._1qXS7N > span:nth-child(3) > span"
+                    yearTempSelect="#a-page > div.av-page-desktop.avu-retail-page > div.DVWebNode-detail-atf-wrapper.DVWebNode > div > div > div._3KHiTg._2r7Wei.av-dp-container._13P0S3 > div.av-detail-section._1eXZeC > div > div._3QwtCH._16AW_S._2LF_6p.dv-node-dp-badges.uAeEjV._1qXS7N > span:nth-child(4) > span"
                     try:
                         texts = Soup.select(select)
                         titles = Soup.select(titleSelect)
                         details = Soup.select(detailSelect)
                         types=Soup.select(typeSelect)
-                        runTime = Soup.select(runTimeSelect)
+                        runTime=Soup.select(runTimeSelect)
                         year=Soup.select(yearSelect)
+                        yearTemp=Soup.select(yearTempSelect)
+
 
 
                         # 还可以区分异常情况
                         text = texts[0].text
                         title=titles[0].text
 
-                        result+="title:"+title+","
+                        result+='{"title":"'+title+'",'
 
                         if "titleType=movie" in repr(types[0]):
                             # 必然是movie
-                            result+="isMovie:true,"
+                            result+='"isMovie":"true",'
                             # movieType=repr(types[0])
                             # index=movieType.find("titleType=")
                             # print(movieType[index:index+20])
-                        if len(runTime) != 0:
-                            # 有运行时间
-                            result += "runTime:"+runTime[0].text+","
-                            # print(runTime[0].text)
-                        if len(year)!=0:
-                            result += "year:" + year[0].text + ","
+                        if len(year)!=0 and "release-year-badge" in repr(year[0]):
+                            result += '"year":"' + year[0].text + '",'
+                        elif len(runTime) != 0 and "release-year-badge" in repr(runTime[0]):
+                            result += '"year":"' + runTime[0].text + '",'
+                        elif len(yearTemp) != 0 and "release-year-badge" in repr(yearTemp[0]):
+                            result += '"year":"' + yearTemp[0].text + '",'
+
+                        if len(year)!=0 and "runtime-badge" in repr(year[0]):
+                            result += '"runTime":"' + year[0].text + '",'
+                        elif len(runTime) != 0 and "runtime-badge" in repr(runTime[0]):
+                            result += '"runTime":"' + runTime[0].text + '",'
+                        elif len(yearTemp) != 0 and "runtime-badge" in repr(yearTemp[0]):
+                            result += '"runTime":"' + yearTemp[0].text + '",'
+
+
+
+                        # if len(runTime) != 0:
+                        #     # 有运行时间
+                        #     result += '"runTime":"'+runTime[0].text+'",'
+                        #     # print(runTime[0].text)
+                        # if len(year)!=0:
+                        #     result += '"year":"' + year[0].text + '",'
 
 
 
@@ -190,32 +218,42 @@ if __name__ == '__main__':
                             text=text.text
                             if "Directors" in text:
                                 text=text.replace("Directors","")
-                                result += "Directors:" + text + ","
+                                result += '"Directors":"' + text + '",'
                             if "Starring" in text:
                                 text=text.replace("Starring","")
-                                result += "Starring:" + text + ","
+                                result += '"Starring":"' + text + '",'
                             if "Genres" in text:
                                 text=text.replace("Genres","")
-                                result += "Genres:" + text + ","
+                                result += '"Genres":"' + text + '",'
 
                         for detail in details:
                             text = detail.text
                             if "Supporting actors" in text:
                                 text=text.replace("Supporting actors","")
-                                result += "Supporting actors:" + text + ","
-                                print(text)
+                                result += '"Supporting actors":"' + text + '",'
+                                # print(text)
                         # for detail in details:
                         #     print(detail.text)
                         # temp=texts[0].text
+                        # 去掉最后一个字符,并且添加}
+                        result=result[:-1]+"}"
+
                         # print("情况2:"+file)
 
-                        print(result)
+                        # print(result)
+
+                        # 转换成字典
+                        result_dict = json.loads(result)
+                        # print(result_dict)
+                        # 写入csv文件
+                        f2_csv.writerow(result_dict)
+
                     except IndexError:
                         # 此处说明该页面不是经典的布局,启用第三种情况
                         # 未知,先打印文件名,手动查看,编写代码
                         errorCount+=1
-                        # print(errorCount,processCount,sep='/')
-                        # print(file)
+                        print(errorCount,processCount,sep='/')
+                        print(file)
                         # question_files.append(file)
             # 去除空元素
 
