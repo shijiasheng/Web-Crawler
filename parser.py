@@ -3,17 +3,27 @@ import os
 import csv
 #雏形
 
-# 文件夹路径
+#path是html文件所在的文件夹路径
 #path = 'D:/1111/'
 path = 'H:/数据仓库数据集/html_1/'
+#
 header = ['id','title','release date','genres','director','producers','actor','supporting actors','media format','run time','MPAA rating','subtitles','studio','Item model number','Date First Available','IMDb','audio languages']
+#写入文件的数据，是map类型的列表
 datas=[]
 
+#获取普通的白色的页面的信息
 def get_normal_page_info(soup, movie):
-    """
-        Get All Info From Normal Pages
-    """
+    #用soup.find找id为productTitle的span，因为是唯一的  所以没有指定   获得title
+    movie['title'] = soup.find(id='productTitle').text.strip()  # movie title
+    # 找流派
+    for child in soup.find('ul', attrs={'class': 'a-unordered-list a-horizontal a-size-small'}).find_all('a'):
+        text = child.text.strip()
+        # print(text)
+        movie['genres'] = text
+
+    #用soup.find找id为productTitle的div下的ul下的所有li
     for child in soup.find('div', attrs={'id': 'detailBullets_feature_div'}).ul.find_all('li'):
+        #可以print一下text看一下内容
         text = child.text.strip()
         #在movie  里加actor的信息
         if 'Actor' in text:
@@ -38,9 +48,6 @@ def get_normal_page_info(soup, movie):
             movie['subtitles'] = text.split(':')[1].strip()
         elif 'Date First Available' in text:
             movie['Date First Available'] = text.split(':')[1].strip()
-    movie['title'] = soup.find(id='productTitle').text.strip() # movie title
-    movie['genres'] = soup.find('ul').find_all('li')[-1].span.a.text.strip() # genres
-
     return movie
 
 def get_prime_page_info(soup, movie):
@@ -101,10 +108,12 @@ def parser(html, asin):
         Check the Sent html
     """
     soup = BeautifulSoup(html, 'lxml')
+    #因为只有白色的那种页面有productTitle
     element = soup.find(id='productTitle')
     movie = {'id': asin}
     #不是白色的页面
     if element is None:
+        #黑色的那种页面title是通过有这样'data-automation-id': 'title'属性的h1找到的
         element = soup.find('h1', attrs={'data-automation-id': 'title'})
         #空页面
         if element is None: # Error
@@ -121,20 +130,9 @@ def parser(html, asin):
             movie = get_normal_page_info(soup, movie)
         except Exception:
             pass
-    '''
-    if 'Director' not in html: # A movie must have a director
-        return False
-    if 'Fitness' in html: # Not a moive
-        return False
-    if 'Music Videos' in html:
-        return False
-    if 'Concerts' in html:
-        return False
-    if 'title' in movie and 'Season' in movie['title']:
-        return False
-        '''
-    datas.append(movie)
 
+    #控制加不加进datas
+    datas.append(movie)
     return True
 
 if __name__=="__main__":
@@ -151,7 +149,7 @@ if __name__=="__main__":
         # a表示以“追加”的形式写入，如果是“w”的话，表示在写入之前会清空原文件中的数据
         # newline是数据之间不加空行
         # encoding='utf-8'表示编码格式为utf-8，如果不希望在excel中打开csv文件出现中文乱码的话，将其去掉不写也行。
-    with open('html_1_test.csv', 'w', newline='', encoding='utf-8') as f:
+    with open('test.csv', 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=header)  # 提前预览列名，当下面代码写入数据时，会将其一一对应。
         writer.writeheader()  # 写入列名
         writer.writerows(datas)  # 写入数据
