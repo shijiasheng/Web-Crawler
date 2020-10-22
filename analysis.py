@@ -38,8 +38,9 @@ if __name__ == '__main__':
             processCount+=1
 
             # 查看特定页面问题
-            # if file!='603_B007QJAE0O.html':
-            #     continue
+            #忽略csv文件
+            if file=='test.csv' or file=='test2.csv':
+                continue
             # 打开html文件进行操作
 
             # 避免报错后下一次用上一层的数据,造成混乱
@@ -230,14 +231,14 @@ if __name__ == '__main__':
                             if "Supporting actors" in text:
                                 text=text.replace("Supporting actors","")
                                 result += '"Supporting actors":"' + text + '",'
-                                print(text)
+                                # print(text)
                         # for detail in details:
                         #     print(detail.text)
                         # temp=texts[0].text
                         # 去掉最后一个字符,并且添加}
                         result=result[:-1]+"}"
 
-                        print("情况2:"+file)
+                        # print("情况2:"+file)
 
                         # print(result)
 
@@ -252,7 +253,7 @@ if __name__ == '__main__':
                         # 未知,先打印文件名,手动查看,编写代码
                         errorCount+=1
                         print(errorCount,processCount,sep='/')
-                        # print(file)
+                        print(file)
                         # question_files.append(file)
             # 去除空元素
 
