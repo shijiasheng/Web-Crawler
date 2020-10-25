@@ -5,10 +5,12 @@ import java.util.List;
 
 
 public class clean_csv {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         List<String> a_line=new ArrayList<>();
         List<String> final_line=new ArrayList<>();
         File csv = new File("C:\\Users\\Lenovo\\Desktop\\datawarehouse_productData.csv");  // CSV文件路径
+        File outFile = new File("C:\\Users\\Lenovo\\Desktop\\out.csv");
+        BufferedWriter writer = new BufferedWriter(new FileWriter(outFile));
         BufferedReader br = null;
         try
         {
@@ -54,7 +56,11 @@ public class clean_csv {
         for (int i = 0; i < final_line.size(); i++) {
             System.out.println(final_line.get(i));
         }
-
+        for (int i = 0; i < final_line.size(); i++) {
+            System.out.println("第"+i+"轮");
+            writer.write(final_line.get(i));
+            writer.newLine();
+        }
         System.out.println(final_line.size());
     }
 
