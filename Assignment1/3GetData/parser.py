@@ -2,8 +2,6 @@ from bs4 import BeautifulSoup
 import os
 import csv
 
-#雏形
-
 #path是html文件所在的文件夹路径
 for i in range(0,26):
     path = 'H:/数据仓库数据集/html_'+str(i)+'/'
