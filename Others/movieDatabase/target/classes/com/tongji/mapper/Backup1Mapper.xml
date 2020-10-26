@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongji.mapper.Backup1Mapper">
+  <resultMap id="BaseResultMap" type="com.tongji.model.Backup1">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="release date" jdbcType="VARCHAR" property="releaseDate" />
+    <result column="genres" jdbcType="VARCHAR" property="genres" />
+    <result column="director" jdbcType="VARCHAR" property="director" />
+    <result column="producers" jdbcType="VARCHAR" property="producers" />
+    <result column="actor" jdbcType="VARCHAR" property="actor" />
+    <result column="supporting actors" jdbcType="VARCHAR" property="supportingActors" />
+    <result column="media format" jdbcType="VARCHAR" property="mediaFormat" />
+    <result column="run time" jdbcType="VARCHAR" property="runTime" />
+    <result column="MPAA rating" jdbcType="VARCHAR" property="mpaaRating" />
+    <result column="subtitles" jdbcType="VARCHAR" property="subtitles" />
+    <result column="studio" jdbcType="VARCHAR" property="studio" />
+    <result column="Item model number" jdbcType="VARCHAR" property="itemModelNumber" />
+    <result column="Date First Available" jdbcType="VARCHAR" property="dateFirstAvailable" />
+    <result column="IMDb" jdbcType="VARCHAR" property="imdb" />
+    <result column="audio languages" jdbcType="VARCHAR" property="audioLanguages" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, title, `release date`, genres, director, producers, actor, `supporting actors`, 
+    `media format`, `run time`, `MPAA rating`, subtitles, studio, `Item model number`, 
+    `Date First Available`, IMDb, `audio languages`
+  </sql>
+  <select id="selectByExample" parameterType="com.tongji.model.Backup1Example" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from backUp1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from backUp1
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from backUp1
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tongji.model.Backup1Example">
+    delete from backUp1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tongji.model.Backup1">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into backUp1 (title, `release date`, genres, 
+      director, producers, actor, 
+      `supporting actors`, `media format`, `run time`, 
+      `MPAA rating`, subtitles, studio, 
+      `Item model number`, `Date First Available`, IMDb, 
+      `audio languages`)
+    values (#{title,jdbcType=VARCHAR}, #{releaseDate,jdbcType=VARCHAR}, #{genres,jdbcType=VARCHAR}, 
+      #{director,jdbcType=VARCHAR}, #{producers,jdbcType=VARCHAR}, #{actor,jdbcType=VARCHAR}, 
+      #{supportingActors,jdbcType=VARCHAR}, #{mediaFormat,jdbcType=VARCHAR}, #{runTime,jdbcType=VARCHAR}, 
+      #{mpaaRating,jdbcType=VARCHAR}, #{subtitles,jdbcType=VARCHAR}, #{studio,jdbcType=VARCHAR}, 
+      #{itemModelNumber,jdbcType=VARCHAR}, #{dateFirstAvailable,jdbcType=VARCHAR}, #{imdb,jdbcType=VARCHAR}, 
+      #{audioLanguages,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tongji.model.Backup1">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into backUp1
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="releaseDate != null">
+        `release date`,
+      </if>
+      <if test="genres != null">
+        genres,
+      </if>
+      <if test="director != null">
+        director,
+      </if>
+      <if test="producers != null">
+        producers,
+      </if>
+      <if test="actor != null">
+        actor,
+      </if>
+      <if test="supportingActors != null">
+        `supporting actors`,
+      </if>
+      <if test="mediaFormat != null">
+        `media format`,
+      </if>
+      <if test="runTime != null">
+        `run time`,
+      </if>
+      <if test="mpaaRating != null">
+        `MPAA rating`,
+      </if>
+      <if test="subtitles != null">
+        subtitles,
+      </if>
+      <if test="studio != null">
+        studio,
+      </if>
+      <if test="itemModelNumber != null">
+        `Item model number`,
+      </if>
+      <if test="dateFirstAvailable != null">
+        `Date First Available`,
+      </if>
+      <if test="imdb != null">
+        IMDb,
+      </if>
+      <if test="audioLanguages != null">
+        `audio languages`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseDate != null">
+        #{releaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="genres != null">
+        #{genres,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null">
+        #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="producers != null">
+        #{producers,jdbcType=VARCHAR},
+      </if>
+      <if test="actor != null">
+        #{actor,jdbcType=VARCHAR},
+      </if>
+      <if test="supportingActors != null">
+        #{supportingActors,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaFormat != null">
+        #{mediaFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="runTime != null">
+        #{runTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mpaaRating != null">
+        #{mpaaRating,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitles != null">
+        #{subtitles,jdbcType=VARCHAR},
+      </if>
+      <if test="studio != null">
+        #{studio,jdbcType=VARCHAR},
+      </if>
+      <if test="itemModelNumber != null">
+        #{itemModelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFirstAvailable != null">
+        #{dateFirstAvailable,jdbcType=VARCHAR},
+      </if>
+      <if test="imdb != null">
+        #{imdb,jdbcType=VARCHAR},
+      </if>
+      <if test="audioLanguages != null">
+        #{audioLanguages,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tongji.model.Backup1Example" resultType="java.lang.Long">
+    select count(*) from backUp1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update backUp1
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.releaseDate != null">
+        `release date` = #{record.releaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genres != null">
+        genres = #{record.genres,jdbcType=VARCHAR},
+      </if>
+      <if test="record.director != null">
+        director = #{record.director,jdbcType=VARCHAR},
+      </if>
+      <if test="record.producers != null">
+        producers = #{record.producers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actor != null">
+        actor = #{record.actor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supportingActors != null">
+        `supporting actors` = #{record.supportingActors,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mediaFormat != null">
+        `media format` = #{record.mediaFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.runTime != null">
+        `run time` = #{record.runTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mpaaRating != null">
+        `MPAA rating` = #{record.mpaaRating,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subtitles != null">
+        subtitles = #{record.subtitles,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studio != null">
+        studio = #{record.studio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemModelNumber != null">
+        `Item model number` = #{record.itemModelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dateFirstAvailable != null">
+        `Date First Available` = #{record.dateFirstAvailable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imdb != null">
+        IMDb = #{record.imdb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.audioLanguages != null">
+        `audio languages` = #{record.audioLanguages,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update backUp1
+    set id = #{record.id,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      `release date` = #{record.releaseDate,jdbcType=VARCHAR},
+      genres = #{record.genres,jdbcType=VARCHAR},
+      director = #{record.director,jdbcType=VARCHAR},
+      producers = #{record.producers,jdbcType=VARCHAR},
+      actor = #{record.actor,jdbcType=VARCHAR},
+      `supporting actors` = #{record.supportingActors,jdbcType=VARCHAR},
+      `media format` = #{record.mediaFormat,jdbcType=VARCHAR},
+      `run time` = #{record.runTime,jdbcType=VARCHAR},
+      `MPAA rating` = #{record.mpaaRating,jdbcType=VARCHAR},
+      subtitles = #{record.subtitles,jdbcType=VARCHAR},
+      studio = #{record.studio,jdbcType=VARCHAR},
+      `Item model number` = #{record.itemModelNumber,jdbcType=VARCHAR},
+      `Date First Available` = #{record.dateFirstAvailable,jdbcType=VARCHAR},
+      IMDb = #{record.imdb,jdbcType=VARCHAR},
+      `audio languages` = #{record.audioLanguages,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tongji.model.Backup1">
+    update backUp1
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="releaseDate != null">
+        `release date` = #{releaseDate,jdbcType=VARCHAR},
+      </if>
+      <if test="genres != null">
+        genres = #{genres,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null">
+        director = #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="producers != null">
+        producers = #{producers,jdbcType=VARCHAR},
+      </if>
+      <if test="actor != null">
+        actor = #{actor,jdbcType=VARCHAR},
+      </if>
+      <if test="supportingActors != null">
+        `supporting actors` = #{supportingActors,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaFormat != null">
+        `media format` = #{mediaFormat,jdbcType=VARCHAR},
+      </if>
+      <if test="runTime != null">
+        `run time` = #{runTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mpaaRating != null">
+        `MPAA rating` = #{mpaaRating,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitles != null">
+        subtitles = #{subtitles,jdbcType=VARCHAR},
+      </if>
+      <if test="studio != null">
+        studio = #{studio,jdbcType=VARCHAR},
+      </if>
+      <if test="itemModelNumber != null">
+        `Item model number` = #{itemModelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFirstAvailable != null">
+        `Date First Available` = #{dateFirstAvailable,jdbcType=VARCHAR},
+      </if>
+      <if test="imdb != null">
+        IMDb = #{imdb,jdbcType=VARCHAR},
+      </if>
+      <if test="audioLanguages != null">
+        `audio languages` = #{audioLanguages,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tongji.model.Backup1">
+    update backUp1
+    set title = #{title,jdbcType=VARCHAR},
+      `release date` = #{releaseDate,jdbcType=VARCHAR},
+      genres = #{genres,jdbcType=VARCHAR},
+      director = #{director,jdbcType=VARCHAR},
+      producers = #{producers,jdbcType=VARCHAR},
+      actor = #{actor,jdbcType=VARCHAR},
+      `supporting actors` = #{supportingActors,jdbcType=VARCHAR},
+      `media format` = #{mediaFormat,jdbcType=VARCHAR},
+      `run time` = #{runTime,jdbcType=VARCHAR},
+      `MPAA rating` = #{mpaaRating,jdbcType=VARCHAR},
+      subtitles = #{subtitles,jdbcType=VARCHAR},
+      studio = #{studio,jdbcType=VARCHAR},
+      `Item model number` = #{itemModelNumber,jdbcType=VARCHAR},
+      `Date First Available` = #{dateFirstAvailable,jdbcType=VARCHAR},
+      IMDb = #{imdb,jdbcType=VARCHAR},
+      `audio languages` = #{audioLanguages,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
