@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c47bc582-41ad-41b6-8144-405b3af04ec8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/ActorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/DirectorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/GenreMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/TimeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Actor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/ActorExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Director.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/DirectorExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Genre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/GenreExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Movie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Time.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/TimeExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/ActorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/DirectorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/GenreMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/TimeMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/Backup1Mapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Backup1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Backup1Example.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/Backup1Mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/Backup1Mapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/Backup1Mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1Example$Criteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1Example$Criterion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1Example$GeneratedCriteria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1jML2nZx3lKGzGMmlBqnqweCUkP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../boying" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.tongji" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\12549\Desktop\数据仓库\Web-Crawler\Others\movieDatabase\src\test\java\com\tongji" />
+      <recent name="C:\Users\12549\Desktop\movieData\src\main\java\com\tongji\boying" />
+      <recent name="C:\Users\12549\Desktop\movieData\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.MainTest.test (1)">
+    <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.tongji.utils.Generator" />
+      <module name="movieDatabase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tongji.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="movieDatabase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tongji.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tongji" />
+      <option name="MAIN_CLASS_NAME" value="com.tongji.MainTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="movieData" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tongji.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tongji.boying" />
+      <option name="MAIN_CLASS_NAME" value="com.tongji.boying.MainTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="movieData" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tongji.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tongji.boying" />
+      <option name="MAIN_CLASS_NAME" value="com.tongji.boying.MainTest" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="movieDatabase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.tongji.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.tongji" />
+      <option name="MAIN_CLASS_NAME" value="com.tongji.MainTest" />
+      <option name="METHOD_NAME" value="test3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="movieDatabase" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tongji.MyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MainTest.test (1)" />
+        <item itemvalue="JUnit.MainTest.test3" />
+        <item itemvalue="Application.Generator" />
+        <item itemvalue="JUnit.MainTest.test2" />
+        <item itemvalue="JUnit.MainTest.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c47bc582-41ad-41b6-8144-405b3af04ec8" name="Default Changelist" comment="" />
+      <created>1603608808095</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603608808095</updated>
+      <workItem from="1603608809366" duration="554000" />
+      <workItem from="1603609425628" duration="14548000" />
+      <workItem from="1603669656029" duration="115000" />
+      <workItem from="1603669799477" duration="45000" />
+      <workItem from="1603669921200" duration="12343000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="395" y="111" key="#Inspections" timestamp="1603611838184">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="395" y="111" key="#Inspections/0.0.1536.864@0.0.1536.864" timestamp="1603611838184" />
+    <state x="249" y="7" key="#Project_Structure" timestamp="1603610089355">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="249" y="7" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1603610089355" />
+    <state x="544" y="299" width="448" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603669957899">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="544" y="299" width="448" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.864@0.0.1536.864" timestamp="1603669957899" />
+    <state x="544" y="312" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1603669946255">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="544" y="312" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1536.864@0.0.1536.864" timestamp="1603669946255" />
+    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603672323967">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="499" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864@0.0.1536.864" timestamp="1603672323967" />
+    <state x="549" y="187" key="FileChooserDialogImpl" timestamp="1603682369869">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603682369869" />
+    <state width="1493" height="316" key="GridCell.Tab.0.bottom" timestamp="1603683716877">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="316" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603683716877" />
+    <state width="1493" height="316" key="GridCell.Tab.0.center" timestamp="1603683716877">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="316" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603683716877" />
+    <state width="1493" height="316" key="GridCell.Tab.0.left" timestamp="1603683716876">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="316" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603683716876" />
+    <state width="1493" height="316" key="GridCell.Tab.0.right" timestamp="1603683716877">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="316" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603683716877" />
+    <state x="545" y="189" key="refactoring.ChangeSignatureDialog" timestamp="1603676861740">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="545" y="189" key="refactoring.ChangeSignatureDialog/0.0.1536.864@0.0.1536.864" timestamp="1603676861740" />
+  </component>
+</project>
