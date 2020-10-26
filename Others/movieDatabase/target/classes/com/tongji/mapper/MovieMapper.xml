@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tongji.mapper.MovieMapper">
+  <resultMap id="BaseResultMap" type="com.tongji.model.Movie">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="genres" jdbcType="VARCHAR" property="genres" />
+    <result column="director" jdbcType="VARCHAR" property="director" />
+    <result column="run_time" jdbcType="INTEGER" property="runTime" />
+    <result column="release_date" jdbcType="TIMESTAMP" property="releaseDate" />
+    <result column="date_first_available" jdbcType="TIMESTAMP" property="dateFirstAvailable" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongji.model.Movie">
+    <result column="supporting_actors" jdbcType="LONGVARCHAR" property="supportingActors" />
+    <result column="actor" jdbcType="LONGVARCHAR" property="actor" />
+    <result column="series" jdbcType="LONGVARCHAR" property="series" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, title, genres, director, run_time, release_date, date_first_available
+  </sql>
+  <sql id="Blob_Column_List">
+    supporting_actors, actor, series
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.tongji.model.MovieExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from movie
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.tongji.model.MovieExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from movie
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from movie
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from movie
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tongji.model.MovieExample">
+    delete from movie
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tongji.model.Movie">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into movie (title, genres, director, 
+      run_time, release_date, date_first_available, 
+      supporting_actors, actor, series
+      )
+    values (#{title,jdbcType=VARCHAR}, #{genres,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, 
+      #{runTime,jdbcType=INTEGER}, #{releaseDate,jdbcType=TIMESTAMP}, #{dateFirstAvailable,jdbcType=TIMESTAMP}, 
+      #{supportingActors,jdbcType=LONGVARCHAR}, #{actor,jdbcType=LONGVARCHAR}, #{series,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tongji.model.Movie">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into movie
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="genres != null">
+        genres,
+      </if>
+      <if test="director != null">
+        director,
+      </if>
+      <if test="runTime != null">
+        run_time,
+      </if>
+      <if test="releaseDate != null">
+        release_date,
+      </if>
+      <if test="dateFirstAvailable != null">
+        date_first_available,
+      </if>
+      <if test="supportingActors != null">
+        supporting_actors,
+      </if>
+      <if test="actor != null">
+        actor,
+      </if>
+      <if test="series != null">
+        series,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="genres != null">
+        #{genres,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null">
+        #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="runTime != null">
+        #{runTime,jdbcType=INTEGER},
+      </if>
+      <if test="releaseDate != null">
+        #{releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateFirstAvailable != null">
+        #{dateFirstAvailable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supportingActors != null">
+        #{supportingActors,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actor != null">
+        #{actor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="series != null">
+        #{series,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tongji.model.MovieExample" resultType="java.lang.Long">
+    select count(*) from movie
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update movie
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genres != null">
+        genres = #{record.genres,jdbcType=VARCHAR},
+      </if>
+      <if test="record.director != null">
+        director = #{record.director,jdbcType=VARCHAR},
+      </if>
+      <if test="record.runTime != null">
+        run_time = #{record.runTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.releaseDate != null">
+        release_date = #{record.releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dateFirstAvailable != null">
+        date_first_available = #{record.dateFirstAvailable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.supportingActors != null">
+        supporting_actors = #{record.supportingActors,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.actor != null">
+        actor = #{record.actor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.series != null">
+        series = #{record.series,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update movie
+    set id = #{record.id,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      genres = #{record.genres,jdbcType=VARCHAR},
+      director = #{record.director,jdbcType=VARCHAR},
+      run_time = #{record.runTime,jdbcType=INTEGER},
+      release_date = #{record.releaseDate,jdbcType=TIMESTAMP},
+      date_first_available = #{record.dateFirstAvailable,jdbcType=TIMESTAMP},
+      supporting_actors = #{record.supportingActors,jdbcType=LONGVARCHAR},
+      actor = #{record.actor,jdbcType=LONGVARCHAR},
+      series = #{record.series,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update movie
+    set id = #{record.id,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      genres = #{record.genres,jdbcType=VARCHAR},
+      director = #{record.director,jdbcType=VARCHAR},
+      run_time = #{record.runTime,jdbcType=INTEGER},
+      release_date = #{record.releaseDate,jdbcType=TIMESTAMP},
+      date_first_available = #{record.dateFirstAvailable,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tongji.model.Movie">
+    update movie
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="genres != null">
+        genres = #{genres,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null">
+        director = #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="runTime != null">
+        run_time = #{runTime,jdbcType=INTEGER},
+      </if>
+      <if test="releaseDate != null">
+        release_date = #{releaseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateFirstAvailable != null">
+        date_first_available = #{dateFirstAvailable,jdbcType=TIMESTAMP},
+      </if>
+      <if test="supportingActors != null">
+        supporting_actors = #{supportingActors,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="actor != null">
+        actor = #{actor,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="series != null">
+        series = #{series,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tongji.model.Movie">
+    update movie
+    set title = #{title,jdbcType=VARCHAR},
+      genres = #{genres,jdbcType=VARCHAR},
+      director = #{director,jdbcType=VARCHAR},
+      run_time = #{runTime,jdbcType=INTEGER},
+      release_date = #{releaseDate,jdbcType=TIMESTAMP},
+      date_first_available = #{dateFirstAvailable,jdbcType=TIMESTAMP},
+      supporting_actors = #{supportingActors,jdbcType=LONGVARCHAR},
+      actor = #{actor,jdbcType=LONGVARCHAR},
+      series = #{series,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tongji.model.Movie">
+    update movie
+    set title = #{title,jdbcType=VARCHAR},
+      genres = #{genres,jdbcType=VARCHAR},
+      director = #{director,jdbcType=VARCHAR},
+      run_time = #{runTime,jdbcType=INTEGER},
+      release_date = #{releaseDate,jdbcType=TIMESTAMP},
+      date_first_available = #{dateFirstAvailable,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
