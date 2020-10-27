@@ -10,7 +10,7 @@ public interface MovieMapper {
 
     int deleteByExample(MovieExample example);
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String movieId);
 
     int insert(Movie record);
 
@@ -20,7 +20,7 @@ public interface MovieMapper {
 
     List<Movie> selectByExample(MovieExample example);
 
-    Movie selectByPrimaryKey(String id);
+    Movie selectByPrimaryKey(String movieId);
 
     int updateByExampleSelective(@Param("record") Movie record, @Param("example") MovieExample example);
 

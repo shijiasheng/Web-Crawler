@@ -2,38 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c47bc582-41ad-41b6-8144-405b3af04ec8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/ActorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/DirectorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/GenreMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/TimeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Actor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/ActorExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Director.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/DirectorExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Genre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/GenreExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Movie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Time.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/TimeExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/ActorMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/DirectorMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/GenreMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/TimeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/Backup1Mapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Backup1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Backup1Example.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/Backup1Mapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/Backup1Mapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/Backup1Mapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1Example$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1Example$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1Example$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Backup1Example.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/MovieMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/MovieMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/MovieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/MovieMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/Movie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$Criteria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$GeneratedCriteria.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -193,6 +171,8 @@
       <workItem from="1603669656029" duration="115000" />
       <workItem from="1603669799477" duration="45000" />
       <workItem from="1603669921200" duration="12343000" />
+      <workItem from="1603689864288" duration="4183000" />
+      <workItem from="1603706163761" duration="1063000" />
     </task>
     <servers />
   </component>
@@ -227,22 +207,22 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1603682369869" />
-    <state width="1493" height="316" key="GridCell.Tab.0.bottom" timestamp="1603683716877">
+    <state width="1493" height="411" key="GridCell.Tab.0.bottom" timestamp="1603707235857">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="316" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603683716877" />
-    <state width="1493" height="316" key="GridCell.Tab.0.center" timestamp="1603683716877">
+    <state width="1493" height="411" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1603707235857" />
+    <state width="1493" height="411" key="GridCell.Tab.0.center" timestamp="1603707235857">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="316" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603683716877" />
-    <state width="1493" height="316" key="GridCell.Tab.0.left" timestamp="1603683716876">
+    <state width="1493" height="411" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1603707235857" />
+    <state width="1493" height="411" key="GridCell.Tab.0.left" timestamp="1603707235857">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="316" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603683716876" />
-    <state width="1493" height="316" key="GridCell.Tab.0.right" timestamp="1603683716877">
+    <state width="1493" height="411" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1603707235857" />
+    <state width="1493" height="411" key="GridCell.Tab.0.right" timestamp="1603707235857">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="316" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603683716877" />
+    <state width="1493" height="411" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1603707235857" />
     <state x="545" y="189" key="refactoring.ChangeSignatureDialog" timestamp="1603676861740">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

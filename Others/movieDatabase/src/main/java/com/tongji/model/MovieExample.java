@@ -105,73 +105,73 @@ public class MovieExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
+        public Criteria andMovieIdIsNull() {
+            addCriterion("movie_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+        public Criteria andMovieIdIsNotNull() {
+            addCriterion("movie_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(String value) {
-            addCriterion("id =", value, "id");
+        public Criteria andMovieIdEqualTo(String value) {
+            addCriterion("movie_id =", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(String value) {
-            addCriterion("id <>", value, "id");
+        public Criteria andMovieIdNotEqualTo(String value) {
+            addCriterion("movie_id <>", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(String value) {
-            addCriterion("id >", value, "id");
+        public Criteria andMovieIdGreaterThan(String value) {
+            addCriterion("movie_id >", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(String value) {
-            addCriterion("id >=", value, "id");
+        public Criteria andMovieIdGreaterThanOrEqualTo(String value) {
+            addCriterion("movie_id >=", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(String value) {
-            addCriterion("id <", value, "id");
+        public Criteria andMovieIdLessThan(String value) {
+            addCriterion("movie_id <", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(String value) {
-            addCriterion("id <=", value, "id");
+        public Criteria andMovieIdLessThanOrEqualTo(String value) {
+            addCriterion("movie_id <=", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLike(String value) {
-            addCriterion("id like", value, "id");
+        public Criteria andMovieIdLike(String value) {
+            addCriterion("movie_id like", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotLike(String value) {
-            addCriterion("id not like", value, "id");
+        public Criteria andMovieIdNotLike(String value) {
+            addCriterion("movie_id not like", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<String> values) {
-            addCriterion("id in", values, "id");
+        public Criteria andMovieIdIn(List<String> values) {
+            addCriterion("movie_id in", values, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<String> values) {
-            addCriterion("id not in", values, "id");
+        public Criteria andMovieIdNotIn(List<String> values) {
+            addCriterion("movie_id not in", values, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(String value1, String value2) {
-            addCriterion("id between", value1, value2, "id");
+        public Criteria andMovieIdBetween(String value1, String value2) {
+            addCriterion("movie_id between", value1, value2, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(String value1, String value2) {
-            addCriterion("id not between", value1, value2, "id");
+        public Criteria andMovieIdNotBetween(String value1, String value2) {
+            addCriterion("movie_id not between", value1, value2, "movieId");
             return (Criteria) this;
         }
 
