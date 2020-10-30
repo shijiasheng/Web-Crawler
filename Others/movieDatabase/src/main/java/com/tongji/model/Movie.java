@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Movie implements Serializable {
-    private String id;
+    private String movieId;
 
     private String title;
 
@@ -29,12 +29,12 @@ public class Movie implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public String getId() {
-        return id;
+    public String getMovieId() {
+        return movieId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMovieId(String movieId) {
+        this.movieId = movieId;
     }
 
     public String getTitle() {
@@ -115,7 +115,7 @@ public class Movie implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        sb.append(", movieId=").append(movieId);
         sb.append(", title=").append(title);
         sb.append(", genres=").append(genres);
         sb.append(", director=").append(director);

@@ -33,13 +33,15 @@ public class MainTest
     @Autowired
     TimeMapper timeMapper;
 
+
     @Test
     public void test3() throws ParseException
     {
         String dateStr = "December 11, 2012";
         SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
         Date date = format.parse(dateStr);
-        format = new SimpleDateFormat("yyyy-MM-dd");
+        date = new Date();
+        format = new SimpleDateFormat("E",Locale.ENGLISH);
         System.out.println(format.format(date));
     }
 
@@ -48,6 +50,7 @@ public class MainTest
     {
         //获取所有记录
         ProductdataExample productdataExample = new ProductdataExample();
+        productdataExample.createCriteria().andIdEqualTo("0001489305");
         List<Productdata> productdata = mapper.selectByExample(productdataExample);
 
         int count = 0;
@@ -93,14 +96,14 @@ public class MainTest
 
             //对movie表处理
             Movie movie = new Movie();
-            movie.setId(productId);
+            movie.setMovieId(productId);
             movie.setTitle(title);
             StringBuilder stringBuilder = new StringBuilder();
             //处理类型
             if (genres != null)
             {
                 stringBuilder.append(genres);
-                stringBuilder.append("&");
+//                stringBuilder.append("&");
             }
             movie.setGenres(stringBuilder.toString());
             //处理导演
@@ -110,7 +113,7 @@ public class MainTest
                 for (String s : directors)
                 {
                     stringBuilder.append(s);
-                    stringBuilder.append("&");
+//                    stringBuilder.append("&");
                 }
             }
             movie.setDirector(stringBuilder.toString());
@@ -149,17 +152,37 @@ public class MainTest
             {
                 for (String s : directors)
                 {
-                    //先获取导演
-                    Director director = directorMapper.selectByPrimaryKey(s);
-                    //获取他导演的片
-                    stringBuilder = new StringBuilder();
-                    String filming = director.getFilming();
-                    //如果这个导演导演过电影,就加入原先的电影
-                    if (filming != null && !filming.isEmpty()) stringBuilder.append(filming);
-                    //如果这部电影有名字
-                    if (title != null && !title.isEmpty()) stringBuilder.append(title);
-                    director.setFilming(stringBuilder.toString());
-                    directorMapper.updateByPrimaryKeySelective(director);
+                    //该导演导演名不为空
+                    if(!s.isEmpty())
+                    {
+                        //先获取导演
+                        Director director = directorMapper.selectByPrimaryKey(s);
+                        if (director != null)
+                        {
+                            //获取他导演的片
+                            stringBuilder = new StringBuilder();
+                            String filming = director.getFilming();
+                            //如果这个导演导演过电影,就加入原先的电影
+                            if (filming != null && !filming.isEmpty()) stringBuilder.append(filming);
+                            //如果这部电影有名字
+                            if (title != null && !title.isEmpty()) stringBuilder.append(title);
+                            director.setFilming(stringBuilder.toString());
+                            directorMapper.updateByPrimaryKeySelective(director);
+                        }
+                        else
+                        {
+
+                            //如果这部电影有名字
+                            if (title != null && !title.isEmpty())
+                            {
+                                //新增一条数据
+                                director = new Director();
+                                director.setName(s);
+                                director.setFilming(title);
+                                directorMapper.insertSelective(director);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -168,14 +191,31 @@ public class MainTest
             {
                 for (String s : supportingActors)
                 {
-                    Actor actor = actorMapper.selectByPrimaryKey(s);
-                    stringBuilder = new StringBuilder();
-                    String starring = actor.getStarring();
-                    if (starring != null && !starring.isEmpty()) stringBuilder.append(starring);
-                    //如果这部电影有名字
-                    if (title != null && !title.isEmpty()) stringBuilder.append(title);
-                    actor.setStarring(stringBuilder.toString());
-                    actorMapper.updateByPrimaryKeySelective(actor);
+                    if(!s.isEmpty())
+                    {
+                        Actor actor = actorMapper.selectByPrimaryKey(s);
+                        if (actor != null)
+                        {
+                            stringBuilder = new StringBuilder();
+                            String starring = actor.getStarring();
+                            if (starring != null && !starring.isEmpty()) stringBuilder.append(starring);
+                            //如果这部电影有名字
+                            if (title != null && !title.isEmpty()) stringBuilder.append(title);
+                            actor.setStarring(stringBuilder.toString());
+                            actorMapper.updateByPrimaryKeySelective(actor);
+                        }
+                        else
+                        {
+                            //如果这部电影有名字
+                            if (title != null && !title.isEmpty())
+                            {
+                                actor = new Actor();
+                                actor.setStarring(title);
+                                actor.setName(s);
+                                actorMapper.insertSelective(actor);
+                            }
+                        }
+                    }
                 }
             }
 
@@ -185,14 +225,32 @@ public class MainTest
             {
                 for (String s : actors)
                 {
-                    Actor actor = actorMapper.selectByPrimaryKey(s);
-                    stringBuilder = new StringBuilder();
-                    String participate = actor.getParticipate();
-                    if (participate != null && !participate.isEmpty()) stringBuilder.append(participate);
-                    //如果这部电影有名字
-                    if (title != null && !title.isEmpty()) stringBuilder.append(title);
-                    actor.setParticipate(stringBuilder.toString());
-                    actorMapper.updateByPrimaryKeySelective(actor);
+                    if(!s.isEmpty())
+                    {
+                        Actor actor = actorMapper.selectByPrimaryKey(s);
+                        if (actor != null)
+                        {
+                            stringBuilder = new StringBuilder();
+                            String participate = actor.getParticipate();
+                            if (participate != null && !participate.isEmpty()) stringBuilder.append(participate);
+                            //如果这部电影有名字
+                            if (title != null && !title.isEmpty()) stringBuilder.append(title);
+                            actor.setParticipate(stringBuilder.toString());
+                            actorMapper.updateByPrimaryKeySelective(actor);
+                        }
+                        else
+                        {
+
+                            //如果这部电影有名字
+                            if (title != null && !title.isEmpty())
+                            {
+                                actor = new Actor();
+                                actor.setParticipate(title);
+                                actor.setName(s);
+                            }
+                            actorMapper.updateByPrimaryKeySelective(actor);
+                        }
+                    }
                 }
             }
 
@@ -201,22 +259,36 @@ public class MainTest
             if (genres != null)
             {
                 Genre genre = genreMapper.selectByPrimaryKey(genres);
-                stringBuilder = new StringBuilder();
-                String movies = genre.getMovies();
-                if (movies != null && !movies.isEmpty()) stringBuilder.append(movies);
-                //如果这部电影有名字
-                if (title != null && !title.isEmpty()) stringBuilder.append(title);
-                genre.setMovies(stringBuilder.toString());
-                genreMapper.updateByPrimaryKeySelective(genre);
+                if (genre != null)
+                {
+                    stringBuilder = new StringBuilder();
+                    String movies = genre.getMovies();
+                    if (movies != null && !movies.isEmpty()) stringBuilder.append(movies);
+                    //如果这部电影有名字
+                    if (title != null && !title.isEmpty()) stringBuilder.append(title);
+                    genre.setMovies(stringBuilder.toString());
+                    genreMapper.updateByPrimaryKeySelective(genre);
+                }
+                else
+                {
+                    if (title != null && !title.isEmpty())
+                    {
+                        genre = new Genre();
+                        genre.setMovies(title);
+                        genre.setName(genres);
+                        genreMapper.insertSelective(genre);
+                    }
+                }
+
             }
 
 
             //更新time表
-            if (releaseDate != null)
+            if (releaseDate == null)
             {
                 //不更新
             }
-            else if(onlyYear)
+            else if (onlyYear)
             {
                 //只更新年
                 Time time = new Time();
@@ -229,7 +301,7 @@ public class MainTest
             {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(releaseDate);
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEE");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E",Locale.ENGLISH);
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH) + 1;//因为从0开始的
                 int day = calendar.get(Calendar.DATE);
@@ -272,7 +344,7 @@ public class MainTest
      */
     private Date changeDateFirstAvailableRaw(String dateFirstAvailable) throws ParseException
     {
-        if(dateFirstAvailable==null) return null;
+        if (dateFirstAvailable == null) return null;
         SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
         Date date = format.parse(dateFirstAvailable);
         return date;
@@ -292,21 +364,21 @@ public class MainTest
 
     private String[] changeActors(String actorsRaw)
     {
-        if(actorsRaw==null) return null;
+        if (actorsRaw == null) return null;
         String[] split = actorsRaw.split(" & ");
         return split;
     }
 
     private String[] changeSupportingActors(String supportingActorsRaw)
     {
-        if(supportingActorsRaw==null) return null;
+        if (supportingActorsRaw == null) return null;
         String[] split = supportingActorsRaw.split(" & ");
         return split;
     }
 
     private String[] changeDirectors(String directorsRaw)
     {
-        if(directorsRaw==null) return null;
+        if (directorsRaw == null) return null;
         String[] split = directorsRaw.split(" & ");
         return split;
     }
