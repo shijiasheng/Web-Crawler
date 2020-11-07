@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: com.tongji.MainTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 5.237 s <<< FAILURE! - in com.tongji.MainTest
+test(com.tongji.MainTest)  Time elapsed: 0.552 s  <<< ERROR!
+org.springframework.dao.DuplicateKeyException: 
+
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '0001489305' for key 'PRIMARY'
+### The error may involve com.tongji.mapper.MovieMapper.insertSelective-Inline
+### The error occurred while setting parameters
+### SQL: insert into movie      ( movie_id,                       title,                       genres,                       director,                       run_time,                       release_date,                       date_first_available,                       supporting_actors,                       actor,                       series )       values ( ?,                       ?,                       ?,                       ?,                       ?,                       ?,                       ?,                       ?,                       ?,                       ? )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '0001489305' for key 'PRIMARY'
+; Duplicate entry '0001489305' for key 'PRIMARY'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '0001489305' for key 'PRIMARY'
+	at com.tongji.MainTest.test(MainTest.java:148)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '0001489305' for key 'PRIMARY'
+	at com.tongji.MainTest.test(MainTest.java:148)
+
