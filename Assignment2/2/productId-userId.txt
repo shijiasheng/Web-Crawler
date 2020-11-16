@@ -1,1 +1,0 @@
-从movies.txt中提取每条评论的productId和userId
