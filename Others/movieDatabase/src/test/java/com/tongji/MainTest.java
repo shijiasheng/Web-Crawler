@@ -34,19 +34,10 @@ public class MainTest
     TimeMapper timeMapper;
 
 
-    @Test
-    public void test3() throws ParseException
-    {
-        String dateStr = "December 11, 2012";
-        SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
-        Date date = format.parse(dateStr);
-        date = new Date();
-        format = new SimpleDateFormat("E",Locale.ENGLISH);
-        System.out.println(format.format(date));
-    }
+
 
     @Test
-    public void test() throws ParseException
+    public void addMovie() throws ParseException
     {
         //获取所有记录
         ProductdataExample productdataExample = new ProductdataExample();
@@ -337,6 +328,21 @@ public class MainTest
         }
     }
 
+    @Test
+    public void addReview() {
+
+    }
+
+    @Test
+    public void test3() throws ParseException
+    {
+        String dateStr = "December 11, 2012";
+        SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy", Locale.US);
+        Date date = format.parse(dateStr);
+        date = new Date();
+        format = new SimpleDateFormat("E",Locale.ENGLISH);
+        System.out.println(format.format(date));
+    }
 
     /*
     null

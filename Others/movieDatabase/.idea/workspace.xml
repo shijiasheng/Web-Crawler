@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c47bc582-41ad-41b6-8144-405b3af04ec8" name="Default Changelist" comment="" />
+    <list default="true" id="c47bc582-41ad-41b6-8144-405b3af04ec8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/controller/MovieController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/MovieService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/impl/MovieServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/movieDatabase.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,11 +39,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -43,13 +57,17 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.tongji" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.tongji.service" />
+      <recent name="com.tongji.controller" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\12549\Desktop\数据仓库\Web-Crawler\Others\movieDatabase\src\test\java\com\tongji" />
       <recent name="C:\Users\12549\Desktop\movieData\src\main\java\com\tongji\boying" />
       <recent name="C:\Users\12549\Desktop\movieData\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MainTest.test (1)">
+  <component name="RunManager" selected="Spring Boot.MyApplication">
     <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.tongji.utils.Generator" />
       <module name="movieDatabase" />
@@ -136,9 +154,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Generator" />
         <item itemvalue="JUnit.MainTest.test (1)" />
         <item itemvalue="JUnit.MainTest.test3" />
-        <item itemvalue="Application.Generator" />
         <item itemvalue="JUnit.MainTest.test2" />
         <item itemvalue="JUnit.MainTest.test" />
       </list>
@@ -163,6 +181,10 @@
       <workItem from="1603706163761" duration="1063000" />
       <workItem from="1604112471340" duration="81000" />
       <workItem from="1604650276323" duration="71000" />
+      <workItem from="1608078489238" duration="225000" />
+      <workItem from="1608552987400" duration="1164000" />
+      <workItem from="1608795264138" duration="78000" />
+      <workItem from="1608983733766" duration="3162000" />
     </task>
     <servers />
   </component>
@@ -173,6 +195,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="91" key="#Deployment" timestamp="1608984074415">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="361" y="91" key="#Deployment/0.0.1536.864@0.0.1536.864" timestamp="1608984074415" />
     <state x="395" y="111" key="#Inspections" timestamp="1603611838184">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -181,6 +207,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="249" y="7" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1603610089355" />
+    <state x="345" y="78" key="#SSH_Configurations" timestamp="1608984073568">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="345" y="78" key="#SSH_Configurations/0.0.1536.864@0.0.1536.864" timestamp="1608984073568" />
     <state x="544" y="299" width="448" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603669957899">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -197,22 +227,42 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1604112544993" />
-    <state width="1493" height="411" key="GridCell.Tab.0.bottom" timestamp="1604650347747">
+    <state x="579" y="333" key="Github.CreateGistDialog" timestamp="1608987609427">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="411" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1604650347747" />
-    <state width="1493" height="411" key="GridCell.Tab.0.center" timestamp="1604650347746">
+    <state x="579" y="333" key="Github.CreateGistDialog/0.0.1536.864@0.0.1536.864" timestamp="1608987609427" />
+    <state width="1493" height="280" key="GridCell.Tab.0.bottom" timestamp="1608987633187">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="411" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1604650347746" />
-    <state width="1493" height="411" key="GridCell.Tab.0.left" timestamp="1604650347746">
+    <state width="1493" height="280" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1608987633187" />
+    <state width="1493" height="280" key="GridCell.Tab.0.center" timestamp="1608987633187">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="411" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1604650347746" />
-    <state width="1493" height="411" key="GridCell.Tab.0.right" timestamp="1604650347746">
+    <state width="1493" height="280" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1608987633187" />
+    <state width="1493" height="280" key="GridCell.Tab.0.left" timestamp="1608987633187">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="411" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1604650347746" />
+    <state width="1493" height="280" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1608987633187" />
+    <state width="1493" height="280" key="GridCell.Tab.0.right" timestamp="1608987633187">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="280" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1608987633187" />
+    <state width="1493" height="280" key="GridCell.Tab.1.bottom" timestamp="1608987633187">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="280" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1608987633187" />
+    <state width="1493" height="280" key="GridCell.Tab.1.center" timestamp="1608987633187">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="280" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1608987633187" />
+    <state width="1493" height="280" key="GridCell.Tab.1.left" timestamp="1608987633187">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="280" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1608987633187" />
+    <state width="1493" height="280" key="GridCell.Tab.1.right" timestamp="1608987633187">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="280" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1608987633187" />
     <state x="545" y="189" key="refactoring.ChangeSignatureDialog" timestamp="1603676861740">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
