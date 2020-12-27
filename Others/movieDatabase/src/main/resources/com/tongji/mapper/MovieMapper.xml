@@ -7,10 +7,10 @@
     <result column="time_id" jdbcType="INTEGER" property="timeId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="genres" jdbcType="VARCHAR" property="genres" />
-    <result column="run_time" jdbcType="INTEGER" property="runTime" />
-    <result column="release_date" jdbcType="TIMESTAMP" property="releaseDate" />
-    <result column="date_first_available" jdbcType="TIMESTAMP" property="dateFirstAvailable" />
-    <result column="star" jdbcType="DECIMAL" property="star" />
+    <result column="run_time" jdbcType="VARCHAR" property="runTime" />
+    <result column="release_date" jdbcType="VARCHAR" property="releaseDate" />
+    <result column="date_first_available" jdbcType="VARCHAR" property="dateFirstAvailable" />
+    <result column="star" jdbcType="DOUBLE" property="star" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongji.model.Movie">
     <result column="director" jdbcType="LONGVARCHAR" property="director" />
@@ -133,23 +133,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tongji.model.Movie">
-    insert into movie (movie_id, product_id, time_id, 
-      title, genres, run_time, 
-      release_date, date_first_available, star, 
-      director, supporting_actors, actor, 
-      link_id, link_title)
-    values (#{movieId,jdbcType=INTEGER}, #{productId,jdbcType=VARCHAR}, #{timeId,jdbcType=INTEGER}, 
-      #{title,jdbcType=VARCHAR}, #{genres,jdbcType=VARCHAR}, #{runTime,jdbcType=INTEGER}, 
-      #{releaseDate,jdbcType=TIMESTAMP}, #{dateFirstAvailable,jdbcType=TIMESTAMP}, #{star,jdbcType=DECIMAL}, 
-      #{director,jdbcType=LONGVARCHAR}, #{supportingActors,jdbcType=LONGVARCHAR}, #{actor,jdbcType=LONGVARCHAR}, 
-      #{linkId,jdbcType=LONGVARCHAR}, #{linkTitle,jdbcType=LONGVARCHAR})
+    <selectKey keyProperty="movieId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into movie (product_id, time_id, title, 
+      genres, run_time, release_date, 
+      date_first_available, star, director, 
+      supporting_actors, actor, link_id, 
+      link_title)
+    values (#{productId,jdbcType=VARCHAR}, #{timeId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{genres,jdbcType=VARCHAR}, #{runTime,jdbcType=VARCHAR}, #{releaseDate,jdbcType=VARCHAR}, 
+      #{dateFirstAvailable,jdbcType=VARCHAR}, #{star,jdbcType=DOUBLE}, #{director,jdbcType=LONGVARCHAR}, 
+      #{supportingActors,jdbcType=LONGVARCHAR}, #{actor,jdbcType=LONGVARCHAR}, #{linkId,jdbcType=LONGVARCHAR}, 
+      #{linkTitle,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Movie">
+    <selectKey keyProperty="movieId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into movie
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="movieId != null">
-        movie_id,
-      </if>
       <if test="productId != null">
         product_id,
       </if>
@@ -191,9 +194,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="movieId != null">
-        #{movieId,jdbcType=INTEGER},
-      </if>
       <if test="productId != null">
         #{productId,jdbcType=VARCHAR},
       </if>
@@ -207,16 +207,16 @@
         #{genres,jdbcType=VARCHAR},
       </if>
       <if test="runTime != null">
-        #{runTime,jdbcType=INTEGER},
+        #{runTime,jdbcType=VARCHAR},
       </if>
       <if test="releaseDate != null">
-        #{releaseDate,jdbcType=TIMESTAMP},
+        #{releaseDate,jdbcType=VARCHAR},
       </if>
       <if test="dateFirstAvailable != null">
-        #{dateFirstAvailable,jdbcType=TIMESTAMP},
+        #{dateFirstAvailable,jdbcType=VARCHAR},
       </if>
       <if test="star != null">
-        #{star,jdbcType=DECIMAL},
+        #{star,jdbcType=DOUBLE},
       </if>
       <if test="director != null">
         #{director,jdbcType=LONGVARCHAR},
@@ -260,16 +260,16 @@
         genres = #{record.genres,jdbcType=VARCHAR},
       </if>
       <if test="record.runTime != null">
-        run_time = #{record.runTime,jdbcType=INTEGER},
+        run_time = #{record.runTime,jdbcType=VARCHAR},
       </if>
       <if test="record.releaseDate != null">
-        release_date = #{record.releaseDate,jdbcType=TIMESTAMP},
+        release_date = #{record.releaseDate,jdbcType=VARCHAR},
       </if>
       <if test="record.dateFirstAvailable != null">
-        date_first_available = #{record.dateFirstAvailable,jdbcType=TIMESTAMP},
+        date_first_available = #{record.dateFirstAvailable,jdbcType=VARCHAR},
       </if>
       <if test="record.star != null">
-        star = #{record.star,jdbcType=DECIMAL},
+        star = #{record.star,jdbcType=DOUBLE},
       </if>
       <if test="record.director != null">
         director = #{record.director,jdbcType=LONGVARCHAR},
@@ -298,10 +298,10 @@
       time_id = #{record.timeId,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       genres = #{record.genres,jdbcType=VARCHAR},
-      run_time = #{record.runTime,jdbcType=INTEGER},
-      release_date = #{record.releaseDate,jdbcType=TIMESTAMP},
-      date_first_available = #{record.dateFirstAvailable,jdbcType=TIMESTAMP},
-      star = #{record.star,jdbcType=DECIMAL},
+      run_time = #{record.runTime,jdbcType=VARCHAR},
+      release_date = #{record.releaseDate,jdbcType=VARCHAR},
+      date_first_available = #{record.dateFirstAvailable,jdbcType=VARCHAR},
+      star = #{record.star,jdbcType=DOUBLE},
       director = #{record.director,jdbcType=LONGVARCHAR},
       supporting_actors = #{record.supportingActors,jdbcType=LONGVARCHAR},
       actor = #{record.actor,jdbcType=LONGVARCHAR},
@@ -318,10 +318,10 @@
       time_id = #{record.timeId,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       genres = #{record.genres,jdbcType=VARCHAR},
-      run_time = #{record.runTime,jdbcType=INTEGER},
-      release_date = #{record.releaseDate,jdbcType=TIMESTAMP},
-      date_first_available = #{record.dateFirstAvailable,jdbcType=TIMESTAMP},
-      star = #{record.star,jdbcType=DECIMAL}
+      run_time = #{record.runTime,jdbcType=VARCHAR},
+      release_date = #{record.releaseDate,jdbcType=VARCHAR},
+      date_first_available = #{record.dateFirstAvailable,jdbcType=VARCHAR},
+      star = #{record.star,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -342,16 +342,16 @@
         genres = #{genres,jdbcType=VARCHAR},
       </if>
       <if test="runTime != null">
-        run_time = #{runTime,jdbcType=INTEGER},
+        run_time = #{runTime,jdbcType=VARCHAR},
       </if>
       <if test="releaseDate != null">
-        release_date = #{releaseDate,jdbcType=TIMESTAMP},
+        release_date = #{releaseDate,jdbcType=VARCHAR},
       </if>
       <if test="dateFirstAvailable != null">
-        date_first_available = #{dateFirstAvailable,jdbcType=TIMESTAMP},
+        date_first_available = #{dateFirstAvailable,jdbcType=VARCHAR},
       </if>
       <if test="star != null">
-        star = #{star,jdbcType=DECIMAL},
+        star = #{star,jdbcType=DOUBLE},
       </if>
       <if test="director != null">
         director = #{director,jdbcType=LONGVARCHAR},
@@ -377,10 +377,10 @@
       time_id = #{timeId,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       genres = #{genres,jdbcType=VARCHAR},
-      run_time = #{runTime,jdbcType=INTEGER},
-      release_date = #{releaseDate,jdbcType=TIMESTAMP},
-      date_first_available = #{dateFirstAvailable,jdbcType=TIMESTAMP},
-      star = #{star,jdbcType=DECIMAL},
+      run_time = #{runTime,jdbcType=VARCHAR},
+      release_date = #{releaseDate,jdbcType=VARCHAR},
+      date_first_available = #{dateFirstAvailable,jdbcType=VARCHAR},
+      star = #{star,jdbcType=DOUBLE},
       director = #{director,jdbcType=LONGVARCHAR},
       supporting_actors = #{supportingActors,jdbcType=LONGVARCHAR},
       actor = #{actor,jdbcType=LONGVARCHAR},
@@ -394,10 +394,10 @@
       time_id = #{timeId,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       genres = #{genres,jdbcType=VARCHAR},
-      run_time = #{runTime,jdbcType=INTEGER},
-      release_date = #{releaseDate,jdbcType=TIMESTAMP},
-      date_first_available = #{dateFirstAvailable,jdbcType=TIMESTAMP},
-      star = #{star,jdbcType=DECIMAL}
+      run_time = #{runTime,jdbcType=VARCHAR},
+      release_date = #{releaseDate,jdbcType=VARCHAR},
+      date_first_available = #{dateFirstAvailable,jdbcType=VARCHAR},
+      star = #{star,jdbcType=DOUBLE}
     where movie_id = #{movieId,jdbcType=INTEGER}
   </update>
 </mapper>

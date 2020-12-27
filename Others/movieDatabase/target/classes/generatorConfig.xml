@@ -38,8 +38,20 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.tongji.mapper"
                              targetProject="src\main\java" />
         <!--生成全部表tableName设为%-->
-        <table tableName="%">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        <table tableName="time">
+            <generatedKey column="time_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="movie">
+            <generatedKey column="movie_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="genre">
+            <generatedKey column="genre_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="actor">
+            <generatedKey column="actor_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="director">
+            <generatedKey column="director_id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>

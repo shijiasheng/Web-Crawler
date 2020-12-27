@@ -6,7 +6,7 @@
     <result column="year" jdbcType="INTEGER" property="year" />
     <result column="month" jdbcType="INTEGER" property="month" />
     <result column="day" jdbcType="INTEGER" property="day" />
-    <result column="week" jdbcType="VARCHAR" property="week" />
+    <result column="week" jdbcType="INTEGER" property="week" />
     <result column="movie" jdbcType="VARCHAR" property="movie" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -101,17 +101,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tongji.model.Time">
-    insert into time (time_id, year, month, 
-      day, week, movie)
-    values (#{timeId,jdbcType=INTEGER}, #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, 
-      #{day,jdbcType=INTEGER}, #{week,jdbcType=VARCHAR}, #{movie,jdbcType=VARCHAR})
+    <selectKey keyProperty="timeId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into time (year, month, day, 
+      week, movie)
+    values (#{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, #{day,jdbcType=INTEGER}, 
+      #{week,jdbcType=INTEGER}, #{movie,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Time">
+    <selectKey keyProperty="timeId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into time
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="timeId != null">
-        time_id,
-      </if>
       <if test="year != null">
         year,
       </if>
@@ -129,9 +132,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="timeId != null">
-        #{timeId,jdbcType=INTEGER},
-      </if>
       <if test="year != null">
         #{year,jdbcType=INTEGER},
       </if>
@@ -142,7 +142,7 @@
         #{day,jdbcType=INTEGER},
       </if>
       <if test="week != null">
-        #{week,jdbcType=VARCHAR},
+        #{week,jdbcType=INTEGER},
       </if>
       <if test="movie != null">
         #{movie,jdbcType=VARCHAR},
@@ -171,7 +171,7 @@
         day = #{record.day,jdbcType=INTEGER},
       </if>
       <if test="record.week != null">
-        week = #{record.week,jdbcType=VARCHAR},
+        week = #{record.week,jdbcType=INTEGER},
       </if>
       <if test="record.movie != null">
         movie = #{record.movie,jdbcType=VARCHAR},
@@ -187,7 +187,7 @@
       year = #{record.year,jdbcType=INTEGER},
       month = #{record.month,jdbcType=INTEGER},
       day = #{record.day,jdbcType=INTEGER},
-      week = #{record.week,jdbcType=VARCHAR},
+      week = #{record.week,jdbcType=INTEGER},
       movie = #{record.movie,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -206,7 +206,7 @@
         day = #{day,jdbcType=INTEGER},
       </if>
       <if test="week != null">
-        week = #{week,jdbcType=VARCHAR},
+        week = #{week,jdbcType=INTEGER},
       </if>
       <if test="movie != null">
         movie = #{movie,jdbcType=VARCHAR},
@@ -219,7 +219,7 @@
     set year = #{year,jdbcType=INTEGER},
       month = #{month,jdbcType=INTEGER},
       day = #{day,jdbcType=INTEGER},
-      week = #{week,jdbcType=VARCHAR},
+      week = #{week,jdbcType=INTEGER},
       movie = #{movie,jdbcType=VARCHAR}
     where time_id = #{timeId,jdbcType=INTEGER}
   </update>

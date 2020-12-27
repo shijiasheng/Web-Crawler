@@ -1,7 +1,6 @@
 package com.tongji.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MovieExample {
@@ -445,52 +444,62 @@ public class MovieExample {
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeEqualTo(Integer value) {
+        public Criteria andRunTimeEqualTo(String value) {
             addCriterion("run_time =", value, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeNotEqualTo(Integer value) {
+        public Criteria andRunTimeNotEqualTo(String value) {
             addCriterion("run_time <>", value, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeGreaterThan(Integer value) {
+        public Criteria andRunTimeGreaterThan(String value) {
             addCriterion("run_time >", value, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andRunTimeGreaterThanOrEqualTo(String value) {
             addCriterion("run_time >=", value, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeLessThan(Integer value) {
+        public Criteria andRunTimeLessThan(String value) {
             addCriterion("run_time <", value, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andRunTimeLessThanOrEqualTo(String value) {
             addCriterion("run_time <=", value, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeIn(List<Integer> values) {
+        public Criteria andRunTimeLike(String value) {
+            addCriterion("run_time like", value, "runTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunTimeNotLike(String value) {
+            addCriterion("run_time not like", value, "runTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunTimeIn(List<String> values) {
             addCriterion("run_time in", values, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeNotIn(List<Integer> values) {
+        public Criteria andRunTimeNotIn(List<String> values) {
             addCriterion("run_time not in", values, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeBetween(Integer value1, Integer value2) {
+        public Criteria andRunTimeBetween(String value1, String value2) {
             addCriterion("run_time between", value1, value2, "runTime");
             return (Criteria) this;
         }
 
-        public Criteria andRunTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andRunTimeNotBetween(String value1, String value2) {
             addCriterion("run_time not between", value1, value2, "runTime");
             return (Criteria) this;
         }
@@ -505,52 +514,62 @@ public class MovieExample {
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateEqualTo(Date value) {
+        public Criteria andReleaseDateEqualTo(String value) {
             addCriterion("release_date =", value, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateNotEqualTo(Date value) {
+        public Criteria andReleaseDateNotEqualTo(String value) {
             addCriterion("release_date <>", value, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateGreaterThan(Date value) {
+        public Criteria andReleaseDateGreaterThan(String value) {
             addCriterion("release_date >", value, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateGreaterThanOrEqualTo(Date value) {
+        public Criteria andReleaseDateGreaterThanOrEqualTo(String value) {
             addCriterion("release_date >=", value, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateLessThan(Date value) {
+        public Criteria andReleaseDateLessThan(String value) {
             addCriterion("release_date <", value, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateLessThanOrEqualTo(Date value) {
+        public Criteria andReleaseDateLessThanOrEqualTo(String value) {
             addCriterion("release_date <=", value, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateIn(List<Date> values) {
+        public Criteria andReleaseDateLike(String value) {
+            addCriterion("release_date like", value, "releaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseDateNotLike(String value) {
+            addCriterion("release_date not like", value, "releaseDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReleaseDateIn(List<String> values) {
             addCriterion("release_date in", values, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateNotIn(List<Date> values) {
+        public Criteria andReleaseDateNotIn(List<String> values) {
             addCriterion("release_date not in", values, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateBetween(Date value1, Date value2) {
+        public Criteria andReleaseDateBetween(String value1, String value2) {
             addCriterion("release_date between", value1, value2, "releaseDate");
             return (Criteria) this;
         }
 
-        public Criteria andReleaseDateNotBetween(Date value1, Date value2) {
+        public Criteria andReleaseDateNotBetween(String value1, String value2) {
             addCriterion("release_date not between", value1, value2, "releaseDate");
             return (Criteria) this;
         }
@@ -565,52 +584,62 @@ public class MovieExample {
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableEqualTo(Date value) {
+        public Criteria andDateFirstAvailableEqualTo(String value) {
             addCriterion("date_first_available =", value, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableNotEqualTo(Date value) {
+        public Criteria andDateFirstAvailableNotEqualTo(String value) {
             addCriterion("date_first_available <>", value, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableGreaterThan(Date value) {
+        public Criteria andDateFirstAvailableGreaterThan(String value) {
             addCriterion("date_first_available >", value, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableGreaterThanOrEqualTo(Date value) {
+        public Criteria andDateFirstAvailableGreaterThanOrEqualTo(String value) {
             addCriterion("date_first_available >=", value, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableLessThan(Date value) {
+        public Criteria andDateFirstAvailableLessThan(String value) {
             addCriterion("date_first_available <", value, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableLessThanOrEqualTo(Date value) {
+        public Criteria andDateFirstAvailableLessThanOrEqualTo(String value) {
             addCriterion("date_first_available <=", value, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableIn(List<Date> values) {
+        public Criteria andDateFirstAvailableLike(String value) {
+            addCriterion("date_first_available like", value, "dateFirstAvailable");
+            return (Criteria) this;
+        }
+
+        public Criteria andDateFirstAvailableNotLike(String value) {
+            addCriterion("date_first_available not like", value, "dateFirstAvailable");
+            return (Criteria) this;
+        }
+
+        public Criteria andDateFirstAvailableIn(List<String> values) {
             addCriterion("date_first_available in", values, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableNotIn(List<Date> values) {
+        public Criteria andDateFirstAvailableNotIn(List<String> values) {
             addCriterion("date_first_available not in", values, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableBetween(Date value1, Date value2) {
+        public Criteria andDateFirstAvailableBetween(String value1, String value2) {
             addCriterion("date_first_available between", value1, value2, "dateFirstAvailable");
             return (Criteria) this;
         }
 
-        public Criteria andDateFirstAvailableNotBetween(Date value1, Date value2) {
+        public Criteria andDateFirstAvailableNotBetween(String value1, String value2) {
             addCriterion("date_first_available not between", value1, value2, "dateFirstAvailable");
             return (Criteria) this;
         }
@@ -625,52 +654,52 @@ public class MovieExample {
             return (Criteria) this;
         }
 
-        public Criteria andStarEqualTo(Long value) {
+        public Criteria andStarEqualTo(Double value) {
             addCriterion("star =", value, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarNotEqualTo(Long value) {
+        public Criteria andStarNotEqualTo(Double value) {
             addCriterion("star <>", value, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarGreaterThan(Long value) {
+        public Criteria andStarGreaterThan(Double value) {
             addCriterion("star >", value, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarGreaterThanOrEqualTo(Long value) {
+        public Criteria andStarGreaterThanOrEqualTo(Double value) {
             addCriterion("star >=", value, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarLessThan(Long value) {
+        public Criteria andStarLessThan(Double value) {
             addCriterion("star <", value, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarLessThanOrEqualTo(Long value) {
+        public Criteria andStarLessThanOrEqualTo(Double value) {
             addCriterion("star <=", value, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarIn(List<Long> values) {
+        public Criteria andStarIn(List<Double> values) {
             addCriterion("star in", values, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarNotIn(List<Long> values) {
+        public Criteria andStarNotIn(List<Double> values) {
             addCriterion("star not in", values, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarBetween(Long value1, Long value2) {
+        public Criteria andStarBetween(Double value1, Double value2) {
             addCriterion("star between", value1, value2, "star");
             return (Criteria) this;
         }
 
-        public Criteria andStarNotBetween(Long value1, Long value2) {
+        public Criteria andStarNotBetween(Double value1, Double value2) {
             addCriterion("star not between", value1, value2, "star");
             return (Criteria) this;
         }

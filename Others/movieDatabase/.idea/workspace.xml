@@ -2,93 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c47bc582-41ad-41b6-8144-405b3af04ec8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/DirectorActorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieActorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieDirectorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieGenreMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/ReviewMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/DirectorActor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/DirectorActorExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieActor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieActorExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieDirector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieDirectorExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieGenre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieGenreExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Review.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/ReviewExample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/DirectorActorMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieActorMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieDirectorMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieGenreMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/ReviewMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/tongji/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/ActorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/ActorMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/DirectorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/DirectorMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/GenreMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/GenreMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/MovieMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/ProductdataMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/TimeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/TimeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/ActorExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/ActorExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Director.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Director.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/DirectorExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/DirectorExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Genre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Genre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/GenreExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/GenreExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/MovieExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Productdata.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/ProductdataExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/Time.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/Time.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/model/TimeExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/model/TimeExample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/ActorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/ActorMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/DirectorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/DirectorMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/GenreMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/GenreMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/MovieMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/ProductdataMapper.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/TimeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/TimeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generator.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/controller/MovieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/controller/MovieController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/ActorMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/ActorMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tongji/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tongji/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/ActorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/ActorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/DirectorMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/DirectorMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/DirectorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/DirectorMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/GenreMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/GenreMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/GenreMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/GenreMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/MovieMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/MovieMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/MovieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/MovieMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/ProductdataMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/ProductdataMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/TimeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/TimeMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/mapper/TimeMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/mapper/TimeMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Actor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/Actor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/ActorExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/ActorExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/ActorExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/ActorExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/ActorExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/ActorExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Director.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/Director.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/DirectorExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/DirectorExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/DirectorExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/DirectorExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/DirectorExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/DirectorExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Genre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/Genre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/GenreExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/GenreExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/GenreExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/GenreExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/GenreExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/GenreExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/Movie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/MovieExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Productdata.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/ProductdataExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/ProductdataExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/ProductdataExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/ProductdataExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/Time.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/Time.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/TimeExample$Criteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/TimeExample$Criteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/TimeExample$Criterion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/TimeExample$Criterion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/tongji/model/TimeExample$GeneratedCriteria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tongji/model/TimeExample$GeneratedCriteria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generator.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/generatorConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/tongji/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/tongji/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +60,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -146,7 +76,7 @@
       <recent name="C:\Users\12549\Desktop\movieData\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.Generator">
     <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.tongji.utils.Generator" />
       <module name="movieDatabase" />
@@ -230,9 +160,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Test" />
-        <item itemvalue="JUnit.MainTest.addMovie" />
         <item itemvalue="Application.Generator" />
+        <item itemvalue="JUnit.MainTest.addMovie" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="JUnit.MainTest.test (1)" />
         <item itemvalue="JUnit.MainTest.test3" />
       </list>
@@ -261,7 +191,7 @@
       <workItem from="1608552987400" duration="1164000" />
       <workItem from="1608795264138" duration="78000" />
       <workItem from="1608983733766" duration="3162000" />
-      <workItem from="1609053241997" duration="6601000" />
+      <workItem from="1609053241997" duration="12636000" />
     </task>
     <servers />
   </component>
@@ -308,45 +238,60 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="579" y="333" key="Github.CreateGistDialog/0.0.1536.864@0.0.1536.864" timestamp="1608987609427" />
-    <state width="1493" height="280" key="GridCell.Tab.0.bottom" timestamp="1609058261339">
+    <state width="1493" height="421" key="GridCell.Tab.0.bottom" timestamp="1609068330069">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="280" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1609058261339" />
-    <state width="1493" height="280" key="GridCell.Tab.0.center" timestamp="1609058261339">
+    <state width="1493" height="421" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1609068330069" />
+    <state width="1493" height="421" key="GridCell.Tab.0.center" timestamp="1609068330069">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="280" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1609058261339" />
-    <state width="1493" height="280" key="GridCell.Tab.0.left" timestamp="1609058261339">
+    <state width="1493" height="421" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1609068330069" />
+    <state width="1493" height="421" key="GridCell.Tab.0.left" timestamp="1609068330069">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="280" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1609058261339" />
-    <state width="1493" height="280" key="GridCell.Tab.0.right" timestamp="1609058261339">
+    <state width="1493" height="421" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1609068330069" />
+    <state width="1493" height="421" key="GridCell.Tab.0.right" timestamp="1609068330069">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="280" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1609058261339" />
-    <state width="1493" height="421" key="GridCell.Tab.1.bottom" timestamp="1609055035941">
+    <state width="1493" height="421" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1609068330069" />
+    <state width="1493" height="321" key="GridCell.Tab.1.bottom" timestamp="1609068342622">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="421" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1609055035941" />
-    <state width="1493" height="421" key="GridCell.Tab.1.center" timestamp="1609055035941">
+    <state width="1493" height="321" key="GridCell.Tab.1.bottom/0.0.1536.864@0.0.1536.864" timestamp="1609068342622" />
+    <state width="1493" height="321" key="GridCell.Tab.1.center" timestamp="1609068342622">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="421" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1609055035941" />
-    <state width="1493" height="421" key="GridCell.Tab.1.left" timestamp="1609055035941">
+    <state width="1493" height="321" key="GridCell.Tab.1.center/0.0.1536.864@0.0.1536.864" timestamp="1609068342622" />
+    <state width="1493" height="321" key="GridCell.Tab.1.left" timestamp="1609068342622">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="421" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1609055035941" />
-    <state width="1493" height="421" key="GridCell.Tab.1.right" timestamp="1609055035941">
+    <state width="1493" height="321" key="GridCell.Tab.1.left/0.0.1536.864@0.0.1536.864" timestamp="1609068342622" />
+    <state width="1493" height="321" key="GridCell.Tab.1.right" timestamp="1609068342622">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="421" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1609055035941" />
+    <state width="1493" height="321" key="GridCell.Tab.1.right/0.0.1536.864@0.0.1536.864" timestamp="1609068342622" />
     <state x="545" y="189" key="refactoring.ChangeSignatureDialog" timestamp="1603676861740">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="545" y="189" key="refactoring.ChangeSignatureDialog/0.0.1536.864@0.0.1536.864" timestamp="1603676861740" />
+    <state x="425" y="197" key="run.anything.popup" timestamp="1609067883591">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="425" y="197" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1609067883591" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1609057159527">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1609057159527" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

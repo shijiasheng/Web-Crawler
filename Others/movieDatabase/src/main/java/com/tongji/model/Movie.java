@@ -2,7 +2,6 @@ package com.tongji.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
 
 public class Movie implements Serializable {
     private Integer movieId;
@@ -15,15 +14,15 @@ public class Movie implements Serializable {
 
     private String genres;
 
-    private Integer runTime;
+    private String runTime;
 
     @ApiModelProperty(value = "发布日期")
-    private Date releaseDate;
+    private String releaseDate;
 
-    private Date dateFirstAvailable;
+    private String dateFirstAvailable;
 
     @ApiModelProperty(value = "评分")
-    private Long star;
+    private Double star;
 
     private String director;
 
@@ -77,35 +76,35 @@ public class Movie implements Serializable {
         this.genres = genres;
     }
 
-    public Integer getRunTime() {
+    public String getRunTime() {
         return runTime;
     }
 
-    public void setRunTime(Integer runTime) {
+    public void setRunTime(String runTime) {
         this.runTime = runTime;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public Date getDateFirstAvailable() {
+    public String getDateFirstAvailable() {
         return dateFirstAvailable;
     }
 
-    public void setDateFirstAvailable(Date dateFirstAvailable) {
+    public void setDateFirstAvailable(String dateFirstAvailable) {
         this.dateFirstAvailable = dateFirstAvailable;
     }
 
-    public Long getStar() {
+    public Double getStar() {
         return star;
     }
 
-    public void setStar(Long star) {
+    public void setStar(Double star) {
         this.star = star;
     }
 

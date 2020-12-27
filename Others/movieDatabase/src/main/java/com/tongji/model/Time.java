@@ -12,7 +12,7 @@ public class Time implements Serializable {
 
     private Integer day;
 
-    private String week;
+    private Integer week;
 
     @ApiModelProperty(value = "存储该时间点的一系列电影集合")
     private String movie;
@@ -51,11 +51,11 @@ public class Time implements Serializable {
         this.day = day;
     }
 
-    public String getWeek() {
+    public Integer getWeek() {
         return week;
     }
 
-    public void setWeek(String week) {
+    public void setWeek(Integer week) {
         this.week = week;
     }
 

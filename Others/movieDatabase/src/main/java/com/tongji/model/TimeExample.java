@@ -354,62 +354,52 @@ public class TimeExample {
             return (Criteria) this;
         }
 
-        public Criteria andWeekEqualTo(String value) {
+        public Criteria andWeekEqualTo(Integer value) {
             addCriterion("week =", value, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekNotEqualTo(String value) {
+        public Criteria andWeekNotEqualTo(Integer value) {
             addCriterion("week <>", value, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekGreaterThan(String value) {
+        public Criteria andWeekGreaterThan(Integer value) {
             addCriterion("week >", value, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekGreaterThanOrEqualTo(String value) {
+        public Criteria andWeekGreaterThanOrEqualTo(Integer value) {
             addCriterion("week >=", value, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekLessThan(String value) {
+        public Criteria andWeekLessThan(Integer value) {
             addCriterion("week <", value, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekLessThanOrEqualTo(String value) {
+        public Criteria andWeekLessThanOrEqualTo(Integer value) {
             addCriterion("week <=", value, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekLike(String value) {
-            addCriterion("week like", value, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekNotLike(String value) {
-            addCriterion("week not like", value, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIn(List<String> values) {
+        public Criteria andWeekIn(List<Integer> values) {
             addCriterion("week in", values, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekNotIn(List<String> values) {
+        public Criteria andWeekNotIn(List<Integer> values) {
             addCriterion("week not in", values, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekBetween(String value1, String value2) {
+        public Criteria andWeekBetween(Integer value1, Integer value2) {
             addCriterion("week between", value1, value2, "week");
             return (Criteria) this;
         }
 
-        public Criteria andWeekNotBetween(String value1, String value2) {
+        public Criteria andWeekNotBetween(Integer value1, Integer value2) {
             addCriterion("week not between", value1, value2, "week");
             return (Criteria) this;
         }

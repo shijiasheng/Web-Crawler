@@ -7,7 +7,26 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class Test {
+    public static void addReview() {
+        String pathname = "C:\\Users\\12549\\Desktop\\test\\review.csv";
+        try (FileReader reader = new FileReader(pathname);
+             BufferedReader br = new BufferedReader(reader)
+        ) {
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                String[] lines = line.split("#");
+                System.out.println(Arrays.toString(lines));
+                TimeUnit.SECONDS.sleep(3);
+            }
+        }
+        catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
+//        addReview();
+
         String pathname = "C:/Users/12549/Desktop/数据仓库/data.csv";
         try (FileReader reader = new FileReader(pathname);
              BufferedReader br = new BufferedReader(reader)
@@ -16,7 +35,7 @@ public class Test {
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split(",");
                 System.out.println(Arrays.toString(lines));
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(1);
 
                 //对一条电影数据进行读取，并且存放到不同的关系表中
                 String id = lines[0];

@@ -54,7 +54,8 @@ public class MainTest {
         try (FileReader reader = new FileReader(pathname);
              BufferedReader br = new BufferedReader(reader)
         ) {
-            String line = null;
+            //跳过首字符
+            String line = br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] lines = line.split(",");
                 System.out.println(Arrays.toString(lines));
@@ -62,35 +63,87 @@ public class MainTest {
 
                 //对一条电影数据进行读取，并且存放到不同的关系表中
                 String id = lines[0];
-                String title = lines[0];
-                String releaseDate = lines[0];
-                String week = lines[0];
-                String genresText = lines[0];
-                String directorsText = lines[0];
-                String producers = lines[0];
-                String actorsText = lines[0];
-                String supportingActorsText = lines[0];
-                String ratings = lines[0];
-                String mediaFormat = lines[0];
-                String runRime = lines[0];
-                String MPAARating = lines[0];
-                String subtitles = lines[0];
-                String studio = lines[0];
-                String itemModelNumber = lines[0];
-                String dateFirstAvailable = lines[0];
-                String audioLanguages = lines[0];
-                String linkId = lines[0];
-                String linkTitle = lines[0];
+                String title = lines[1];
+                String releaseDate = lines[2];
+                String week = lines[3];
+                String genresText = lines[4];
+                String directorsText = lines[5];
+                String producers = lines[6];
+                String actorsText = lines[7];
+                String supportingActorsText = lines[8];
+                String ratings = lines[9];
+                String mediaFormat = lines[10];
+                String runRime = lines[11];
+                String MPAARating = lines[12];
+                String subtitles = lines[13];
+                String studio = lines[14];
+                String itemModelNumber = lines[15];
+                String dateFirstAvailable = lines[16];
+                String audioLanguages = lines[17];
+                String linkId = lines[18];
+                String linkTitle = lines[19];
 
                 //一些数组
-                String[] directors = directorsText.split("#");
-                String[] actors = actorsText.split("#");
-                String[] supportingActors = supportingActorsText.split("#");
-                String[] genres = genresText.split("#");
+                String[] directors = directorsText.split("$$");
+                String[] actors = actorsText.split("$$");
+                String[] supportingActors = supportingActorsText.split("$$");
+                String[] genres = genresText.split("$$");
+
+                /*插入时间表中*/
+                int year = -1, month = -1, day = -1;
+                int timeId = 0;
+                if (!releaseDate.equals("##")) {
+                    String[] split = releaseDate.split("/");
+                    if (split.length > 0) {
+                        year = Integer.parseInt(split[0]);
+                    }
+                    if (split.length > 1) {
+                        month = Integer.parseInt(split[1]);
+                    }
+                    if (split.length > 2) {
+                        day = Integer.parseInt(split[2]);
+                    }
+                }
+
+                //先检查表中是否有数据
+                TimeExample timeExample = new TimeExample();
+                timeExample.createCriteria().andYearEqualTo(year).andMonthEqualTo(month).andDayEqualTo(day);
+                List<Time> timesList = timeMapper.selectByExample(timeExample);
+                if (timesList != null && timesList.size() != 0) {
+                    //说明有该数据
+                    Time timeUpdate = timesList.get(0);
+                    //在后面增加
+                    timeUpdate.setMovie(timeUpdate.getMovie() + "$$" + title);
+                    timeMapper.updateByPrimaryKeySelective(timeUpdate);
+                    timeId = timeUpdate.getTimeId();
+                }
+                else {
+                    Time time = new Time();
+                    time.setWeek(Integer.parseInt(week));
+                    time.setYear(year);
+                    time.setMonth(month);
+                    time.setDay(day);
+                    time.setMovie(title);
+                    timeMapper.insertSelective(time);
+                    timeId = time.getTimeId();
+                }
+
 
                 /*插入电影表中*/
                 Movie movie = new Movie();
-
+                movie.setProductId(id);
+                movie.setTimeId(timeId);
+                movie.setTitle(title);
+                movie.setGenres(genresText);
+                movie.setDirector(directorsText);
+                movie.setSupportingActors(supportingActorsText);
+                movie.setActor(actorsText);
+                movie.setRunTime(runRime);
+                movie.setReleaseDate(releaseDate);
+                movie.setDateFirstAvailable(dateFirstAvailable);
+                movie.setStar(Double.parseDouble(ratings));
+                movie.setLinkId(linkId);
+                movie.setLinkId(linkTitle);
                 /*
                 如果报错,可能是重新生成了generator
                 在orderMapper.insert(order)的mapper里面改成如下:
@@ -99,7 +152,8 @@ public class MainTest {
                 */
 
                 //插入电影表后需要得到电影id
-                int movieId = movieMapper.insertSelective(movie);
+                movieMapper.insertSelective(movie);
+                int movieId = movie.getMovieId();
 
                 /*插入题材表中*/
                 for (String genre : genres) {
@@ -114,7 +168,7 @@ public class MainTest {
                         //说明有该数据
                         Genre geneUpdate = genreList.get(0);
                         //在后面增加
-                        geneUpdate.setMovies(geneUpdate.getMovies() + "#" + title);
+                        geneUpdate.setMovies(geneUpdate.getMovies() + "$$" + title);
                         genreMapper.updateByPrimaryKeySelective(geneUpdate);
                         genreId = geneUpdate.getGenreId();
                     }
@@ -122,7 +176,8 @@ public class MainTest {
                         Genre genreInsert = new Genre();
                         genreInsert.setName(genre);
                         genreInsert.setMovies(title);
-                        genreId = genreMapper.insertSelective(genreInsert);
+                        genreMapper.insertSelective(genreInsert);
+                        genreId = genreInsert.getGenreId();
                     }
 
                     /*电影题材表*/
@@ -145,7 +200,7 @@ public class MainTest {
                     if (directorsList != null && directorsList.size() != 0) {
                         //说明有该数据
                         Director directorUpdate = directorsList.get(0);
-                        directorUpdate.setFilming(directorUpdate.getFilming() + "#" + title);
+                        directorUpdate.setFilming(directorUpdate.getFilming() + "$$" + title);
                         directorMapper.updateByPrimaryKeySelective(directorUpdate);
                         directorId = directorUpdate.getDirectorId();
                     }
@@ -153,7 +208,8 @@ public class MainTest {
                         Director directorInsert = new Director();
                         directorInsert.setName(director);
                         directorInsert.setFilming(title);
-                        directorId = directorMapper.insertSelective(directorInsert);
+                        directorMapper.insertSelective(directorInsert);
+                        directorId = directorInsert.getDirectorId();
                     }
                     /*导演-电影关系*/
                     MovieDirector movieDirector = new MovieDirector();
@@ -179,7 +235,7 @@ public class MainTest {
                     if (actorList != null && actorList.size() != 0) {
                         //说明有该数据
                         Actor actorUpdate = actorList.get(0);
-                        actorUpdate.setParticipate(actorUpdate.getParticipate() + "#" + title);
+                        actorUpdate.setParticipate(actorUpdate.getParticipate() + "$$" + title);
                         actorMapper.updateByPrimaryKeySelective(actorUpdate);
                         actorId = actorUpdate.getActorId();
                     }
@@ -187,7 +243,8 @@ public class MainTest {
                         Actor actorInsert = new Actor();
                         actorInsert.setName(actor);
                         actorInsert.setParticipate(title);
-                        actorId = actorMapper.insertSelective(actorInsert);
+                        actorMapper.insertSelective(actorInsert);
+                        actorId = actorInsert.getActorId();
                     }
                     /*演员-电影关系*/
                     MovieActor movieActor = new MovieActor();
@@ -210,7 +267,7 @@ public class MainTest {
                     if (actorList != null && actorList.size() != 0) {
                         //说明有该数据
                         Actor actorUpdate = actorList.get(0);
-                        actorUpdate.setStarring(actorUpdate.getStarring() + "#" + title);
+                        actorUpdate.setStarring(actorUpdate.getStarring() + "$$" + title);
                         actorMapper.updateByPrimaryKeySelective(actorUpdate);
                         actorId = actorUpdate.getActorId();
                     }
@@ -229,8 +286,6 @@ public class MainTest {
                     actorIds.add(actorId);
                 }
 
-                /*插入时间表中*/
-
                 /*导演和演员的关系表*/
                 for (Integer directorId : directorIds) {
                     for (Integer actorId : actorIds) {
@@ -240,7 +295,6 @@ public class MainTest {
                         directorActorMapper.insertSelective(directorActor);
                     }
                 }
-
             }
 
         }
@@ -251,6 +305,19 @@ public class MainTest {
 
     @Test
     public void addReview() {
-
+        String pathname = "C:\\Users\\12549\\Desktop\\test\\review.csv";
+        try (FileReader reader = new FileReader(pathname);
+             BufferedReader br = new BufferedReader(reader)
+        ) {
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                String[] lines = line.split("#");
+                System.out.println(Arrays.toString(lines));
+                TimeUnit.SECONDS.sleep(3);
+            }
+        }
+        catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
