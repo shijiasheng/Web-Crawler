@@ -18,7 +18,13 @@ public interface DirectorActorMapper {
 
     List<DirectorActor> selectByExample(DirectorActorExample example);
 
+    DirectorActor selectByPrimaryKey(@Param("directorId") Integer directorId, @Param("actorId") Integer actorId);
+
     int updateByExampleSelective(@Param("record") DirectorActor record, @Param("example") DirectorActorExample example);
 
     int updateByExample(@Param("record") DirectorActor record, @Param("example") DirectorActorExample example);
+
+    int updateByPrimaryKeySelective(DirectorActor record);
+
+    int updateByPrimaryKey(DirectorActor record);
 }

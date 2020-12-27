@@ -50,6 +50,7 @@ public class MainTest {
 
     @Test
     public void addMovie() throws ParseException {
+        int index = 0;
         String pathname = "C:/Users/12549/Desktop/数据仓库/data.csv";
         try (FileReader reader = new FileReader(pathname);
              BufferedReader br = new BufferedReader(reader)
@@ -57,9 +58,10 @@ public class MainTest {
             //跳过首字符
             String line = br.readLine();
             while ((line = br.readLine()) != null) {
+                System.out.println(++index);
                 String[] lines = line.split(",");
                 System.out.println(Arrays.toString(lines));
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(1);
 
                 //对一条电影数据进行读取，并且存放到不同的关系表中
                 String id = lines[0];
@@ -290,10 +292,22 @@ public class MainTest {
                 /*导演和演员的关系表*/
                 for (Integer directorId : directorIds) {
                     for (Integer actorId : actorIds) {
-                        DirectorActor directorActor = new DirectorActor();
-                        directorActor.setDirectorId(directorId);
-                        directorActor.setActorId(actorId);
-                        directorActorMapper.insertSelective(directorActor);
+                        //先查询
+                        DirectorActorExample directorActorExample = new DirectorActorExample();
+                        directorActorExample.createCriteria().andActorIdEqualTo(actorId).andDirectorIdEqualTo(directorId);
+                        List<DirectorActor> directorActors = directorActorMapper.selectByExample(directorActorExample);
+                        if (directorActors != null && directorActors.size() != 0) {
+                            DirectorActor directorActor = directorActors.get(0);
+                            directorActor.setCount(directorActor.getCount()+1);
+
+                        }
+                        else {
+                            DirectorActor directorActor = new DirectorActor();
+                            directorActor.setDirectorId(directorId);
+                            directorActor.setActorId(actorId);
+                            directorActor.setCount(1);
+                            directorActorMapper.insertSelective(directorActor);
+                        }
                     }
                 }
             }

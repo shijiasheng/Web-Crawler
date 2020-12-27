@@ -53,5 +53,8 @@
         <table tableName="director">
             <generatedKey column="director_id" sqlStatement="MySql" identity="true"/>
         </table>
+        <table tableName="%">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

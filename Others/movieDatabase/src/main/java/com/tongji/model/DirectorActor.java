@@ -8,6 +8,8 @@ public class DirectorActor implements Serializable {
 
     private Integer actorId;
 
+    private Integer count;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getDirectorId() {
@@ -26,6 +28,14 @@ public class DirectorActor implements Serializable {
         this.actorId = actorId;
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -34,6 +44,7 @@ public class DirectorActor implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", directorId=").append(directorId);
         sb.append(", actorId=").append(actorId);
+        sb.append(", count=").append(count);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

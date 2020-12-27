@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.tongji.model.DirectorActor">
     <id column="director_id" jdbcType="INTEGER" property="directorId" />
     <id column="actor_id" jdbcType="INTEGER" property="actorId" />
+    <result column="count" jdbcType="INTEGER" property="count" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    director_id, actor_id
+    director_id, actor_id, count
   </sql>
   <select id="selectByExample" parameterType="com.tongji.model.DirectorActorExample" resultMap="BaseResultMap">
     select
@@ -80,6 +81,13 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from director_actor
+    where director_id = #{directorId,jdbcType=INTEGER}
+      and actor_id = #{actorId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="map">
     delete from director_actor
     where director_id = #{directorId,jdbcType=INTEGER}
@@ -92,8 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tongji.model.DirectorActor">
-    insert into director_actor (director_id, actor_id)
-    values (#{directorId,jdbcType=INTEGER}, #{actorId,jdbcType=INTEGER})
+    insert into director_actor (director_id, actor_id, count
+      )
+    values (#{directorId,jdbcType=INTEGER}, #{actorId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.DirectorActor">
     insert into director_actor
@@ -104,6 +114,9 @@
       <if test="actorId != null">
         actor_id,
       </if>
+      <if test="count != null">
+        count,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="directorId != null">
@@ -111,6 +124,9 @@
       </if>
       <if test="actorId != null">
         #{actorId,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -129,6 +145,9 @@
       <if test="record.actorId != null">
         actor_id = #{record.actorId,jdbcType=INTEGER},
       </if>
+      <if test="record.count != null">
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -137,9 +156,26 @@
   <update id="updateByExample" parameterType="map">
     update director_actor
     set director_id = #{record.directorId,jdbcType=INTEGER},
-      actor_id = #{record.actorId,jdbcType=INTEGER}
+      actor_id = #{record.actorId,jdbcType=INTEGER},
+      count = #{record.count,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tongji.model.DirectorActor">
+    update director_actor
+    <set>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+    </set>
+    where director_id = #{directorId,jdbcType=INTEGER}
+      and actor_id = #{actorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tongji.model.DirectorActor">
+    update director_actor
+    set count = #{count,jdbcType=INTEGER}
+    where director_id = #{directorId,jdbcType=INTEGER}
+      and actor_id = #{actorId,jdbcType=INTEGER}
   </update>
 </mapper>

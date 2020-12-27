@@ -133,26 +133,23 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tongji.model.Movie">
-    <selectKey keyProperty="movieId" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into movie (product_id, time_id, title, 
-      genres, run_time, release_date, 
-      date_first_available, star, director, 
-      supporting_actors, actor, link_id, 
-      link_title)
-    values (#{productId,jdbcType=VARCHAR}, #{timeId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
-      #{genres,jdbcType=VARCHAR}, #{runTime,jdbcType=VARCHAR}, #{releaseDate,jdbcType=VARCHAR}, 
-      #{dateFirstAvailable,jdbcType=VARCHAR}, #{star,jdbcType=DOUBLE}, #{director,jdbcType=LONGVARCHAR}, 
-      #{supportingActors,jdbcType=LONGVARCHAR}, #{actor,jdbcType=LONGVARCHAR}, #{linkId,jdbcType=LONGVARCHAR}, 
-      #{linkTitle,jdbcType=LONGVARCHAR})
+    insert into movie (movie_id, product_id, time_id, 
+      title, genres, run_time, 
+      release_date, date_first_available, star, 
+      director, supporting_actors, actor, 
+      link_id, link_title)
+    values (#{movieId,jdbcType=INTEGER}, #{productId,jdbcType=VARCHAR}, #{timeId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{genres,jdbcType=VARCHAR}, #{runTime,jdbcType=VARCHAR}, 
+      #{releaseDate,jdbcType=VARCHAR}, #{dateFirstAvailable,jdbcType=VARCHAR}, #{star,jdbcType=DOUBLE}, 
+      #{director,jdbcType=LONGVARCHAR}, #{supportingActors,jdbcType=LONGVARCHAR}, #{actor,jdbcType=LONGVARCHAR}, 
+      #{linkId,jdbcType=LONGVARCHAR}, #{linkTitle,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Movie">
-    <selectKey keyProperty="movieId" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into movie
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        movie_id,
+      </if>
       <if test="productId != null">
         product_id,
       </if>
@@ -194,6 +191,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="movieId != null">
+        #{movieId,jdbcType=INTEGER},
+      </if>
       <if test="productId != null">
         #{productId,jdbcType=VARCHAR},
       </if>
