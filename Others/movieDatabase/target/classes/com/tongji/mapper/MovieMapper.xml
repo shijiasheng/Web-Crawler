@@ -10,7 +10,7 @@
     <result column="run_time" jdbcType="VARCHAR" property="runTime" />
     <result column="release_date" jdbcType="VARCHAR" property="releaseDate" />
     <result column="date_first_available" jdbcType="VARCHAR" property="dateFirstAvailable" />
-    <result column="star" jdbcType="DECIMAL" property="star" />
+    <result column="star" jdbcType="DOUBLE" property="star" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongji.model.Movie">
     <result column="director" jdbcType="LONGVARCHAR" property="director" />
@@ -143,7 +143,7 @@
       link_title)
     values (#{productId,jdbcType=VARCHAR}, #{timeId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
       #{genres,jdbcType=VARCHAR}, #{runTime,jdbcType=VARCHAR}, #{releaseDate,jdbcType=VARCHAR}, 
-      #{dateFirstAvailable,jdbcType=VARCHAR}, #{star,jdbcType=DECIMAL}, #{director,jdbcType=LONGVARCHAR}, 
+      #{dateFirstAvailable,jdbcType=VARCHAR}, #{star,jdbcType=DOUBLE}, #{director,jdbcType=LONGVARCHAR}, 
       #{supportingActors,jdbcType=LONGVARCHAR}, #{actor,jdbcType=LONGVARCHAR}, #{linkId,jdbcType=LONGVARCHAR}, 
       #{linkTitle,jdbcType=LONGVARCHAR})
   </insert>
@@ -216,7 +216,7 @@
         #{dateFirstAvailable,jdbcType=VARCHAR},
       </if>
       <if test="star != null">
-        #{star,jdbcType=DECIMAL},
+        #{star,jdbcType=DOUBLE},
       </if>
       <if test="director != null">
         #{director,jdbcType=LONGVARCHAR},
@@ -269,7 +269,7 @@
         date_first_available = #{record.dateFirstAvailable,jdbcType=VARCHAR},
       </if>
       <if test="record.star != null">
-        star = #{record.star,jdbcType=DECIMAL},
+        star = #{record.star,jdbcType=DOUBLE},
       </if>
       <if test="record.director != null">
         director = #{record.director,jdbcType=LONGVARCHAR},
@@ -301,7 +301,7 @@
       run_time = #{record.runTime,jdbcType=VARCHAR},
       release_date = #{record.releaseDate,jdbcType=VARCHAR},
       date_first_available = #{record.dateFirstAvailable,jdbcType=VARCHAR},
-      star = #{record.star,jdbcType=DECIMAL},
+      star = #{record.star,jdbcType=DOUBLE},
       director = #{record.director,jdbcType=LONGVARCHAR},
       supporting_actors = #{record.supportingActors,jdbcType=LONGVARCHAR},
       actor = #{record.actor,jdbcType=LONGVARCHAR},
@@ -321,7 +321,7 @@
       run_time = #{record.runTime,jdbcType=VARCHAR},
       release_date = #{record.releaseDate,jdbcType=VARCHAR},
       date_first_available = #{record.dateFirstAvailable,jdbcType=VARCHAR},
-      star = #{record.star,jdbcType=DECIMAL}
+      star = #{record.star,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -351,7 +351,7 @@
         date_first_available = #{dateFirstAvailable,jdbcType=VARCHAR},
       </if>
       <if test="star != null">
-        star = #{star,jdbcType=DECIMAL},
+        star = #{star,jdbcType=DOUBLE},
       </if>
       <if test="director != null">
         director = #{director,jdbcType=LONGVARCHAR},
@@ -380,7 +380,7 @@
       run_time = #{runTime,jdbcType=VARCHAR},
       release_date = #{releaseDate,jdbcType=VARCHAR},
       date_first_available = #{dateFirstAvailable,jdbcType=VARCHAR},
-      star = #{star,jdbcType=DECIMAL},
+      star = #{star,jdbcType=DOUBLE},
       director = #{director,jdbcType=LONGVARCHAR},
       supporting_actors = #{supportingActors,jdbcType=LONGVARCHAR},
       actor = #{actor,jdbcType=LONGVARCHAR},
@@ -397,7 +397,7 @@
       run_time = #{runTime,jdbcType=VARCHAR},
       release_date = #{releaseDate,jdbcType=VARCHAR},
       date_first_available = #{dateFirstAvailable,jdbcType=VARCHAR},
-      star = #{star,jdbcType=DECIMAL}
+      star = #{star,jdbcType=DOUBLE}
     where movie_id = #{movieId,jdbcType=INTEGER}
   </update>
 </mapper>

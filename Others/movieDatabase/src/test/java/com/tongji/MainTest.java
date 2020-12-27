@@ -84,10 +84,10 @@ public class MainTest {
                 String linkTitle = lines[19];
 
                 //一些数组
-                String[] directors = directorsText.split("$$");
-                String[] actors = actorsText.split("$$");
-                String[] supportingActors = supportingActorsText.split("$$");
-                String[] genres = genresText.split("$$");
+                String[] directors = directorsText.split("\\$\\$");
+                String[] actors = actorsText.split("\\$\\$");
+                String[] supportingActors = supportingActorsText.split("\\$\\$");
+                String[] genres = genresText.split("\\$\\$");
 
                 /*插入时间表中*/
                 int year = -1, month = -1, day = -1;
@@ -156,6 +156,7 @@ public class MainTest {
                 int movieId = movie.getMovieId();
 
                 /*插入题材表中*/
+                // TODO: 2020/12/27 movies数据查出来为null
                 for (String genre : genres) {
                     //先检查表中是否有数据
                     GenreExample example = new GenreExample();
