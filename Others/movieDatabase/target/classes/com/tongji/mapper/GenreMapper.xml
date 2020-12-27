@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tongji.mapper.GenreMapper">
   <resultMap id="BaseResultMap" type="com.tongji.model.Genre">
-    <id column="name" jdbcType="VARCHAR" property="name" />
+    <id column="genre_id" jdbcType="INTEGER" property="genreId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongji.model.Genre">
     <result column="movies" jdbcType="LONGVARCHAR" property="movies" />
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    name
+    genre_id, name
   </sql>
   <sql id="Blob_Column_List">
     movies
@@ -101,17 +102,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from genre
-    where name = #{name,jdbcType=VARCHAR}
+    where genre_id = #{genreId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from genre
-    where name = #{name,jdbcType=VARCHAR}
+    where genre_id = #{genreId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.tongji.model.GenreExample">
     delete from genre
@@ -120,12 +121,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tongji.model.Genre">
-    insert into genre (name, movies)
-    values (#{name,jdbcType=VARCHAR}, #{movies,jdbcType=LONGVARCHAR})
+    insert into genre (genre_id, name, movies
+      )
+    values (#{genreId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{movies,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Genre">
     insert into genre
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="genreId != null">
+        genre_id,
+      </if>
       <if test="name != null">
         name,
       </if>
@@ -134,6 +140,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="genreId != null">
+        #{genreId,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -151,6 +160,9 @@
   <update id="updateByExampleSelective" parameterType="map">
     update genre
     <set>
+      <if test="record.genreId != null">
+        genre_id = #{record.genreId,jdbcType=INTEGER},
+      </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
@@ -164,7 +176,8 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update genre
-    set name = #{record.name,jdbcType=VARCHAR},
+    set genre_id = #{record.genreId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
       movies = #{record.movies,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -172,7 +185,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update genre
-    set name = #{record.name,jdbcType=VARCHAR}
+    set genre_id = #{record.genreId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -180,15 +194,24 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.tongji.model.Genre">
     update genre
     <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="movies != null">
         movies = #{movies,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where name = #{name,jdbcType=VARCHAR}
+    where genre_id = #{genreId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tongji.model.Genre">
     update genre
-    set movies = #{movies,jdbcType=LONGVARCHAR}
-    where name = #{name,jdbcType=VARCHAR}
+    set name = #{name,jdbcType=VARCHAR},
+      movies = #{movies,jdbcType=LONGVARCHAR}
+    where genre_id = #{genreId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tongji.model.Genre">
+    update genre
+    set name = #{name,jdbcType=VARCHAR}
+    where genre_id = #{genreId,jdbcType=INTEGER}
   </update>
 </mapper>

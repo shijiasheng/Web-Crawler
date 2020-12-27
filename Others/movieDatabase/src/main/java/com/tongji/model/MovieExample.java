@@ -115,63 +115,183 @@ public class MovieExample {
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdEqualTo(String value) {
+        public Criteria andMovieIdEqualTo(Integer value) {
             addCriterion("movie_id =", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdNotEqualTo(String value) {
+        public Criteria andMovieIdNotEqualTo(Integer value) {
             addCriterion("movie_id <>", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdGreaterThan(String value) {
+        public Criteria andMovieIdGreaterThan(Integer value) {
             addCriterion("movie_id >", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdGreaterThanOrEqualTo(String value) {
+        public Criteria andMovieIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("movie_id >=", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdLessThan(String value) {
+        public Criteria andMovieIdLessThan(Integer value) {
             addCriterion("movie_id <", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdLessThanOrEqualTo(String value) {
+        public Criteria andMovieIdLessThanOrEqualTo(Integer value) {
             addCriterion("movie_id <=", value, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdLike(String value) {
-            addCriterion("movie_id like", value, "movieId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMovieIdNotLike(String value) {
-            addCriterion("movie_id not like", value, "movieId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMovieIdIn(List<String> values) {
+        public Criteria andMovieIdIn(List<Integer> values) {
             addCriterion("movie_id in", values, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdNotIn(List<String> values) {
+        public Criteria andMovieIdNotIn(List<Integer> values) {
             addCriterion("movie_id not in", values, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdBetween(String value1, String value2) {
+        public Criteria andMovieIdBetween(Integer value1, Integer value2) {
             addCriterion("movie_id between", value1, value2, "movieId");
             return (Criteria) this;
         }
 
-        public Criteria andMovieIdNotBetween(String value1, String value2) {
+        public Criteria andMovieIdNotBetween(Integer value1, Integer value2) {
             addCriterion("movie_id not between", value1, value2, "movieId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdIsNull() {
+            addCriterion("product_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdIsNotNull() {
+            addCriterion("product_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdEqualTo(String value) {
+            addCriterion("product_id =", value, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdNotEqualTo(String value) {
+            addCriterion("product_id <>", value, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdGreaterThan(String value) {
+            addCriterion("product_id >", value, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdGreaterThanOrEqualTo(String value) {
+            addCriterion("product_id >=", value, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdLessThan(String value) {
+            addCriterion("product_id <", value, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdLessThanOrEqualTo(String value) {
+            addCriterion("product_id <=", value, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdLike(String value) {
+            addCriterion("product_id like", value, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdNotLike(String value) {
+            addCriterion("product_id not like", value, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdIn(List<String> values) {
+            addCriterion("product_id in", values, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdNotIn(List<String> values) {
+            addCriterion("product_id not in", values, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdBetween(String value1, String value2) {
+            addCriterion("product_id between", value1, value2, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductIdNotBetween(String value1, String value2) {
+            addCriterion("product_id not between", value1, value2, "productId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdIsNull() {
+            addCriterion("time_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdIsNotNull() {
+            addCriterion("time_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdEqualTo(Integer value) {
+            addCriterion("time_id =", value, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdNotEqualTo(Integer value) {
+            addCriterion("time_id <>", value, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdGreaterThan(Integer value) {
+            addCriterion("time_id >", value, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("time_id >=", value, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdLessThan(Integer value) {
+            addCriterion("time_id <", value, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("time_id <=", value, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdIn(List<Integer> values) {
+            addCriterion("time_id in", values, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdNotIn(List<Integer> values) {
+            addCriterion("time_id not in", values, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdBetween(Integer value1, Integer value2) {
+            addCriterion("time_id between", value1, value2, "timeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("time_id not between", value1, value2, "timeId");
             return (Criteria) this;
         }
 
@@ -312,76 +432,6 @@ public class MovieExample {
 
         public Criteria andGenresNotBetween(String value1, String value2) {
             addCriterion("genres not between", value1, value2, "genres");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorIsNull() {
-            addCriterion("director is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorIsNotNull() {
-            addCriterion("director is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorEqualTo(String value) {
-            addCriterion("director =", value, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorNotEqualTo(String value) {
-            addCriterion("director <>", value, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorGreaterThan(String value) {
-            addCriterion("director >", value, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorGreaterThanOrEqualTo(String value) {
-            addCriterion("director >=", value, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorLessThan(String value) {
-            addCriterion("director <", value, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorLessThanOrEqualTo(String value) {
-            addCriterion("director <=", value, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorLike(String value) {
-            addCriterion("director like", value, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorNotLike(String value) {
-            addCriterion("director not like", value, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorIn(List<String> values) {
-            addCriterion("director in", values, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorNotIn(List<String> values) {
-            addCriterion("director not in", values, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorBetween(String value1, String value2) {
-            addCriterion("director between", value1, value2, "director");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectorNotBetween(String value1, String value2) {
-            addCriterion("director not between", value1, value2, "director");
             return (Criteria) this;
         }
 
@@ -562,6 +612,66 @@ public class MovieExample {
 
         public Criteria andDateFirstAvailableNotBetween(Date value1, Date value2) {
             addCriterion("date_first_available not between", value1, value2, "dateFirstAvailable");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarIsNull() {
+            addCriterion("star is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarIsNotNull() {
+            addCriterion("star is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarEqualTo(Long value) {
+            addCriterion("star =", value, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNotEqualTo(Long value) {
+            addCriterion("star <>", value, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarGreaterThan(Long value) {
+            addCriterion("star >", value, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarGreaterThanOrEqualTo(Long value) {
+            addCriterion("star >=", value, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarLessThan(Long value) {
+            addCriterion("star <", value, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarLessThanOrEqualTo(Long value) {
+            addCriterion("star <=", value, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarIn(List<Long> values) {
+            addCriterion("star in", values, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNotIn(List<Long> values) {
+            addCriterion("star not in", values, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarBetween(Long value1, Long value2) {
+            addCriterion("star between", value1, value2, "star");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarNotBetween(Long value1, Long value2) {
+            addCriterion("star not between", value1, value2, "star");
             return (Criteria) this;
         }
     }

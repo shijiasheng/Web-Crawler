@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tongji.mapper.DirectorMapper">
   <resultMap id="BaseResultMap" type="com.tongji.model.Director">
-    <id column="name" jdbcType="VARCHAR" property="name" />
+    <id column="director_id" jdbcType="INTEGER" property="directorId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongji.model.Director">
     <result column="filming" jdbcType="LONGVARCHAR" property="filming" />
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    name
+    director_id, name
   </sql>
   <sql id="Blob_Column_List">
     filming
@@ -101,17 +102,17 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from director
-    where name = #{name,jdbcType=VARCHAR}
+    where director_id = #{directorId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from director
-    where name = #{name,jdbcType=VARCHAR}
+    where director_id = #{directorId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.tongji.model.DirectorExample">
     delete from director
@@ -120,12 +121,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tongji.model.Director">
-    insert into director (name, filming)
-    values (#{name,jdbcType=VARCHAR}, #{filming,jdbcType=LONGVARCHAR})
+    insert into director (director_id, name, filming
+      )
+    values (#{directorId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{filming,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Director">
     insert into director
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="directorId != null">
+        director_id,
+      </if>
       <if test="name != null">
         name,
       </if>
@@ -134,6 +140,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="directorId != null">
+        #{directorId,jdbcType=INTEGER},
+      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -151,6 +160,9 @@
   <update id="updateByExampleSelective" parameterType="map">
     update director
     <set>
+      <if test="record.directorId != null">
+        director_id = #{record.directorId,jdbcType=INTEGER},
+      </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
@@ -164,7 +176,8 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update director
-    set name = #{record.name,jdbcType=VARCHAR},
+    set director_id = #{record.directorId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
       filming = #{record.filming,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -172,7 +185,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update director
-    set name = #{record.name,jdbcType=VARCHAR}
+    set director_id = #{record.directorId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -180,15 +194,24 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.tongji.model.Director">
     update director
     <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="filming != null">
         filming = #{filming,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where name = #{name,jdbcType=VARCHAR}
+    where director_id = #{directorId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tongji.model.Director">
     update director
-    set filming = #{filming,jdbcType=LONGVARCHAR}
-    where name = #{name,jdbcType=VARCHAR}
+    set name = #{name,jdbcType=VARCHAR},
+      filming = #{filming,jdbcType=LONGVARCHAR}
+    where director_id = #{directorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tongji.model.Director">
+    update director
+    set name = #{name,jdbcType=VARCHAR}
+    where director_id = #{directorId,jdbcType=INTEGER}
   </update>
 </mapper>

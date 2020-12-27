@@ -104,63 +104,63 @@ public class TimeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
+        public Criteria andTimeIdIsNull() {
+            addCriterion("time_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+        public Criteria andTimeIdIsNotNull() {
+            addCriterion("time_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+        public Criteria andTimeIdEqualTo(Integer value) {
+            addCriterion("time_id =", value, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+        public Criteria andTimeIdNotEqualTo(Integer value) {
+            addCriterion("time_id <>", value, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+        public Criteria andTimeIdGreaterThan(Integer value) {
+            addCriterion("time_id >", value, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+        public Criteria andTimeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("time_id >=", value, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+        public Criteria andTimeIdLessThan(Integer value) {
+            addCriterion("time_id <", value, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+        public Criteria andTimeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("time_id <=", value, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+        public Criteria andTimeIdIn(List<Integer> values) {
+            addCriterion("time_id in", values, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+        public Criteria andTimeIdNotIn(List<Integer> values) {
+            addCriterion("time_id not in", values, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+        public Criteria andTimeIdBetween(Integer value1, Integer value2) {
+            addCriterion("time_id between", value1, value2, "timeId");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+        public Criteria andTimeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("time_id not between", value1, value2, "timeId");
             return (Criteria) this;
         }
 
@@ -341,76 +341,6 @@ public class TimeExample {
 
         public Criteria andDayNotBetween(Integer value1, Integer value2) {
             addCriterion("day not between", value1, value2, "day");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonIsNull() {
-            addCriterion("season is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonIsNotNull() {
-            addCriterion("season is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonEqualTo(String value) {
-            addCriterion("season =", value, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonNotEqualTo(String value) {
-            addCriterion("season <>", value, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonGreaterThan(String value) {
-            addCriterion("season >", value, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonGreaterThanOrEqualTo(String value) {
-            addCriterion("season >=", value, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonLessThan(String value) {
-            addCriterion("season <", value, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonLessThanOrEqualTo(String value) {
-            addCriterion("season <=", value, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonLike(String value) {
-            addCriterion("season like", value, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonNotLike(String value) {
-            addCriterion("season not like", value, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonIn(List<String> values) {
-            addCriterion("season in", values, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonNotIn(List<String> values) {
-            addCriterion("season not in", values, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonBetween(String value1, String value2) {
-            addCriterion("season between", value1, value2, "season");
-            return (Criteria) this;
-        }
-
-        public Criteria andSeasonNotBetween(String value1, String value2) {
-            addCriterion("season not between", value1, value2, "season");
             return (Criteria) this;
         }
 

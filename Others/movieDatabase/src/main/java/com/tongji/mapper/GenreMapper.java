@@ -10,7 +10,7 @@ public interface GenreMapper {
 
     int deleteByExample(GenreExample example);
 
-    int deleteByPrimaryKey(String name);
+    int deleteByPrimaryKey(Integer genreId);
 
     int insert(Genre record);
 
@@ -20,7 +20,7 @@ public interface GenreMapper {
 
     List<Genre> selectByExample(GenreExample example);
 
-    Genre selectByPrimaryKey(String name);
+    Genre selectByPrimaryKey(Integer genreId);
 
     int updateByExampleSelective(@Param("record") Genre record, @Param("example") GenreExample example);
 
@@ -31,4 +31,6 @@ public interface GenreMapper {
     int updateByPrimaryKeySelective(Genre record);
 
     int updateByPrimaryKeyWithBLOBs(Genre record);
+
+    int updateByPrimaryKey(Genre record);
 }

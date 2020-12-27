@@ -104,6 +104,66 @@ public class DirectorExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andDirectorIdIsNull() {
+            addCriterion("director_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdIsNotNull() {
+            addCriterion("director_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdEqualTo(Integer value) {
+            addCriterion("director_id =", value, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdNotEqualTo(Integer value) {
+            addCriterion("director_id <>", value, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdGreaterThan(Integer value) {
+            addCriterion("director_id >", value, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("director_id >=", value, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdLessThan(Integer value) {
+            addCriterion("director_id <", value, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdLessThanOrEqualTo(Integer value) {
+            addCriterion("director_id <=", value, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdIn(List<Integer> values) {
+            addCriterion("director_id in", values, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdNotIn(List<Integer> values) {
+            addCriterion("director_id not in", values, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdBetween(Integer value1, Integer value2) {
+            addCriterion("director_id between", value1, value2, "directorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectorIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("director_id not between", value1, value2, "directorId");
+            return (Criteria) this;
+        }
+
         public Criteria andNameIsNull() {
             addCriterion("name is null");
             return (Criteria) this;

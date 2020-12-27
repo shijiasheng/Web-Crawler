@@ -4,15 +4,13 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 public class Time implements Serializable {
-    private Integer id;
+    private Integer timeId;
 
     private Integer year;
 
     private Integer month;
 
     private Integer day;
-
-    private String season;
 
     private String week;
 
@@ -21,12 +19,12 @@ public class Time implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
+    public Integer getTimeId() {
+        return timeId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTimeId(Integer timeId) {
+        this.timeId = timeId;
     }
 
     public Integer getYear() {
@@ -53,14 +51,6 @@ public class Time implements Serializable {
         this.day = day;
     }
 
-    public String getSeason() {
-        return season;
-    }
-
-    public void setSeason(String season) {
-        this.season = season;
-    }
-
     public String getWeek() {
         return week;
     }
@@ -83,11 +73,10 @@ public class Time implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        sb.append(", timeId=").append(timeId);
         sb.append(", year=").append(year);
         sb.append(", month=").append(month);
         sb.append(", day=").append(day);
-        sb.append(", season=").append(season);
         sb.append(", week=").append(week);
         sb.append(", movie=").append(movie);
         sb.append(", serialVersionUID=").append(serialVersionUID);

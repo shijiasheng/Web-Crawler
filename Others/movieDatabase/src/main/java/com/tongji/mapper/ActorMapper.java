@@ -10,7 +10,7 @@ public interface ActorMapper {
 
     int deleteByExample(ActorExample example);
 
-    int deleteByPrimaryKey(String name);
+    int deleteByPrimaryKey(Integer actorId);
 
     int insert(Actor record);
 
@@ -20,7 +20,7 @@ public interface ActorMapper {
 
     List<Actor> selectByExample(ActorExample example);
 
-    Actor selectByPrimaryKey(String name);
+    Actor selectByPrimaryKey(Integer actorId);
 
     int updateByExampleSelective(@Param("record") Actor record, @Param("example") ActorExample example);
 
@@ -31,4 +31,6 @@ public interface ActorMapper {
     int updateByPrimaryKeySelective(Actor record);
 
     int updateByPrimaryKeyWithBLOBs(Actor record);
+
+    int updateByPrimaryKey(Actor record);
 }

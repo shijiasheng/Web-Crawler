@@ -10,7 +10,7 @@ public interface TimeMapper {
 
     int deleteByExample(TimeExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer timeId);
 
     int insert(Time record);
 
@@ -18,7 +18,7 @@ public interface TimeMapper {
 
     List<Time> selectByExample(TimeExample example);
 
-    Time selectByPrimaryKey(Integer id);
+    Time selectByPrimaryKey(Integer timeId);
 
     int updateByExampleSelective(@Param("record") Time record, @Param("example") TimeExample example);
 

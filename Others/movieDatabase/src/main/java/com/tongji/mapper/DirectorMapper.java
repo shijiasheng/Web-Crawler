@@ -10,7 +10,7 @@ public interface DirectorMapper {
 
     int deleteByExample(DirectorExample example);
 
-    int deleteByPrimaryKey(String name);
+    int deleteByPrimaryKey(Integer directorId);
 
     int insert(Director record);
 
@@ -20,7 +20,7 @@ public interface DirectorMapper {
 
     List<Director> selectByExample(DirectorExample example);
 
-    Director selectByPrimaryKey(String name);
+    Director selectByPrimaryKey(Integer directorId);
 
     int updateByExampleSelective(@Param("record") Director record, @Param("example") DirectorExample example);
 
@@ -31,4 +31,6 @@ public interface DirectorMapper {
     int updateByPrimaryKeySelective(Director record);
 
     int updateByPrimaryKeyWithBLOBs(Director record);
+
+    int updateByPrimaryKey(Director record);
 }

@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 public class Actor implements Serializable {
+    private Integer actorId;
+
     private String name;
 
     @ApiModelProperty(value = "主演的电影用字符串标识,便于查询")
@@ -13,6 +15,14 @@ public class Actor implements Serializable {
     private String participate;
 
     private static final long serialVersionUID = 1L;
+
+    public Integer getActorId() {
+        return actorId;
+    }
+
+    public void setActorId(Integer actorId) {
+        this.actorId = actorId;
+    }
 
     public String getName() {
         return name;
@@ -44,6 +54,7 @@ public class Actor implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
+        sb.append(", actorId=").append(actorId);
         sb.append(", name=").append(name);
         sb.append(", starring=").append(starring);
         sb.append(", participate=").append(participate);

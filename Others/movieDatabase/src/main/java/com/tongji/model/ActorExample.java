@@ -104,6 +104,66 @@ public class ActorExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andActorIdIsNull() {
+            addCriterion("actor_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdIsNotNull() {
+            addCriterion("actor_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdEqualTo(Integer value) {
+            addCriterion("actor_id =", value, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdNotEqualTo(Integer value) {
+            addCriterion("actor_id <>", value, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdGreaterThan(Integer value) {
+            addCriterion("actor_id >", value, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("actor_id >=", value, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdLessThan(Integer value) {
+            addCriterion("actor_id <", value, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdLessThanOrEqualTo(Integer value) {
+            addCriterion("actor_id <=", value, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdIn(List<Integer> values) {
+            addCriterion("actor_id in", values, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdNotIn(List<Integer> values) {
+            addCriterion("actor_id not in", values, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdBetween(Integer value1, Integer value2) {
+            addCriterion("actor_id between", value1, value2, "actorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andActorIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("actor_id not between", value1, value2, "actorId");
+            return (Criteria) this;
+        }
+
         public Criteria andNameIsNull() {
             addCriterion("name is null");
             return (Criteria) this;

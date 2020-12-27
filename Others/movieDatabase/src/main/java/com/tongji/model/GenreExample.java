@@ -104,6 +104,66 @@ public class GenreExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andGenreIdIsNull() {
+            addCriterion("genre_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdIsNotNull() {
+            addCriterion("genre_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdEqualTo(Integer value) {
+            addCriterion("genre_id =", value, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdNotEqualTo(Integer value) {
+            addCriterion("genre_id <>", value, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdGreaterThan(Integer value) {
+            addCriterion("genre_id >", value, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("genre_id >=", value, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdLessThan(Integer value) {
+            addCriterion("genre_id <", value, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdLessThanOrEqualTo(Integer value) {
+            addCriterion("genre_id <=", value, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdIn(List<Integer> values) {
+            addCriterion("genre_id in", values, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdNotIn(List<Integer> values) {
+            addCriterion("genre_id not in", values, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdBetween(Integer value1, Integer value2) {
+            addCriterion("genre_id between", value1, value2, "genreId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGenreIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("genre_id not between", value1, value2, "genreId");
+            return (Criteria) this;
+        }
+
         public Criteria andNameIsNull() {
             addCriterion("name is null");
             return (Criteria) this;
