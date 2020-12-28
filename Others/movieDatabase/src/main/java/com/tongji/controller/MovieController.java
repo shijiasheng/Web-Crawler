@@ -59,10 +59,10 @@ public class MovieController {
             Integer pageSize = Integer.parseInt(map.getOrDefault("pageSize", "5"));
 
             //时间查询
-            Integer year = Integer.parseInt(map.getOrDefault("year", "-1"));
-            Integer month = Integer.parseInt(map.getOrDefault("month", "-1"));
-            Integer day = Integer.parseInt(map.getOrDefault("day", "-1"));
-            //季度必须是[1,2,3,4]或不传
+            Integer year = Integer.parseInt(map.getOrDefault("year", "-2"));
+            Integer month = Integer.parseInt(map.getOrDefault("month", "-2"));
+            Integer day = Integer.parseInt(map.getOrDefault("day", "-2"));
+            //季度必须是[-1,1,2,3,4]或不传
             Integer quarter = Integer.parseInt(map.getOrDefault("quarter", "-1")); //季度应该转成月份列表
             List<Integer> quarterList = new LinkedList<>();
             switch (quarter) {
@@ -96,7 +96,7 @@ public class MovieController {
                     Asserts.fail("季度输入有误");
             }
 
-            Integer week = Integer.parseInt(map.getOrDefault("week", "-1"));
+            Integer week = Integer.parseInt(map.getOrDefault("week", "-2"));
 
             //电影名称 返回的是电影列表 支持模糊查询 版本前端从里面寻找
             String title = map.get("title");
@@ -128,6 +128,9 @@ public class MovieController {
 
 
             List<Movie> list = movieService.searchMovie(searchInfo);
+            if (list == null || list.size() == 0) {
+                return CommonResult.failed("查询不到相关的电影信息!");
+            }
             return CommonResult.success(CommonPage.restPage(list));
         }
         catch (Exception e) {
