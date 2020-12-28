@@ -40,7 +40,7 @@ public class TestService {
 
     public void addMovie() throws ParseException {
         int index = 0;
-        String pathname = "C:/Users/12549/Desktop/数据仓库/data.csv";
+        String pathname = "/root/movieData/data.csv";
         try (FileReader reader = new FileReader(pathname);
              BufferedReader br = new BufferedReader(reader)
         ) {
@@ -176,7 +176,14 @@ public class TestService {
                     MovieGenre movieGenre = new MovieGenre();
                     movieGenre.setGenreId(genreId);
                     movieGenre.setMovieId(movieId);
-                    movieGenreMapper.insertSelective(movieGenre);
+                    try
+                    {
+                        movieGenreMapper.insertSelective(movieGenre);
+                    }
+                    catch (Exception e)
+                    {
+                    }
+
                 }
 
 
@@ -207,7 +214,13 @@ public class TestService {
                     MovieDirector movieDirector = new MovieDirector();
                     movieDirector.setDirectorId(directorId);
                     movieDirector.setMovieId(movieId);
-                    movieDirectorMapper.insertSelective(movieDirector);
+                    try
+                    {
+                        movieDirectorMapper.insertSelective(movieDirector);
+                    }
+                    catch (Exception e)
+                    {
+                    }
                     directorIds.add(directorId);
                 }
 
