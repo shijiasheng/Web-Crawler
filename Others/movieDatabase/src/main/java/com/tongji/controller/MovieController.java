@@ -1,6 +1,7 @@
 package com.tongji.controller;
 
 import com.tongji.service.MovieService;
+import com.tongji.service.TestService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -52,5 +53,20 @@ public class MovieController {
     public String query() {
         return "ABC";
     }
+
+
+    @Autowired
+    private TestService testService;
+
+    @ApiOperation("开始插入数据库")
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @ResponseBody
+    public String test() throws ParseException {
+        System.out.println("开始");
+        testService.addMovie();
+        return "ABC";
+    }
+
+
 
 }

@@ -37,9 +37,6 @@ public class MainTest {
     @Autowired
     private MovieActorMapper movieActorMapper;
 
-    @Autowired
-    private ReviewMapper reviewMapper;
-
 
     @Autowired
     private MovieGenreMapper movieGenreMapper;
@@ -57,11 +54,11 @@ public class MainTest {
         ) {
             //跳过首字符
             String line = br.readLine();
+            System.out.println(line);
             while ((line = br.readLine()) != null) {
                 System.out.println(++index);
                 String[] lines = line.split(",");
-                System.out.println(Arrays.toString(lines));
-                TimeUnit.SECONDS.sleep(1);
+
 
                 //对一条电影数据进行读取，并且存放到不同的关系表中
                 String id = lines[0];
@@ -81,9 +78,10 @@ public class MainTest {
                 String studio = lines[14];
                 String itemModelNumber = lines[15];
                 String dateFirstAvailable = lines[16];
-                String audioLanguages = lines[17];
-                String linkId = lines[18];
-                String linkTitle = lines[19];
+                String IMDB = lines[17];
+                String audioLanguages = lines[18];
+                String linkId = lines[19];
+                String linkTitle = lines[20];
 
                 //一些数组
                 String[] directors = directorsText.split("\\$\\$");
@@ -113,7 +111,8 @@ public class MainTest {
                 List<Time> timesList = timeMapper.selectByExample(timeExample);
                 if (timesList != null && timesList.size() != 0) {
                     //说明有该数据
-                    Time timeUpdate = timesList.get(0);
+                    Time timeUpdate = timeMapper.selectByPrimaryKey(timesList.get(0).getTimeId());
+
                     //在后面增加
                     timeUpdate.setMovie(timeUpdate.getMovie() + "$$" + title);
                     timeMapper.updateByPrimaryKeySelective(timeUpdate);
@@ -145,7 +144,7 @@ public class MainTest {
                 movie.setDateFirstAvailable(dateFirstAvailable);
                 movie.setStar(Double.parseDouble(ratings));
                 movie.setLinkId(linkId);
-                movie.setLinkId(linkTitle);
+                movie.setLinkTitle(linkTitle);
                 /*
                 如果报错,可能是重新生成了generator
                 在orderMapper.insert(order)的mapper里面改成如下:
@@ -158,18 +157,16 @@ public class MainTest {
                 int movieId = movie.getMovieId();
 
                 /*插入题材表中*/
-                // TODO: 2020/12/27 movies数据查出来为null
                 for (String genre : genres) {
                     //先检查表中是否有数据
                     GenreExample example = new GenreExample();
                     example.createCriteria().andNameEqualTo(genre);
                     List<Genre> genreList = genreMapper.selectByExample(example);
-
                     int genreId = 0;
 
                     if (genreList != null && genreList.size() != 0) {
                         //说明有该数据
-                        Genre geneUpdate = genreList.get(0);
+                        Genre geneUpdate = genreMapper.selectByPrimaryKey(genreList.get(0).getGenreId());
                         //在后面增加
                         geneUpdate.setMovies(geneUpdate.getMovies() + "$$" + title);
                         genreMapper.updateByPrimaryKeySelective(geneUpdate);
@@ -202,7 +199,7 @@ public class MainTest {
 
                     if (directorsList != null && directorsList.size() != 0) {
                         //说明有该数据
-                        Director directorUpdate = directorsList.get(0);
+                        Director directorUpdate = directorMapper.selectByPrimaryKey(directorsList.get(0).getDirectorId());
                         directorUpdate.setFilming(directorUpdate.getFilming() + "$$" + title);
                         directorMapper.updateByPrimaryKeySelective(directorUpdate);
                         directorId = directorUpdate.getDirectorId();
@@ -237,7 +234,7 @@ public class MainTest {
 
                     if (actorList != null && actorList.size() != 0) {
                         //说明有该数据
-                        Actor actorUpdate = actorList.get(0);
+                        Actor actorUpdate = actorMapper.selectByPrimaryKey(actorList.get(0).getActorId());
                         actorUpdate.setParticipate(actorUpdate.getParticipate() + "$$" + title);
                         actorMapper.updateByPrimaryKeySelective(actorUpdate);
                         actorId = actorUpdate.getActorId();
@@ -254,7 +251,13 @@ public class MainTest {
                     movieActor.setActorId(actorId);
                     movieActor.setMovieId(movieId);
                     movieActor.setIsSupporting(false);
-                    movieActorMapper.insertSelective(movieActor);
+                    //有可能反复插入
+                    try {
+                        movieActorMapper.insertSelective(movieActor);
+                    }
+                    catch (Exception e) {
+
+                    }
                     actorIds.add(actorId);
                 }
 
@@ -269,7 +272,7 @@ public class MainTest {
 
                     if (actorList != null && actorList.size() != 0) {
                         //说明有该数据
-                        Actor actorUpdate = actorList.get(0);
+                        Actor actorUpdate = actorMapper.selectByPrimaryKey(actorList.get(0).getActorId());
                         actorUpdate.setStarring(actorUpdate.getStarring() + "$$" + title);
                         actorMapper.updateByPrimaryKeySelective(actorUpdate);
                         actorId = actorUpdate.getActorId();
@@ -278,14 +281,21 @@ public class MainTest {
                         Actor actorInsert = new Actor();
                         actorInsert.setName(supportingActor);
                         actorInsert.setStarring(title);
-                        actorId = actorMapper.insertSelective(actorInsert);
+                        actorMapper.insertSelective(actorInsert);
+                        actorId = actorInsert.getActorId();
                     }
                     /*演员-电影关系*/
                     MovieActor movieActor = new MovieActor();
                     movieActor.setActorId(actorId);
                     movieActor.setMovieId(movieId);
                     movieActor.setIsSupporting(true);
-                    movieActorMapper.insertSelective(movieActor);
+                    //有可能反复插入
+                    try {
+                        movieActorMapper.insertSelective(movieActor);
+                    }
+                    catch (Exception e) {
+
+                    }
                     actorIds.add(actorId);
                 }
 
@@ -297,8 +307,9 @@ public class MainTest {
                         directorActorExample.createCriteria().andActorIdEqualTo(actorId).andDirectorIdEqualTo(directorId);
                         List<DirectorActor> directorActors = directorActorMapper.selectByExample(directorActorExample);
                         if (directorActors != null && directorActors.size() != 0) {
-                            DirectorActor directorActor = directorActors.get(0);
+                            DirectorActor directorActor = directorActorMapper.selectByPrimaryKey(directorActors.get(0).getDirectorId(),directorActors.get(0).getActorId());
                             directorActor.setCount(directorActor.getCount()+1);
+                            directorActorMapper.updateByPrimaryKeySelective(directorActor);
 
                         }
                         else {
@@ -313,25 +324,10 @@ public class MainTest {
             }
 
         }
-        catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void addReview() {
-        String pathname = "C:\\Users\\12549\\Desktop\\test\\review.csv";
-        try (FileReader reader = new FileReader(pathname);
-             BufferedReader br = new BufferedReader(reader)
-        ) {
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                String[] lines = line.split("#");
-                System.out.println(Arrays.toString(lines));
-                TimeUnit.SECONDS.sleep(3);
-            }
-        }
-        catch (IOException | InterruptedException e) {
+//        catch (IOException | InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

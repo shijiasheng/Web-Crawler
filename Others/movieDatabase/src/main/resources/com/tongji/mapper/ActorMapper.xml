@@ -122,17 +122,20 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tongji.model.Actor">
-    insert into actor (actor_id, name, Starring, 
-      participate)
-    values (#{actorId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{starring,jdbcType=LONGVARCHAR}, 
-      #{participate,jdbcType=LONGVARCHAR})
+    <selectKey keyProperty="actorId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into actor (name, Starring, participate
+      )
+    values (#{name,jdbcType=VARCHAR}, #{starring,jdbcType=LONGVARCHAR}, #{participate,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Actor">
+    <selectKey keyProperty="actorId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into actor
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="actorId != null">
-        actor_id,
-      </if>
       <if test="name != null">
         name,
       </if>
@@ -144,9 +147,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="actorId != null">
-        #{actorId,jdbcType=INTEGER},
-      </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>

@@ -5,14 +5,14 @@
     <id column="movie_id" jdbcType="INTEGER" property="movieId" />
     <result column="product_id" jdbcType="VARCHAR" property="productId" />
     <result column="time_id" jdbcType="INTEGER" property="timeId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="genres" jdbcType="VARCHAR" property="genres" />
     <result column="run_time" jdbcType="VARCHAR" property="runTime" />
     <result column="release_date" jdbcType="VARCHAR" property="releaseDate" />
     <result column="date_first_available" jdbcType="VARCHAR" property="dateFirstAvailable" />
     <result column="star" jdbcType="DOUBLE" property="star" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongji.model.Movie">
+    <result column="title" jdbcType="LONGVARCHAR" property="title" />
+    <result column="genres" jdbcType="LONGVARCHAR" property="genres" />
     <result column="director" jdbcType="LONGVARCHAR" property="director" />
     <result column="supporting_actors" jdbcType="LONGVARCHAR" property="supportingActors" />
     <result column="actor" jdbcType="LONGVARCHAR" property="actor" />
@@ -78,11 +78,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    movie_id, product_id, time_id, title, genres, run_time, release_date, date_first_available, 
-    star
+    movie_id, product_id, time_id, run_time, release_date, date_first_available, star
   </sql>
   <sql id="Blob_Column_List">
-    director, supporting_actors, actor, link_id, link_title
+    title, genres, director, supporting_actors, actor, link_id, link_title
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.tongji.model.MovieExample" resultMap="ResultMapWithBLOBs">
     select
@@ -133,34 +132,31 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tongji.model.Movie">
-    insert into movie (movie_id, product_id, time_id, 
-      title, genres, run_time, 
+    <selectKey keyProperty="movieId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into movie (product_id, time_id, run_time, 
       release_date, date_first_available, star, 
-      director, supporting_actors, actor, 
-      link_id, link_title)
-    values (#{movieId,jdbcType=INTEGER}, #{productId,jdbcType=VARCHAR}, #{timeId,jdbcType=INTEGER}, 
-      #{title,jdbcType=VARCHAR}, #{genres,jdbcType=VARCHAR}, #{runTime,jdbcType=VARCHAR}, 
+      title, genres, director, 
+      supporting_actors, actor, link_id, 
+      link_title)
+    values (#{productId,jdbcType=VARCHAR}, #{timeId,jdbcType=INTEGER}, #{runTime,jdbcType=VARCHAR}, 
       #{releaseDate,jdbcType=VARCHAR}, #{dateFirstAvailable,jdbcType=VARCHAR}, #{star,jdbcType=DOUBLE}, 
-      #{director,jdbcType=LONGVARCHAR}, #{supportingActors,jdbcType=LONGVARCHAR}, #{actor,jdbcType=LONGVARCHAR}, 
-      #{linkId,jdbcType=LONGVARCHAR}, #{linkTitle,jdbcType=LONGVARCHAR})
+      #{title,jdbcType=LONGVARCHAR}, #{genres,jdbcType=LONGVARCHAR}, #{director,jdbcType=LONGVARCHAR}, 
+      #{supportingActors,jdbcType=LONGVARCHAR}, #{actor,jdbcType=LONGVARCHAR}, #{linkId,jdbcType=LONGVARCHAR}, 
+      #{linkTitle,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Movie">
+    <selectKey keyProperty="movieId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into movie
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="movieId != null">
-        movie_id,
-      </if>
       <if test="productId != null">
         product_id,
       </if>
       <if test="timeId != null">
         time_id,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="genres != null">
-        genres,
       </if>
       <if test="runTime != null">
         run_time,
@@ -173,6 +169,12 @@
       </if>
       <if test="star != null">
         star,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="genres != null">
+        genres,
       </if>
       <if test="director != null">
         director,
@@ -191,20 +193,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="movieId != null">
-        #{movieId,jdbcType=INTEGER},
-      </if>
       <if test="productId != null">
         #{productId,jdbcType=VARCHAR},
       </if>
       <if test="timeId != null">
         #{timeId,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="genres != null">
-        #{genres,jdbcType=VARCHAR},
       </if>
       <if test="runTime != null">
         #{runTime,jdbcType=VARCHAR},
@@ -217,6 +210,12 @@
       </if>
       <if test="star != null">
         #{star,jdbcType=DOUBLE},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="genres != null">
+        #{genres,jdbcType=LONGVARCHAR},
       </if>
       <if test="director != null">
         #{director,jdbcType=LONGVARCHAR},
@@ -253,12 +252,6 @@
       <if test="record.timeId != null">
         time_id = #{record.timeId,jdbcType=INTEGER},
       </if>
-      <if test="record.title != null">
-        title = #{record.title,jdbcType=VARCHAR},
-      </if>
-      <if test="record.genres != null">
-        genres = #{record.genres,jdbcType=VARCHAR},
-      </if>
       <if test="record.runTime != null">
         run_time = #{record.runTime,jdbcType=VARCHAR},
       </if>
@@ -270,6 +263,12 @@
       </if>
       <if test="record.star != null">
         star = #{record.star,jdbcType=DOUBLE},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.genres != null">
+        genres = #{record.genres,jdbcType=LONGVARCHAR},
       </if>
       <if test="record.director != null">
         director = #{record.director,jdbcType=LONGVARCHAR},
@@ -296,12 +295,12 @@
     set movie_id = #{record.movieId,jdbcType=INTEGER},
       product_id = #{record.productId,jdbcType=VARCHAR},
       time_id = #{record.timeId,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      genres = #{record.genres,jdbcType=VARCHAR},
       run_time = #{record.runTime,jdbcType=VARCHAR},
       release_date = #{record.releaseDate,jdbcType=VARCHAR},
       date_first_available = #{record.dateFirstAvailable,jdbcType=VARCHAR},
       star = #{record.star,jdbcType=DOUBLE},
+      title = #{record.title,jdbcType=LONGVARCHAR},
+      genres = #{record.genres,jdbcType=LONGVARCHAR},
       director = #{record.director,jdbcType=LONGVARCHAR},
       supporting_actors = #{record.supportingActors,jdbcType=LONGVARCHAR},
       actor = #{record.actor,jdbcType=LONGVARCHAR},
@@ -316,8 +315,6 @@
     set movie_id = #{record.movieId,jdbcType=INTEGER},
       product_id = #{record.productId,jdbcType=VARCHAR},
       time_id = #{record.timeId,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      genres = #{record.genres,jdbcType=VARCHAR},
       run_time = #{record.runTime,jdbcType=VARCHAR},
       release_date = #{record.releaseDate,jdbcType=VARCHAR},
       date_first_available = #{record.dateFirstAvailable,jdbcType=VARCHAR},
@@ -335,12 +332,6 @@
       <if test="timeId != null">
         time_id = #{timeId,jdbcType=INTEGER},
       </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="genres != null">
-        genres = #{genres,jdbcType=VARCHAR},
-      </if>
       <if test="runTime != null">
         run_time = #{runTime,jdbcType=VARCHAR},
       </if>
@@ -352,6 +343,12 @@
       </if>
       <if test="star != null">
         star = #{star,jdbcType=DOUBLE},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="genres != null">
+        genres = #{genres,jdbcType=LONGVARCHAR},
       </if>
       <if test="director != null">
         director = #{director,jdbcType=LONGVARCHAR},
@@ -375,12 +372,12 @@
     update movie
     set product_id = #{productId,jdbcType=VARCHAR},
       time_id = #{timeId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      genres = #{genres,jdbcType=VARCHAR},
       run_time = #{runTime,jdbcType=VARCHAR},
       release_date = #{releaseDate,jdbcType=VARCHAR},
       date_first_available = #{dateFirstAvailable,jdbcType=VARCHAR},
       star = #{star,jdbcType=DOUBLE},
+      title = #{title,jdbcType=LONGVARCHAR},
+      genres = #{genres,jdbcType=LONGVARCHAR},
       director = #{director,jdbcType=LONGVARCHAR},
       supporting_actors = #{supportingActors,jdbcType=LONGVARCHAR},
       actor = #{actor,jdbcType=LONGVARCHAR},
@@ -392,8 +389,6 @@
     update movie
     set product_id = #{productId,jdbcType=VARCHAR},
       time_id = #{timeId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      genres = #{genres,jdbcType=VARCHAR},
       run_time = #{runTime,jdbcType=VARCHAR},
       release_date = #{releaseDate,jdbcType=VARCHAR},
       date_first_available = #{dateFirstAvailable,jdbcType=VARCHAR},

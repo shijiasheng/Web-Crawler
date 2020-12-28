@@ -10,10 +10,6 @@ public class Movie implements Serializable {
 
     private Integer timeId;
 
-    private String title;
-
-    private String genres;
-
     private String runTime;
 
     @ApiModelProperty(value = "发布日期")
@@ -23,6 +19,10 @@ public class Movie implements Serializable {
 
     @ApiModelProperty(value = "评分")
     private Double star;
+
+    private String title;
+
+    private String genres;
 
     private String director;
 
@@ -60,22 +60,6 @@ public class Movie implements Serializable {
         this.timeId = timeId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getGenres() {
-        return genres;
-    }
-
-    public void setGenres(String genres) {
-        this.genres = genres;
-    }
-
     public String getRunTime() {
         return runTime;
     }
@@ -106,6 +90,22 @@ public class Movie implements Serializable {
 
     public void setStar(Double star) {
         this.star = star;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
     }
 
     public String getDirector() {
@@ -157,12 +157,12 @@ public class Movie implements Serializable {
         sb.append(", movieId=").append(movieId);
         sb.append(", productId=").append(productId);
         sb.append(", timeId=").append(timeId);
-        sb.append(", title=").append(title);
-        sb.append(", genres=").append(genres);
         sb.append(", runTime=").append(runTime);
         sb.append(", releaseDate=").append(releaseDate);
         sb.append(", dateFirstAvailable=").append(dateFirstAvailable);
         sb.append(", star=").append(star);
+        sb.append(", title=").append(title);
+        sb.append(", genres=").append(genres);
         sb.append(", director=").append(director);
         sb.append(", supportingActors=").append(supportingActors);
         sb.append(", actor=").append(actor);

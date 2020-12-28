@@ -7,7 +7,9 @@
     <result column="month" jdbcType="INTEGER" property="month" />
     <result column="day" jdbcType="INTEGER" property="day" />
     <result column="week" jdbcType="INTEGER" property="week" />
-    <result column="movie" jdbcType="VARCHAR" property="movie" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongji.model.Time">
+    <result column="movie" jdbcType="LONGVARCHAR" property="movie" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,8 +70,27 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    time_id, year, month, day, week, movie
+    time_id, year, month, day, week
   </sql>
+  <sql id="Blob_Column_List">
+    movie
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.tongji.model.TimeExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from time
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.tongji.model.TimeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -84,9 +105,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from time
     where time_id = #{timeId,jdbcType=INTEGER}
   </select>
@@ -107,7 +130,7 @@
     insert into time (year, month, day, 
       week, movie)
     values (#{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, #{day,jdbcType=INTEGER}, 
-      #{week,jdbcType=INTEGER}, #{movie,jdbcType=VARCHAR})
+      #{week,jdbcType=INTEGER}, #{movie,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Time">
     <selectKey keyProperty="timeId" order="AFTER" resultType="java.lang.Integer">
@@ -145,7 +168,7 @@
         #{week,jdbcType=INTEGER},
       </if>
       <if test="movie != null">
-        #{movie,jdbcType=VARCHAR},
+        #{movie,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -174,9 +197,21 @@
         week = #{record.week,jdbcType=INTEGER},
       </if>
       <if test="record.movie != null">
-        movie = #{record.movie,jdbcType=VARCHAR},
+        movie = #{record.movie,jdbcType=LONGVARCHAR},
       </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update time
+    set time_id = #{record.timeId,jdbcType=INTEGER},
+      year = #{record.year,jdbcType=INTEGER},
+      month = #{record.month,jdbcType=INTEGER},
+      day = #{record.day,jdbcType=INTEGER},
+      week = #{record.week,jdbcType=INTEGER},
+      movie = #{record.movie,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -187,8 +222,7 @@
       year = #{record.year,jdbcType=INTEGER},
       month = #{record.month,jdbcType=INTEGER},
       day = #{record.day,jdbcType=INTEGER},
-      week = #{record.week,jdbcType=INTEGER},
-      movie = #{record.movie,jdbcType=VARCHAR}
+      week = #{record.week,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -209,9 +243,18 @@
         week = #{week,jdbcType=INTEGER},
       </if>
       <if test="movie != null">
-        movie = #{movie,jdbcType=VARCHAR},
+        movie = #{movie,jdbcType=LONGVARCHAR},
       </if>
     </set>
+    where time_id = #{timeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tongji.model.Time">
+    update time
+    set year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      day = #{day,jdbcType=INTEGER},
+      week = #{week,jdbcType=INTEGER},
+      movie = #{movie,jdbcType=LONGVARCHAR}
     where time_id = #{timeId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tongji.model.Time">
@@ -219,8 +262,7 @@
     set year = #{year,jdbcType=INTEGER},
       month = #{month,jdbcType=INTEGER},
       day = #{day,jdbcType=INTEGER},
-      week = #{week,jdbcType=INTEGER},
-      movie = #{movie,jdbcType=VARCHAR}
+      week = #{week,jdbcType=INTEGER}
     where time_id = #{timeId,jdbcType=INTEGER}
   </update>
 </mapper>

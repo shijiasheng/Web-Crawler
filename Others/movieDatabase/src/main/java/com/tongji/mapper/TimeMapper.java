@@ -16,15 +16,21 @@ public interface TimeMapper {
 
     int insertSelective(Time record);
 
+    List<Time> selectByExampleWithBLOBs(TimeExample example);
+
     List<Time> selectByExample(TimeExample example);
 
     Time selectByPrimaryKey(Integer timeId);
 
     int updateByExampleSelective(@Param("record") Time record, @Param("example") TimeExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") Time record, @Param("example") TimeExample example);
+
     int updateByExample(@Param("record") Time record, @Param("example") TimeExample example);
 
     int updateByPrimaryKeySelective(Time record);
+
+    int updateByPrimaryKeyWithBLOBs(Time record);
 
     int updateByPrimaryKey(Time record);
 }
