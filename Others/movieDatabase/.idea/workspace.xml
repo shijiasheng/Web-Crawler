@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="c47bc582-41ad-41b6-8144-405b3af04ec8" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/service/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/TestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/generator.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generator.properties" afterDir="false" />
@@ -19,6 +23,9 @@
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.tongji.MainTest.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/tongji/MainTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/tongji/Test.class" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 14ab8819d26ca416b1b4be1ee0f4d38f52999f61
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +69,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -169,6 +177,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -195,13 +204,17 @@
       <workItem from="1609053241997" duration="14418000" />
       <workItem from="1609072351491" duration="626000" />
       <workItem from="1609073002807" duration="297000" />
+<<<<<<< HEAD
       <workItem from="1609112763689" duration="10263000" />
       <workItem from="1609133536473" duration="4628000" />
+=======
+      <workItem from="1609074211534" duration="1068000" />
+>>>>>>> 14ab8819d26ca416b1b4be1ee0f4d38f52999f61
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -301,16 +314,25 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java</url>
+<<<<<<< HEAD
           <line>89</line>
+=======
+          <line>64</line>
+>>>>>>> 14ab8819d26ca416b1b4be1ee0f4d38f52999f61
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java</url>
+<<<<<<< HEAD
           <line>108</line>
+=======
+          <line>107</line>
+>>>>>>> 14ab8819d26ca416b1b4be1ee0f4d38f52999f61
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java</url>
+<<<<<<< HEAD
           <line>302</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
@@ -333,6 +355,10 @@
           <url>file://$PROJECT_DIR$/src/test/java/com/tongji/MainTest.java</url>
           <line>264</line>
           <option name="timeStamp" value="14" />
+=======
+          <line>197</line>
+          <option name="timeStamp" value="9" />
+>>>>>>> 14ab8819d26ca416b1b4be1ee0f4d38f52999f61
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
