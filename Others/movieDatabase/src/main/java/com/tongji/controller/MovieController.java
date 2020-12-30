@@ -56,6 +56,7 @@ public class MovieController {
     @ResponseBody
     public CommonResult<CommonPage<Movie>> searchMovie(@RequestBody Map<String, String> map) {
         try {
+            long start = System.currentTimeMillis();
             //分页相关
             Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "1"));
             if (pageNum <= 0) {
@@ -136,7 +137,8 @@ public class MovieController {
             if (list == null || list.size() == 0) {
                 return CommonResult.failed("查询不到相关的电影信息!");
             }
-            return CommonResult.success(CommonPage.restPage(list));
+            long end = System.currentTimeMillis();
+            return CommonResult.success(CommonPage.restPage(list,end-start));
         }
         catch (Exception e) {
             return CommonResult.failed("输入的参数格式有误!");
@@ -150,6 +152,7 @@ public class MovieController {
     @ResponseBody
     public CommonResult<CommonPage<Director>> directors(@RequestBody Map<String, String> map) {
         try {
+            long start = System.currentTimeMillis();
             //分页相关
             Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "1"));
             if (pageNum <= 0) pageNum = 1;
@@ -160,7 +163,9 @@ public class MovieController {
             if (list == null || list.size() == 0) {
                 return CommonResult.failed("查询不到相关的导演信息!");
             }
-            return CommonResult.success(CommonPage.restPage(list));
+            long end = System.currentTimeMillis();
+            System.out.println(end-start);
+            return CommonResult.success(CommonPage.restPage(list,end-start));
         }
         catch (Exception e) {
             return CommonResult.failed("输入的参数格式有误!");
@@ -173,6 +178,7 @@ public class MovieController {
     @ResponseBody
     public CommonResult<CommonPage<Actor>> actors(@RequestBody Map<String, String> map) {
         try {
+            long start = System.currentTimeMillis();
             //分页相关
             Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "1"));
             if (pageNum <= 0) pageNum = 1;
@@ -183,7 +189,8 @@ public class MovieController {
             if (list == null || list.size() == 0) {
                 return CommonResult.failed("查询不到相关的演员信息!");
             }
-            return CommonResult.success(CommonPage.restPage(list));
+            long end = System.currentTimeMillis();
+            return CommonResult.success(CommonPage.restPage(list,end-start));
         }
         catch (Exception e) {
             return CommonResult.failed("输入的参数格式有误!");
@@ -193,18 +200,4 @@ public class MovieController {
 
     //按照演员和导演的关系进行查询及统计（例如经常合作的演员有哪些，经常合作的导演和演员有哪些）
 
-
-
-
-//    @Autowired
-//    private TestService testService;
-//
-//    @ApiOperation("开始插入数据库")
-//    @RequestMapping(value = "/test", method = RequestMethod.POST)
-//    @ResponseBody
-//    public String test() throws ParseException {
-//        System.out.println("开始");
-//        testService.addMovie();
-//        return "ABC";
-//    }
 }

@@ -15,11 +15,20 @@ public class CommonPage<T>
     private Integer totalPage;
     private Long total;
     private List<T> list;
+    private long time;
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
 
     /**
      * 将PageHelper分页后的list转为分页信息
      */
-    public static <T> CommonPage<T> restPage(List<T> list)
+    public static <T> CommonPage<T> restPage(List<T> list,long time)
     {
         CommonPage<T> result = new CommonPage<T>();
         PageInfo<T> pageInfo = new PageInfo<T>(list);
@@ -28,6 +37,7 @@ public class CommonPage<T>
         result.setPageSize(pageInfo.getPageSize());
         result.setTotal(pageInfo.getTotal());
         result.setList(pageInfo.getList());
+        result.setTime(time);
         return result;
     }
 
