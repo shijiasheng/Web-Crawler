@@ -55,7 +55,10 @@ public class MovieController {
     public CommonResult<CommonPage<Movie>> searchMovie(@RequestBody Map<String, String> map) {
         try {
             //分页相关
-            Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "0"));
+            Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "1"));
+            if (pageNum <= 0) {
+                pageNum = 1;
+            }
             Integer pageSize = Integer.parseInt(map.getOrDefault("pageSize", "5"));
 
             //时间查询

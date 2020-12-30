@@ -1,14 +1,14 @@
 package com.tongji.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tongji.dto.SearchInfo;
 import com.tongji.mapper.*;
 import com.tongji.model.Movie;
 import com.tongji.model.MovieExample;
-import com.tongji.model.Time;
-import com.tongji.model.TimeExample;
 import com.tongji.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -49,32 +48,33 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public List<Movie> searchMovie(SearchInfo searchInfo) {
         //按照时间查询
-        StringBuilder timeSql = new StringBuilder("select movie_id from user where 1 = 1 and ");
-        TimeExample timeExample = new TimeExample();
-        TimeExample.Criteria timeExampleCriteria = timeExample.createCriteria();
+        StringBuilder timeSql = new StringBuilder("select movie_id\n" +
+                "from movie\n" +
+                "where time_id in\n" +
+                "( select time_id from time where 1 = 1 ");
         //没传入的信息则不用查
         if (searchInfo.getYear() != -2) {
-            timeExampleCriteria.andYearEqualTo(searchInfo.getYear());
-
+            timeSql.append("and time.year = ").append(searchInfo.getYear());
         }
         if (searchInfo.getMonth() != -2) {
-            timeExampleCriteria.andMonthEqualTo(searchInfo.getMonth());
+            timeSql.append(" and time.month = ").append(searchInfo.getMonth());
         }
         if (searchInfo.getDay() != -2) {
-            timeExampleCriteria.andDayEqualTo(searchInfo.getDay());
+            timeSql.append(" and time.day = ").append(searchInfo.getDay());
         }
         if (searchInfo.getWeek() != -2) {
-            timeExampleCriteria.andWeekEqualTo(searchInfo.getWeek());
+            timeSql.append(" and time.week = ").append(searchInfo.getWeek());
         }
         //季度查询
-        timeExampleCriteria.andMonthIn(searchInfo.getQuarterList());
-        List<Time> times = timeMapper.selectByExample(timeExample);
-        System.out.println(times);
+        timeSql.append(" and time.month in (");
+        for (int i = 0; i < searchInfo.getQuarterList().size(); i++) {
+            timeSql.append(searchInfo.getQuarterList().get(i));
+            if (i != searchInfo.getQuarterList().size() - 1) {
+                timeSql.append(",");
+            }
+        }
 
-        //得到时间的Id
-        List<Integer> timesId = times.stream()
-                .map(Time::getTimeId)
-                .collect(Collectors.toList());
+        timeSql.append("))");
 
 
         List<Integer> moviesIdByTime = null;
@@ -83,32 +83,29 @@ public class MovieServiceImpl implements MovieService {
         List<Integer> moviesIdByTitle = null;
         List<Integer> moviesIdByActor = null;
 
-        if (timesId != null) {
-            String sql = "";
-            moviesIdByTime = jdbcTemplate.query(sql, new RowMapper<Integer>() {
-                @Override
-                public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
-                    return resultSet.getInt(1);
-                }
-            }, searchInfo.getDirector());
+        System.out.println(timeSql.toString());
 
-        }
+        moviesIdByTime = jdbcTemplate.query(timeSql.toString(), new RowMapper<Integer>() {
+            @Override
+            public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getInt(1);
+            }
+        });
 
-        MovieExample movieExample = new MovieExample();
-        MovieExample.Criteria criteria = movieExample.createCriteria();
+
         if (searchInfo.getTitle() != null) {
-            String sql = "select movie_id from movie where title like '%?%'";
+            String sql = "select movie_id from movie where title like ?";
             moviesIdByTitle = jdbcTemplate.query(sql, new RowMapper<Integer>() {
                 @Override
                 public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
                     return resultSet.getInt(1);
                 }
-            }, searchInfo.getTitle());
+            }, "%" + searchInfo.getTitle() + "%");
         }
         if (searchInfo.getDirector() != null) {
             String sql = "select movie_id\n" +
                     "from movie_director\n" +
-                    "where director_id in (select director.director_id from director where director.name = 'Phillip Guzman')\n";
+                    "where director_id in (select director.director_id from director where director.name = ?)\n";
             moviesIdByDirector = jdbcTemplate.query(sql, new RowMapper<Integer>() {
                 @Override
                 public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -120,13 +117,13 @@ public class MovieServiceImpl implements MovieService {
         if (searchInfo.getActor() != null) {
             String sql = "select movie_id\n" +
                     "from movie_actor\n" +
-                    "where actor_id in (select actor_id from actor where actor.name = '?')";
+                    "where actor_id in (select actor_id from actor where actor.name = ?)";
             //查询主演
             if (searchInfo.isStarring()) {
-                sql += " and is_supporting = 1";
+                sql += " and is_supporting = false";
             }
             else {
-                sql += " and is_supporting = 0";
+                sql += " and is_supporting = true";
             }
             moviesIdByActor = jdbcTemplate.query(sql, new RowMapper<Integer>() {
                 @Override
@@ -148,29 +145,61 @@ public class MovieServiceImpl implements MovieService {
 //            List<Director> query = jdbcTemplate.query(sql, new BeanPropertyRowMapper<Director>(Director.class));
         }
 
-//        Double score
-        criteria.andStarGreaterThanOrEqualTo(searchInfo.getScore());
-        if (moviesIdByTime != null) {
-            criteria.andMovieIdIn(moviesIdByTime);
-        }
+
+//        if (moviesIdByTime != null) {
+//            criteria.andMovieIdIn(moviesIdByTime);
+//        }
+//        if (moviesIdByGenre != null) {
+//            criteria.andMovieIdIn(moviesIdByGenre);
+//        }
+//        if (moviesIdByTitle != null) {
+//            criteria.andMovieIdIn(moviesIdByTitle);
+//        }
+//        if (moviesIdByActor != null) {
+//            criteria.andMovieIdIn(moviesIdByActor);
+//        }
+//        if (moviesIdByDirector != null) {
+//            criteria.andMovieIdIn(moviesIdByDirector);
+//        }
+
         if (moviesIdByGenre != null) {
-            criteria.andMovieIdIn(moviesIdByGenre);
+            moviesIdByTime.retainAll(moviesIdByGenre);
         }
         if (moviesIdByTitle != null) {
-            criteria.andMovieIdIn(moviesIdByTitle);
+            moviesIdByTime.retainAll(moviesIdByTitle);
         }
         if (moviesIdByActor != null) {
-            criteria.andMovieIdIn(moviesIdByActor);
+            moviesIdByTime.retainAll(moviesIdByActor);
         }
         if (moviesIdByDirector != null) {
-            criteria.andMovieIdIn(moviesIdByDirector);
+            moviesIdByTime.retainAll(moviesIdByDirector);
         }
+
+        MovieExample movieExample = new MovieExample();
+        MovieExample.Criteria criteria = movieExample.createCriteria();
+        criteria.andMovieIdIn(moviesIdByTime);
+
+        StringBuilder sql = new StringBuilder("select * from movie where star >= ? and movie_id in (");
+        for (int i = 0; i < moviesIdByTime.size(); i++) {
+            sql.append(moviesIdByTime.get(i));
+            if (i != moviesIdByTime.size() - 1) {
+                sql.append(",");
+            }
+        }
+        sql.append(")");
+        sql.append("limit ?,?");
+
+        PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize());//分页相关
+        List<Movie> movies = jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<Movie>(Movie.class)
+                ,searchInfo.getScore(), (searchInfo.getPageNum() - 1) * searchInfo.getPageSize(), searchInfo.getPageSize());
+
 
 //        boolean hasPositive todo 有正面评论
 
-        PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize());//分页相关
-//        如需检索的字段中包含大字段类型时，必须用selectByExampleWithBLOBs
-        List<Movie> movies = movieMapper.selectByExampleWithBLOBs(movieExample);
+
+//        PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize());//分页相关
+//        //        如需检索的字段中包含大字段类型时，必须用selectByExampleWithBLOBs
+//        List<Movie> movies = movieMapper.selectByExample(movieExample);
         return movies;
     }
 }
