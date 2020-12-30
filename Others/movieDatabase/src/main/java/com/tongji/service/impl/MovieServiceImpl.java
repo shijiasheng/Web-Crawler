@@ -1,9 +1,10 @@
 package com.tongji.service.impl;
 
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.tongji.dto.SearchInfo;
 import com.tongji.mapper.*;
+import com.tongji.model.Actor;
+import com.tongji.model.Director;
 import com.tongji.model.Movie;
 import com.tongji.model.MovieExample;
 import com.tongji.service.MovieService;
@@ -191,7 +192,7 @@ public class MovieServiceImpl implements MovieService {
 
         PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize());//分页相关
         List<Movie> movies = jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<Movie>(Movie.class)
-                ,searchInfo.getScore(), (searchInfo.getPageNum() - 1) * searchInfo.getPageSize(), searchInfo.getPageSize());
+                , searchInfo.getScore(), (searchInfo.getPageNum() - 1) * searchInfo.getPageSize(), searchInfo.getPageSize());
 
 
 //        boolean hasPositive todo 有正面评论
@@ -201,5 +202,19 @@ public class MovieServiceImpl implements MovieService {
 //        //        如需检索的字段中包含大字段类型时，必须用selectByExampleWithBLOBs
 //        List<Movie> movies = movieMapper.selectByExample(movieExample);
         return movies;
+    }
+
+    @Override
+    public List<Director> directors(Integer pageNum, Integer pageSize, String name) {
+        String sql = "select * from director where name like ? limit ?,?";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Director>(Director.class)
+                , "%" + name + "%", (pageNum - 1) * pageSize, pageSize);
+    }
+
+    @Override
+    public List<Actor> actors(Integer pageNum, Integer pageSize, String name) {
+        String sql = "select * from actor where name like ? limit ?,?";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Actor>(Actor.class)
+                , "%" + name + "%", (pageNum - 1) * pageSize, pageSize);
     }
 }
