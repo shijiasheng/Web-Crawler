@@ -1,6 +1,5 @@
 package com.tongji;
 
-import com.tongji.service.TestService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

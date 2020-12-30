@@ -2,7 +2,6 @@ package com.tongji.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
-import java.util.Date;
 
 public class Review implements Serializable {
     private Integer reviewId;
@@ -15,9 +14,9 @@ public class Review implements Serializable {
 
     private String helpfulness;
 
-    private Long score;
+    private String score;
 
-    private Date time;
+    private String time;
 
     private String summary;
 
@@ -65,19 +64,19 @@ public class Review implements Serializable {
         this.helpfulness = helpfulness;
     }
 
-    public Long getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(Long score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

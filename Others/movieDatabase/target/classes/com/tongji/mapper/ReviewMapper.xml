@@ -7,8 +7,8 @@
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="profile_name" jdbcType="VARCHAR" property="profileName" />
     <result column="helpfulness" jdbcType="VARCHAR" property="helpfulness" />
-    <result column="score" jdbcType="DECIMAL" property="score" />
-    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="score" jdbcType="VARCHAR" property="score" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tongji.model.Review">
     <result column="summary" jdbcType="LONGVARCHAR" property="summary" />
@@ -132,8 +132,8 @@
       time, summary, text
       )
     values (#{reviewId,jdbcType=INTEGER}, #{productId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{profileName,jdbcType=VARCHAR}, #{helpfulness,jdbcType=VARCHAR}, #{score,jdbcType=DECIMAL}, 
-      #{time,jdbcType=TIMESTAMP}, #{summary,jdbcType=LONGVARCHAR}, #{text,jdbcType=LONGVARCHAR}
+      #{profileName,jdbcType=VARCHAR}, #{helpfulness,jdbcType=VARCHAR}, #{score,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR}, #{summary,jdbcType=LONGVARCHAR}, #{text,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.tongji.model.Review">
@@ -184,10 +184,10 @@
         #{helpfulness,jdbcType=VARCHAR},
       </if>
       <if test="score != null">
-        #{score,jdbcType=DECIMAL},
+        #{score,jdbcType=VARCHAR},
       </if>
       <if test="time != null">
-        #{time,jdbcType=TIMESTAMP},
+        #{time,jdbcType=VARCHAR},
       </if>
       <if test="summary != null">
         #{summary,jdbcType=LONGVARCHAR},
@@ -222,10 +222,10 @@
         helpfulness = #{record.helpfulness,jdbcType=VARCHAR},
       </if>
       <if test="record.score != null">
-        score = #{record.score,jdbcType=DECIMAL},
+        score = #{record.score,jdbcType=VARCHAR},
       </if>
       <if test="record.time != null">
-        time = #{record.time,jdbcType=TIMESTAMP},
+        time = #{record.time,jdbcType=VARCHAR},
       </if>
       <if test="record.summary != null">
         summary = #{record.summary,jdbcType=LONGVARCHAR},
@@ -245,8 +245,8 @@
       user_id = #{record.userId,jdbcType=VARCHAR},
       profile_name = #{record.profileName,jdbcType=VARCHAR},
       helpfulness = #{record.helpfulness,jdbcType=VARCHAR},
-      score = #{record.score,jdbcType=DECIMAL},
-      time = #{record.time,jdbcType=TIMESTAMP},
+      score = #{record.score,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR},
       summary = #{record.summary,jdbcType=LONGVARCHAR},
       text = #{record.text,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
@@ -260,8 +260,8 @@
       user_id = #{record.userId,jdbcType=VARCHAR},
       profile_name = #{record.profileName,jdbcType=VARCHAR},
       helpfulness = #{record.helpfulness,jdbcType=VARCHAR},
-      score = #{record.score,jdbcType=DECIMAL},
-      time = #{record.time,jdbcType=TIMESTAMP}
+      score = #{record.score,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -282,10 +282,10 @@
         helpfulness = #{helpfulness,jdbcType=VARCHAR},
       </if>
       <if test="score != null">
-        score = #{score,jdbcType=DECIMAL},
+        score = #{score,jdbcType=VARCHAR},
       </if>
       <if test="time != null">
-        time = #{time,jdbcType=TIMESTAMP},
+        time = #{time,jdbcType=VARCHAR},
       </if>
       <if test="summary != null">
         summary = #{summary,jdbcType=LONGVARCHAR},
@@ -302,8 +302,8 @@
       user_id = #{userId,jdbcType=VARCHAR},
       profile_name = #{profileName,jdbcType=VARCHAR},
       helpfulness = #{helpfulness,jdbcType=VARCHAR},
-      score = #{score,jdbcType=DECIMAL},
-      time = #{time,jdbcType=TIMESTAMP},
+      score = #{score,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
       summary = #{summary,jdbcType=LONGVARCHAR},
       text = #{text,jdbcType=LONGVARCHAR}
     where review_id = #{reviewId,jdbcType=INTEGER}
@@ -314,8 +314,8 @@
       user_id = #{userId,jdbcType=VARCHAR},
       profile_name = #{profileName,jdbcType=VARCHAR},
       helpfulness = #{helpfulness,jdbcType=VARCHAR},
-      score = #{score,jdbcType=DECIMAL},
-      time = #{time,jdbcType=TIMESTAMP}
+      score = #{score,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR}
     where review_id = #{reviewId,jdbcType=INTEGER}
   </update>
 </mapper>
