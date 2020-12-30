@@ -4,9 +4,7 @@ import com.tongji.common.api.CommonPage;
 import com.tongji.common.api.CommonResult;
 import com.tongji.common.exception.Asserts;
 import com.tongji.dto.SearchInfo;
-import com.tongji.model.Actor;
-import com.tongji.model.Director;
-import com.tongji.model.Movie;
+import com.tongji.model.*;
 import com.tongji.service.MovieService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -138,7 +136,7 @@ public class MovieController {
                 return CommonResult.failed("查询不到相关的电影信息!");
             }
             long end = System.currentTimeMillis();
-            return CommonResult.success(CommonPage.restPage(list,end-start));
+            return CommonResult.success(CommonPage.restPage(list, end - start));
         }
         catch (Exception e) {
             return CommonResult.failed("输入的参数格式有误!");
@@ -147,7 +145,7 @@ public class MovieController {
 
 
     //    提供一个模糊查询导演名称的接口
-    @ApiOperation("根据导演名称模糊查询获取导演信息，这样可以先查询导演，然后根据导演全名查他对应的电影")
+    @ApiOperation("根据导演名称模糊查询获取导演信息，这样可以先查询导演，然后根据导演全名查他对应的电影 也可以查询该导演导演的电影")
     @RequestMapping(value = "/directors", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult<CommonPage<Director>> directors(@RequestBody Map<String, String> map) {
@@ -158,14 +156,14 @@ public class MovieController {
             if (pageNum <= 0) pageNum = 1;
             Integer pageSize = Integer.parseInt(map.getOrDefault("pageSize", "5"));
             //导演名称 支持模糊查询
-            String name = map.getOrDefault("name","");
+            String name = map.getOrDefault("name", "");
             List<Director> list = movieService.directors(pageNum, pageSize, name);
             if (list == null || list.size() == 0) {
                 return CommonResult.failed("查询不到相关的导演信息!");
             }
             long end = System.currentTimeMillis();
-            System.out.println(end-start);
-            return CommonResult.success(CommonPage.restPage(list,end-start));
+            System.out.println(end - start);
+            return CommonResult.success(CommonPage.restPage(list, end - start));
         }
         catch (Exception e) {
             return CommonResult.failed("输入的参数格式有误!");
@@ -173,7 +171,7 @@ public class MovieController {
     }
 
     //    提供一个模糊查询演员名称的接口
-    @ApiOperation("根据演员名称模糊查询获取演员信息，这样可以先查询演员，然后根据演员全名查他对应的电影")
+    @ApiOperation("根据演员名称模糊查询获取演员信息，这样可以先查询演员，然后根据演员全名查他对应的电影  也可以快速查询该演员演的电影")
     @RequestMapping(value = "/actors", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult<CommonPage<Actor>> actors(@RequestBody Map<String, String> map) {
@@ -184,13 +182,104 @@ public class MovieController {
             if (pageNum <= 0) pageNum = 1;
             Integer pageSize = Integer.parseInt(map.getOrDefault("pageSize", "5"));
             //演员名称 支持模糊查询
-            String name = map.getOrDefault("name","");
+            String name = map.getOrDefault("name", "");
             List<Actor> list = movieService.actors(pageNum, pageSize, name);
             if (list == null || list.size() == 0) {
                 return CommonResult.failed("查询不到相关的演员信息!");
             }
             long end = System.currentTimeMillis();
-            return CommonResult.success(CommonPage.restPage(list,end-start));
+            return CommonResult.success(CommonPage.restPage(list, end - start));
+        }
+        catch (Exception e) {
+            return CommonResult.failed("输入的参数格式有误!");
+        }
+    }
+
+
+    //    提供一个模糊查询题材名称的接口
+    @ApiOperation("仅仅查询某个题材(支持模糊查询)的电影，为了速度")
+    @RequestMapping(value = "/genre", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<CommonPage<Genre>> genre(@RequestBody Map<String, String> map) {
+        try {
+            long start = System.currentTimeMillis();
+            //分页相关
+            Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "1"));
+            if (pageNum <= 0) pageNum = 1;
+            Integer pageSize = Integer.parseInt(map.getOrDefault("pageSize", "5"));
+            String name = map.getOrDefault("name", "");
+            List<Genre> list = movieService.genre(pageNum, pageSize, name);
+            if (list == null || list.size() == 0) {
+                return CommonResult.failed("查询不到相关的题材信息!");
+            }
+            long end = System.currentTimeMillis();
+            return CommonResult.success(CommonPage.restPage(list, end - start));
+        }
+        catch (Exception e) {
+            return CommonResult.failed("输入的参数格式有误!");
+        }
+    }
+
+
+
+    @ApiOperation("单独根据时间查询电影，为了速度")
+    @RequestMapping(value = "/times", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<CommonPage<Time>> times(@RequestBody Map<String, String> map) {
+        try {
+            long start = System.currentTimeMillis();
+            //分页相关
+            Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "1"));
+            if (pageNum <= 0) pageNum = 1;
+            Integer pageSize = Integer.parseInt(map.getOrDefault("pageSize", "5"));
+
+            //时间查询
+            Integer year = Integer.parseInt(map.getOrDefault("year", "-2"));
+            Integer month = Integer.parseInt(map.getOrDefault("month", "-2"));
+            Integer day = Integer.parseInt(map.getOrDefault("day", "-2"));
+            //季度必须是[-1,1,2,3,4]或不传
+            Integer quarter = Integer.parseInt(map.getOrDefault("quarter", "-1")); //季度应该转成月份列表
+            List<Integer> quarterList = new LinkedList<>();
+            switch (quarter) {
+                case -1:
+                    //相当于查询[1,12]月
+                    for (int i = 1; i <= 12; i++) {
+                        quarterList.add(i);
+                    }
+                    break;
+                case 1:
+                    for (int i = 3; i <= 5; i++) {
+                        quarterList.add(i);
+                    }
+                    break;
+                case 2:
+                    for (int i = 6; i <= 8; i++) {
+                        quarterList.add(i);
+                    }
+                    break;
+                case 3:
+                    for (int i = 9; i <= 11; i++) {
+                        quarterList.add(i);
+                    }
+                    break;
+                case 4:
+                    quarterList.add(12);
+                    quarterList.add(1);
+                    quarterList.add(2);
+                    break;
+                default:
+                    Asserts.fail("季度输入有误");
+            }
+
+            Integer week = Integer.parseInt(map.getOrDefault("week", "-2"));
+
+
+            List<Time> list = movieService.times(pageNum, pageSize, year,month,day,week,quarterList);
+            if (list == null || list.size() == 0) {
+                return CommonResult.failed("查询不到相关的时间信息!");
+            }
+            long end = System.currentTimeMillis();
+            return CommonResult.success(CommonPage.restPage(list, end - start));
         }
         catch (Exception e) {
             return CommonResult.failed("输入的参数格式有误!");

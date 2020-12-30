@@ -3,10 +3,7 @@ package com.tongji.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.tongji.dto.SearchInfo;
 import com.tongji.mapper.*;
-import com.tongji.model.Actor;
-import com.tongji.model.Director;
-import com.tongji.model.Movie;
-import com.tongji.model.MovieExample;
+import com.tongji.model.*;
 import com.tongji.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -216,5 +213,44 @@ public class MovieServiceImpl implements MovieService {
         String sql = "select * from actor where name like ? limit ?,?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Actor>(Actor.class)
                 , "%" + name + "%", (pageNum - 1) * pageSize, pageSize);
+    }
+
+    @Override
+    public List<Genre> genre(Integer pageNum, Integer pageSize, String name) {
+        String sql = "select * from genre where name like ? limit ?,?";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<Genre>(Genre.class)
+                , "%" + name + "%", (pageNum - 1) * pageSize, pageSize);
+    }
+
+    @Override
+    public List<Time> times(Integer pageNum, Integer pageSize, Integer year, Integer month, Integer day, Integer week, List<Integer> quarterList) {
+        //按照时间查询
+        StringBuilder timeSql = new StringBuilder("select * from time where 1 = 1 ");
+        //没传入的信息则不用查
+        if (year != -2) {
+            timeSql.append("and time.year = ").append(year);
+        }
+        if (month != -2) {
+            timeSql.append(" and time.month = ").append(month);
+        }
+        if (day != -2) {
+            timeSql.append(" and time.day = ").append(day);
+        }
+        if (week != -2) {
+            timeSql.append(" and time.week = ").append(week);
+        }
+        //季度查询
+        timeSql.append(" and time.month in (");
+        for (int i = 0; i < quarterList.size(); i++) {
+            timeSql.append(quarterList.get(i));
+            if (i != quarterList.size() - 1) {
+                timeSql.append(",");
+            }
+        }
+
+        timeSql.append(") limit ?,?");
+
+        return jdbcTemplate.query(timeSql.toString(), new BeanPropertyRowMapper<Time>(Time.class)
+                , (pageNum - 1) * pageSize, pageSize);
     }
 }
