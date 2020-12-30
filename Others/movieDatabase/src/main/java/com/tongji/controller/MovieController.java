@@ -4,6 +4,8 @@ import com.tongji.common.api.CommonPage;
 import com.tongji.common.api.CommonResult;
 import com.tongji.common.exception.Asserts;
 import com.tongji.dto.SearchInfo;
+import com.tongji.model.Actor;
+import com.tongji.model.Director;
 import com.tongji.model.Movie;
 import com.tongji.service.MovieService;
 import io.swagger.annotations.Api;
@@ -141,10 +143,58 @@ public class MovieController {
         }
     }
 
-//按照演员和导演的关系进行查询及统计（例如经常合作的演员有哪些，经常合作的导演和演员有哪些）
-// 用户评价中有正面评价的电影有哪些等
-//    提供一个模糊查询导演名称的接口
-//    提供一个模糊查询演员名称的接口
+
+    //    提供一个模糊查询导演名称的接口
+    @ApiOperation("根据导演名称模糊查询获取导演信息，这样可以先查询导演，然后根据导演全名查他对应的电影")
+    @RequestMapping(value = "/directors", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<CommonPage<Director>> directors(@RequestBody Map<String, String> map) {
+        try {
+            //分页相关
+            Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "1"));
+            if (pageNum <= 0) pageNum = 1;
+            Integer pageSize = Integer.parseInt(map.getOrDefault("pageSize", "5"));
+            //导演名称 支持模糊查询
+            String name = map.getOrDefault("name","");
+            List<Director> list = movieService.directors(pageNum, pageSize, name);
+            if (list == null || list.size() == 0) {
+                return CommonResult.failed("查询不到相关的导演信息!");
+            }
+            return CommonResult.success(CommonPage.restPage(list));
+        }
+        catch (Exception e) {
+            return CommonResult.failed("输入的参数格式有误!");
+        }
+    }
+
+    //    提供一个模糊查询演员名称的接口
+    @ApiOperation("根据演员名称模糊查询获取演员信息，这样可以先查询演员，然后根据演员全名查他对应的电影")
+    @RequestMapping(value = "/actors", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<CommonPage<Actor>> actors(@RequestBody Map<String, String> map) {
+        try {
+            //分页相关
+            Integer pageNum = Integer.parseInt(map.getOrDefault("pageNum", "1"));
+            if (pageNum <= 0) pageNum = 1;
+            Integer pageSize = Integer.parseInt(map.getOrDefault("pageSize", "5"));
+            //演员名称 支持模糊查询
+            String name = map.getOrDefault("name","");
+            List<Actor> list = movieService.actors(pageNum, pageSize, name);
+            if (list == null || list.size() == 0) {
+                return CommonResult.failed("查询不到相关的演员信息!");
+            }
+            return CommonResult.success(CommonPage.restPage(list));
+        }
+        catch (Exception e) {
+            return CommonResult.failed("输入的参数格式有误!");
+        }
+    }
+
+
+    //按照演员和导演的关系进行查询及统计（例如经常合作的演员有哪些，经常合作的导演和演员有哪些）
+
+
+
 
 //    @Autowired
 //    private TestService testService;
