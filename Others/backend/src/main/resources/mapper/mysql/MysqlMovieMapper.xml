@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="backend.dao.mysql.MysqlMovieMapper">
+
+    <!-- 获取数量 -->
+    <select id="getMatchCount" resultType="backend.pojo.mysql.MatchCount">
+
+        SELECT count(distinct Product.title) as movieCount, count(distinct Product.productId) as productCount
+        FROM
+        <foreach collection="commands" item="command" index="index" open="(">
+        </foreach>
+        Product
+        <foreach collection="commands" item="command" index="index" close=")">
+            <if test="command.field == 'director' ">
+                join Direct as Direct#{index} ON Product.title = Direct#{index}.movie and Direct#{index}.director
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </if>
+            <if test="command.field == 'actor' ">
+                join Act as Act#{index} ON Product.title = Act#{index}.movie and Act#{index}.actor
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </if>
+            <if test="command.field == 'genre' ">
+                join Classify as Classify#{index} ON Product.title = Classify#{index}.movie and Classify#{index}.genres
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </if>
+            <if test="command.field == 'language' ">
+                join LanguageOf as LanguageOf#{index} ON Product.productId = LanguageOf#{index}.productId and LanguageOf#{index}.language
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </if>
+        </foreach>
+        <where>
+            <foreach collection="commands" item="command" index="index">
+                <if test="command.field == 'title'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.title
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'binding'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.binding
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'running_time'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.runtime
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'release_year'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.release_year
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'release_month'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.release_month
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'release_day'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.release_day
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'release_weekday'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.release_weekday
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'rate'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.rate
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'total_comment'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.total_comment
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'good_comment_rate'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.good_comment_rate
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+            </foreach>
+        </where>
+    </select>
+
+    <!-- 获取十条数据 -->
+    <select id="getLimitMovies" resultType="backend.pojo.mysql.LimitMovie">
+        WITH TenMovies(title) AS (
+        SELECT DISTINCT Product.title
+        FROM
+        <foreach collection="commands" item="command" index="index" open="(">
+        </foreach>
+        Product
+        <foreach collection="commands" item="command" index="index" close=")">
+            <if test="command.field == 'director' ">
+                join Direct as Direct#{index} ON Product.title = Direct#{index}.movie and Direct#{index}.director
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </if>
+            <if test="command.field == 'actor' ">
+                join Act as Act#{index} ON Product.title = Act#{index}.movie and Act#{index}.actor
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </if>
+            <if test="command.field == 'genre' ">
+                join Classify as Classify#{index} ON Product.title = Classify#{index}.movie and Classify#{index}.genres
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </if>
+            <if test="command.field == 'language' ">
+                join LanguageOf as LanguageOf#{index} ON Product.productId = LanguageOf#{index}.productId and LanguageOf#{index}.language
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </if>
+        </foreach>
+        <where>
+            <foreach collection="commands" item="command" index="index">
+                <if test="command.field == 'title'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.title
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'binding'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.binding
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'running_time'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.runtime
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'release_year'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.release_year
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'release_month'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.release_month
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'release_day'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.release_day
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'release_weekday'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.release_weekday
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'rate'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.rate
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'total_comment'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.total_comment
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+                <if test="command.field == 'good_comment_rate'">
+                    <if test="index != 0">
+                        and
+                    </if>
+                    Product.good_comment_rate
+                    <if test="command.condition == 'eq'">
+                        = #{command.value}
+                    </if>
+                    <if test="command.condition == 'neq'">
+                        != #{command.value}
+                    </if>
+                    <if test="command.condition == 'greater'">
+                        &gt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'less'">
+                        &lt;= #{command.value}
+                    </if>
+                    <if test="command.condition == 'contains'">
+                        like CONCAT('%', #{command.value}, '%')
+                    </if>
+                </if>
+            </foreach>
+        </where>
+        LIMIT #{start}, #{end} )
+        select Movie.title, Classify.genres as genre, Act.actor, Direct.director
+        FROM (((Movie left join Classify ON Movie.title = Classify.movie)
+            left join Act ON Movie.title = Act.movie)
+            left join Direct ON Movie.title = Direct.movie)
+        WHERE Movie.title IN (select * from TenMovies);
+    </select>
+
+    <!-- 通过Language查询 -->
+    <select id="getMatchCountByLanguage" resultType="backend.pojo.mysql.MatchCount">
+        select count(distinct title) as movieCount, count(distinct productId) as productCount
+        from DupLanguageOf
+        where language = #{language}
+    </select>
+
+    <!-- 通过Language查询 获取十条数据 -->
+    <select id="getLimitMoviesByLanguage" resultType="backend.pojo.mysql.LimitMovie">
+        WITH TenMovies(title) AS (
+        SELECT DISTINCT DupLanguageOf.title
+        from DupLanguageOf
+        where language = #{language}
+        LIMIT #{start}, #{end} )
+        select Movie.title, Classify.genres as genre, Act.actor, Direct.director
+        FROM (((Movie left join Classify ON Movie.title = Classify.movie)
+            left join Act ON Movie.title = Act.movie)
+            left join Direct ON Movie.title = Direct.movie)
+        WHERE Movie.title IN (select * from TenMovies);
+    </select>
+
+    <!-- 数组 -->
+    <select id="getMatchCountByArr" resultType="backend.pojo.mysql.MatchCount">
+
+        SELECT count(distinct title) as movieCount, count(distinct productId) as productCount
+        FROM ProductDetail
+        <where>
+            <foreach collection="commands" item="command" index="index">
+                <if test="index != 0">
+                    and
+                </if>
+                <if test="command.field == 'title'">
+                    title
+                </if>
+                <if test="command.field == 'actor' ">
+                    actor
+                </if>
+                <if test="command.field == 'director'">
+                    director
+                </if>
+                <if test="command.field == 'genre'">
+                    genre
+                </if>
+                <if test="command.field == 'language'">
+                    language
+                </if>
+                <if test="command.field == 'binding'">
+                    binding
+                </if>
+                <if test="command.field == 'running_time'">
+                    runtime
+                </if>
+                <if test="command.field == 'release_year'">
+                    release_year
+                </if>
+                <if test="command.field == 'release_month'">
+                    release_month
+                </if>
+                <if test="command.field == 'release_day'">
+                    release_day
+                </if>
+                <if test="command.field == 'release_weekday'">
+                    release_weekday
+                </if>
+                <if test="command.field == 'rate'">
+                    rate
+                </if>
+                <if test="command.field == 'total_comment'">
+                    total_comment
+                </if>
+                <if test="command.field == 'good_comment_rate'">
+                    good_comment_rate
+                </if>
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'greater'">
+                    &gt;= #{command.value}
+                </if>
+                <if test="command.condition == 'less'">
+                    &lt;= #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </foreach>
+        </where>
+    </select>
+
+    <!-- 数组 获取十条数据 -->
+    <select id="getLimitMoviesByArr" resultType="backend.pojo.mysql.LimitMovie">
+        WITH TenMovies(title) AS (
+        SELECT distinct title
+        FROM ProductDetail
+        <where>
+            <foreach collection="commands" item="command" index="index">
+                <if test="index != 0">
+                    and
+                </if>
+                <if test="command.field == 'title'">
+                    title
+                </if>
+                <if test="command.field == 'actor' ">
+                    actor
+                </if>
+                <if test="command.field == 'director'">
+                    director
+                </if>
+                <if test="command.field == 'genre'">
+                    genre
+                </if>
+                <if test="command.field == 'language'">
+                    language
+                </if>
+                <if test="command.field == 'binding'">
+                    binding
+                </if>
+                <if test="command.field == 'running_time'">
+                    runtime
+                </if>
+                <if test="command.field == 'release_year'">
+                    release_year
+                </if>
+                <if test="command.field == 'release_month'">
+                    release_month
+                </if>
+                <if test="command.field == 'release_day'">
+                    release_day
+                </if>
+                <if test="command.field == 'release_weekday'">
+                    release_weekday
+                </if>
+                <if test="command.field == 'rate'">
+                    rate
+                </if>
+                <if test="command.field == 'total_comment'">
+                    total_comment
+                </if>
+                <if test="command.field == 'good_comment_rate'">
+                    good_comment_rate
+                </if>
+                <if test="command.condition == 'eq'">
+                    = #{command.value}
+                </if>
+                <if test="command.condition == 'neq'">
+                    != #{command.value}
+                </if>
+                <if test="command.condition == 'greater'">
+                    &gt;= #{command.value}
+                </if>
+                <if test="command.condition == 'less'">
+                    &lt;= #{command.value}
+                </if>
+                <if test="command.condition == 'contains'">
+                    like CONCAT('%', #{command.value}, '%')
+                </if>
+            </foreach>
+        </where>
+        LIMIT #{start}, #{end} )
+        select Movie.title, Classify.genres as genre, Act.actor, Direct.director
+        FROM (((Movie left join Classify ON Movie.title = Classify.movie)
+            left join Act ON Movie.title = Act.movie)
+            left join Direct ON Movie.title = Direct.movie)
+        WHERE Movie.title IN (select * from TenMovies);
+    </select>
+
+    <select id="getGenres" resultType="String">
+        select * from Genres;
+    </select>
+
+    <select id="getLanguages" resultType="String">
+        select * from Language;
+    </select>
+
+    <select id="getBindings" resultType="String">
+        select * from Binding;
+    </select>
+</mapper>

@@ -1,0 +1,74 @@
+server:
+  port: 2468
+
+
+spring:
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: validate
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      # 映射规则，有两种规则，physical：使用驼峰命名,implict: 使用下划线命名
+#    show-sql: true
+#    database-platform: org.hibernate.dialect.MySQLDialect
+
+# mybatis:
+#   type-aliases-package: backend.pojo
+#   mapper-locations: classpath*:mapper/*.xml
+
+hive:
+  url: jdbc:hive2://122.112.191.103:10000/movie3
+  driver-class-name: org.apache.hive.jdbc.HiveDriver
+  type: com.alibaba.druid.pool.DruidDataSource
+  user: root
+  password: Root1234
+  initialSize: 1
+  minIdle: 3
+  maxActive: 20
+  maxWait: 60000
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 30000
+  validationQuery: select 1
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+
+
+mysql:
+  datasource:
+    url: jdbc:mysql://localhost:3306/movies?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: heliren1999
+    initial-size: 5
+    min-idle: 1
+    max-active: 20
+    test-on-borrow: true
+    max-wait: 60000
+#    time-between-eviction-runs-millis: 60000
+#    min-evictable-idle-time-millis: 300000
+#    validation-query: SELECT 1 FROM DUAL
+#    test-While-Idle: true
+#    test-on-return: false
+#    pool-prepared-statements: false
+#    max-pool-prepared-statement-per-connection-size: 20
+#    filters: stat,wall,log4j,config
+
+
+neo4j:
+  url: jdbc:neo4j:bolt://localhost:7687
+  username: neo4j
+  password: admin
+  driver-class-name: org.neo4j.jdbc.bolt.BoltDriver
