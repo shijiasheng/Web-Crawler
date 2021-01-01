@@ -5,10 +5,11 @@ import com.tongji.dto.SearchInfo;
 import com.tongji.model.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MovieService
 {
-    List<Movie> searchMovie(SearchInfo searchInfo);
+    Map<String,Object> searchMovie(SearchInfo searchInfo);
 
 
     List<Director> directors(Integer pageNum, Integer pageSize, String name);
@@ -18,4 +19,10 @@ public interface MovieService
     List<Genre> genre(Integer pageNum, Integer pageSize, String name);
 
     List<Time> times(Integer pageNum, Integer pageSize, Integer year, Integer month, Integer day, Integer week, List<Integer> quarterList);
+
+    Movie detail(Integer id);
+
+    Map<String, Object> getReview(Integer movieId);
+
+    Map<String, Integer> actorToDirector(String actorName);
 }

@@ -1,6 +1,7 @@
 package com.tongji.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.tongji.common.exception.Asserts;
 import com.tongji.dto.SearchInfo;
 import com.tongji.mapper.*;
 import com.tongji.model.*;
@@ -13,7 +14,10 @@ import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -44,7 +48,7 @@ public class MovieServiceImpl implements MovieService {
     private DirectorActorMapper directorActorMapper;
 
     @Override
-    public List<Movie> searchMovie(SearchInfo searchInfo) {
+    public Map<String,Object>  searchMovie(SearchInfo searchInfo) {
         //按照时间查询
         StringBuilder timeSql = new StringBuilder("select movie_id\n" +
                 "from movie\n" +
@@ -92,13 +96,13 @@ public class MovieServiceImpl implements MovieService {
 
 
         if (searchInfo.getTitle() != null) {
-            String sql = "select movie_id from movie where title like ?";
+            String sql = "select movie_id from movie where title = ?";
             moviesIdByTitle = jdbcTemplate.query(sql, new RowMapper<Integer>() {
                 @Override
                 public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
                     return resultSet.getInt(1);
                 }
-            }, "%" + searchInfo.getTitle() + "%");
+            }, searchInfo.getTitle());
         }
         if (searchInfo.getDirector() != null) {
             String sql = "select movie_id\n" +
@@ -177,7 +181,7 @@ public class MovieServiceImpl implements MovieService {
         MovieExample.Criteria criteria = movieExample.createCriteria();
         criteria.andMovieIdIn(moviesIdByTime);
 
-        StringBuilder sql = new StringBuilder("select * from movie where star >= ? and movie_id in (");
+        StringBuilder sql = new StringBuilder("select movie_id,product_id,title,director from movie where star >= ? and movie_id in (");
         for (int i = 0; i < moviesIdByTime.size(); i++) {
             sql.append(moviesIdByTime.get(i));
             if (i != moviesIdByTime.size() - 1) {
@@ -187,18 +191,20 @@ public class MovieServiceImpl implements MovieService {
         sql.append(")");
         sql.append("limit ?,?");
 
-        PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize());//分页相关
+        Map<String, Object> result = new HashMap<>();
+        Integer count = moviesIdByTime.size();
         List<Movie> movies = jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<Movie>(Movie.class)
                 , searchInfo.getScore(), (searchInfo.getPageNum() - 1) * searchInfo.getPageSize(), searchInfo.getPageSize());
+        result.put("total", count);
+        result.put("movies", movies);
 
 
-//        boolean hasPositive todo 有正面评论
 
 
 //        PageHelper.startPage(searchInfo.getPageNum(), searchInfo.getPageSize());//分页相关
 //        //        如需检索的字段中包含大字段类型时，必须用selectByExampleWithBLOBs
 //        List<Movie> movies = movieMapper.selectByExample(movieExample);
-        return movies;
+        return result;
     }
 
     @Override
@@ -252,5 +258,62 @@ public class MovieServiceImpl implements MovieService {
 
         return jdbcTemplate.query(timeSql.toString(), new BeanPropertyRowMapper<Time>(Time.class)
                 , (pageNum - 1) * pageSize, pageSize);
+    }
+
+    @Override
+    public Movie detail(Integer id) {
+        return movieMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Map<String, Object> getReview(Integer movieId) {
+        List<String> productIds = new LinkedList<>();
+        Movie movie = movieMapper.selectByPrimaryKey(movieId);
+        if (movie == null) {
+            Asserts.fail("movieId不存在");
+        }
+        productIds.add(movie.getProductId());
+        String linkId = movie.getLinkId();
+        if (!linkId.equals("##")) {
+            String[] products = linkId.split("\\$\\$");
+            for (String product : products) {
+                productIds.add(product);
+            }
+        }
+        System.out.println(productIds);
+        //查询评论表
+        StringBuilder sql = new StringBuilder("select profile_name,score,star from review where product_id in (");
+        for (int i = 0; i < productIds.size(); i++) {
+            sql.append(productIds.get(i));
+            if (i != productIds.size() - 1) {
+                sql.append(",");
+            }
+        }
+        sql.append(") limit 0,15");
+        System.out.println(sql.toString());
+        List<Review> query = jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<Review>(Review.class), movieId);
+        Map<String, Object> result = new HashMap<>();
+//        result.put();
+        return result;
+    }
+
+    @Override
+    public Map<String, Integer> actorToDirector(String actorName) {
+        String sql = "select name, count\n" +
+                "from director,\n" +
+                "     director_actor\n" +
+                "where director.director_id = director_actor.director_id\n" +
+                "  and actor_id = (select actor_id from actor where actor.name = ?)";
+        Map<String, Integer> result = new HashMap<>();
+        jdbcTemplate.query(sql.toString(), new RowMapper<Director>() {
+            @Override
+            public Director mapRow(ResultSet resultSet, int i) throws SQLException {
+                result.put(resultSet.getString("name"),resultSet.getInt("count"));
+                return null;
+            }
+        }, actorName);
+
+        // TODO: 2021/1/1
+        return result;
     }
 }

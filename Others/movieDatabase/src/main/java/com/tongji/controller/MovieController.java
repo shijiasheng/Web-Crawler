@@ -10,11 +10,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +50,7 @@ public class MovieController {
     @ApiOperation("复杂的条件查询及查询时间统计(查询电影)")
     @RequestMapping(value = "/searchMovie", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult<CommonPage<Movie>> searchMovie(@RequestBody Map<String, String> map) {
+    public CommonResult<Map<String, Object>> searchMovie(@RequestBody Map<String, String> map) {
         try {
             long start = System.currentTimeMillis();
             //分页相关
@@ -75,6 +73,7 @@ public class MovieController {
                     for (int i = 1; i <= 12; i++) {
                         quarterList.add(i);
                     }
+                    quarterList.add(-1);
                     break;
                 case 1:
                     for (int i = 3; i <= 5; i++) {
@@ -131,12 +130,10 @@ public class MovieController {
                     quarterList, week, title, director, actor, isStarring, genre, score, hasPositive);
 
 
-            List<Movie> list = movieService.searchMovie(searchInfo);
-            if (list == null || list.size() == 0) {
-                return CommonResult.failed("查询不到相关的电影信息!");
-            }
+            Map<String, Object> result = movieService.searchMovie(searchInfo);
             long end = System.currentTimeMillis();
-            return CommonResult.success(CommonPage.restPage(list, end - start));
+            result.put("time", end - start);
+            return CommonResult.success(result);
         }
         catch (Exception e) {
             return CommonResult.failed("输入的参数格式有误!");
@@ -221,7 +218,6 @@ public class MovieController {
     }
 
 
-
     @ApiOperation("单独根据时间查询电影，为了速度")
     @RequestMapping(value = "/times", method = RequestMethod.POST)
     @ResponseBody
@@ -274,7 +270,7 @@ public class MovieController {
             Integer week = Integer.parseInt(map.getOrDefault("week", "-2"));
 
 
-            List<Time> list = movieService.times(pageNum, pageSize, year,month,day,week,quarterList);
+            List<Time> list = movieService.times(pageNum, pageSize, year, month, day, week, quarterList);
             if (list == null || list.size() == 0) {
                 return CommonResult.failed("查询不到相关的时间信息!");
             }
@@ -287,7 +283,80 @@ public class MovieController {
     }
 
 
-    //按照演员和导演的关系进行查询及统计（例如经常合作的演员有哪些，经常合作的导演和演员有哪些）
+    @ApiOperation("获取电影详情")
+    @RequestMapping(value = "/movie/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<Map<String, Object>> detail(@PathVariable Integer id) {
+        long start = System.currentTimeMillis();
+        Movie movie = movieService.detail(id);
+        if (movie == null) return CommonResult.failed("要查询的movie_id不存在!");
+        Map<String, Object> result = new HashMap<>();
+
+        if (movie.getLinkId().equals("##")) {
+            result.put("linkId", "");
+            result.put("linkTitle", "");
+        }
+        else {
+            result.put("linkId", movie.getLinkId().replace("$$", ","));
+            result.put("linkTitle", movie.getLinkTitle().replace("$$", ","));
+        }
+        movie.setSupportingActors(movie.getSupportingActors().replace("$$", ","));
+        movie.setActor(movie.getActor().replace("$$", ","));
+        movie.setGenres(movie.getGenres().replace("$$", ","));
+        movie.setDirector(movie.getDirector().replace("$$", ","));
+        result.put("movie", movie);
+        long end = System.currentTimeMillis();
+        result.put("time", end - start);
+        return CommonResult.success(result);
+    }
 
 
+    /*
+    - 按照演员和导演的关系进行查询及统计（例如经常合作的演员有哪些，经常合作的导演和演员有哪些）
+
+        （1）输入演员，返回导演，合作次数
+
+        （2）输入导演，返回演员，合作次数
+
+        （3）输入演员，返回演员，合作次数
+     */
+    @ApiOperation("输入演员，返回导演，合作次数")
+    @RequestMapping(value = "/actorToDirector", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<Map<String, Object>> actorToDirector(@RequestBody Map<String, String> map) {
+        long start = System.currentTimeMillis();
+
+        String actorName = map.get("actorName");
+
+        Map<String, Object> result = new HashMap<>();
+
+        Map<String, Integer> collaborate = movieService.actorToDirector(actorName);
+        result.put("collaborate", collaborate);
+
+        long end = System.currentTimeMillis();
+        result.put("time", end - start);
+        return CommonResult.success(result);
+    }
+
+
+    /*
+    - 输入一个电影id，返回关于他所有的评论，
+    - 评论总数，
+    - list，取前15条，评论人，打分，好评/中立/差评
+     */
+    @ApiOperation("获取电影评价前15条")
+    @RequestMapping(value = "/reviews/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult<Map<String, Object>> getReview(@PathVariable Integer id) {
+        long start = System.currentTimeMillis();
+
+        Map<String, Object> result = new HashMap<>();
+
+        Map<String, Object> reviews = movieService.getReview(id);
+
+        result.put("reviews", reviews);
+        long end = System.currentTimeMillis();
+        result.put("time", end - start);
+        return CommonResult.success(result);
+    }
 }
