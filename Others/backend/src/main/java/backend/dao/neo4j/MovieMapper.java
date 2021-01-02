@@ -1,8 +1,12 @@
 package backend.dao.neo4j;
 
 import backend.pojo.neo4j.*;
+import common.DetailMovieResult;
 import common.GetDTO.*;
 import common.ReturnDTO.ReturnCooperationDTO;
+import common.ReturnDirectorResult;
+import common.ReturnMovieResult;
+import common.SearchCommand;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.tools.ant.taskdefs.Get;
@@ -12,18 +16,27 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface MovieMapper  {
+public interface MovieMapper
+{
 
-    String getMovieByProductId(String id);
+    DetailMovieResult getDetailMovie(String product_id);
+
+    int getMovieCount(@Param("searchCommand") SearchCommand searchCommand);
+
+    List<ReturnMovieResult> getMovie(@Param("searchCommand") SearchCommand searchCommand);
+
+    List<ReturnDirectorResult> getDirectorByActor(String actor);
+
+    List<ReturnMovieResult> getMovieByDirector(String director);
 
     List<Movie> getAllMovieNeo4j(@Param("commands") List<Command> commands);
 
     List<MovieSimple> getLimitMovies(@Param("commands") List<Command> commands,
-                                    @Param("start") int start, @Param("end") int end);
+                                     @Param("start") int start, @Param("end") int end);
 
     List<ProductSimple> getMatchProduct(@Param("commands") List<Command> commands, @Param("title") String title);
 
-    MatchNum  getMatchNum(@Param("commands") List<Command> commands);
+    MatchNum getMatchNum(@Param("commands") List<Command> commands);
 
     List<Movie> getTenMovie();
 
@@ -41,4 +54,5 @@ public interface MovieMapper  {
     List<Sery> getSery(@Param("getSeryDTO") GetSeryDTO getSeryDTO);
 
     List<Stastic> getTime(@Param("getTimeDTO") GetTimeDTO getTimeDTO);
+
 }

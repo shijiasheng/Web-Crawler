@@ -3,10 +3,9 @@ package backend.service.neo4j.impl;
 import backend.dao.neo4j.MovieMapper;
 import backend.pojo.neo4j.*;
 import backend.service.neo4j.MovieService;
+import common.*;
 import common.GetDTO.*;
 import common.ReturnDTO.*;
-import common.TimeHelper;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,20 +21,68 @@ public class MovieServiceImpl implements MovieService
     MovieMapper movieMapper;
 
     @Override
-    public ReturnDTO getMovieByProductId(String id)
+    public DetailMovieResult getDetailMovie(String product_id)
     {
-        System.out.println(id);
-        String title=this.movieMapper.getMovieByProductId(id);
-        System.out.println(title);
-//        List<Neo4jMovie> movies = this.movieMapper.getMovieByProductId(id);
-//        for (Neo4jMovie m :
-//                movies)
-//        {
-//            System.out.println(m);
-//        }
-//        System.out.println(movies);
-        return new ReturnDTO();
+        System.out.println(product_id);
+        DetailMovieResult res = this.movieMapper.getDetailMovie(product_id);
+        System.out.println(res);
+        return res;
     }
+
+    @Override
+    public List<ReturnMovieResult> getMovie(SearchCommand searchCommand)
+    {
+
+        System.out.println(searchCommand);
+        List<ReturnMovieResult> res = this.movieMapper.getMovie(searchCommand);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
+    public List<ReturnDirectorResult> getDirectorByActor(String actor)
+    {
+        System.out.println(actor);
+        List<ReturnDirectorResult> res = this.movieMapper.getDirectorByActor(actor);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
+    public List<ReturnMovieResult> getMovieByDirector(String director)
+    {
+        System.out.println(director);
+        List<ReturnMovieResult> res = this.movieMapper.getMovieByDirector(director);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
+    public int getMovieCount(SearchCommand searchCommand)
+    {
+        return this.movieMapper.getMovieCount(searchCommand);
+    }
+
+
+//    @Override
+//    public ReturnDTO getMovieByProductId(String id)
+//    {
+//        System.out.println(id);
+//        long start = System.currentTimeMillis();
+//        String title = this.movieMapper.getMovieByProductId(id);
+//        long end = System.currentTimeMillis();
+//        System.out.println(end - start);
+//        System.out.println(title);
+//
+////        List<Neo4jMovie> movies = this.movieMapper.getMovieByProductId(id);
+////        for (Neo4jMovie m :
+////                movies)
+////        {
+////            System.out.println(m);
+////        }
+////        System.out.println(movies);
+//        return new ReturnDTO();
+//    }
 
     @Override
     public ReturnDTO getAllMatch(GetMoviesDTO getMoviesDTO)
@@ -367,5 +414,7 @@ public class MovieServiceImpl implements MovieService
         long totalTime = timeHelper.getTime();
         return new ReturnDTO(totalTime, queryTime, 0, 0, 0, returnStasticDTO);
     }
+
+
 
 }
