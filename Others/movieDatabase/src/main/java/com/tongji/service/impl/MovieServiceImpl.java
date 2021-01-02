@@ -266,7 +266,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Map<String, Object> getReview(Integer movieId) {
+    public List<Map<String, Object>> getReview(Integer movieId) {
         List<String> productIds = new LinkedList<>();
         Movie movie = movieMapper.selectByPrimaryKey(movieId);
         if (movie == null) {
@@ -284,17 +284,38 @@ public class MovieServiceImpl implements MovieService {
         //查询评论表
         StringBuilder sql = new StringBuilder("select profile_name,score,star from review where product_id in (");
         for (int i = 0; i < productIds.size(); i++) {
+            sql.append("'");
             sql.append(productIds.get(i));
+            sql.append("'");
             if (i != productIds.size() - 1) {
                 sql.append(",");
             }
         }
-        sql.append(") limit 0,15");
+        sql.append(") limit 15");
         System.out.println(sql.toString());
-        List<Review> query = jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<Review>(Review.class), movieId);
-        Map<String, Object> result = new HashMap<>();
-//        result.put();
-        return result;
+        List<Map<String, Object>> list = new LinkedList<>();
+        List<Review> query = jdbcTemplate.query(sql.toString(), new RowMapper<Review>() {
+            @Override
+            public Review mapRow(ResultSet resultSet, int i) throws SQLException {
+                Map<String, Object> result = new HashMap<>();
+                result.put("profile_name", resultSet.getString("profile_name"));
+                result.put("score", resultSet.getDouble("score"));
+                double star = resultSet.getDouble("star");
+                if (star < 0.05) {
+                    result.put("tendency","差评");
+                }
+                else if (star > 0.95) {
+                    result.put("tendency", "好评");
+                }
+                else {
+                    result.put("tendency", "中立");
+                }
+                list.add(result);
+                return null;
+            }
+        });
+        System.out.println(list);
+        return list;
     }
 
     @Override
@@ -313,7 +334,45 @@ public class MovieServiceImpl implements MovieService {
             }
         }, actorName);
 
-        // TODO: 2021/1/1
+        return result;
+    }
+
+    @Override
+    public Map<String, Integer> directorToActor(String directorName) {
+        String sql = "select name, count\n" +
+                "from actor,\n" +
+                "     director_actor\n" +
+                "where actor.actor_id = director_actor.actor_id\n" +
+                "  and director_id = (select director_id from director where director.name = ?)";
+        Map<String, Integer> result = new HashMap<>();
+        jdbcTemplate.query(sql.toString(), new RowMapper<Director>() {
+            @Override
+            public Director mapRow(ResultSet resultSet, int i) throws SQLException {
+                result.put(resultSet.getString("name"),resultSet.getInt("count"));
+                return null;
+            }
+        }, directorName);
+
+        return result;
+    }
+
+    @Override
+    public Map<String, Integer> actorToActor(String actorName) {
+        String sql = "select name, count\n" +
+                "from actor,\n" +
+                "     actor_actor\n" +
+                "where actor.actor_id = actor_actor.actor_id_2\n" +
+                "  and actor_id_1 = (select actor_id from actor where actor.name = ?)";
+        System.out.println(sql);
+        Map<String, Integer> result = new HashMap<>();
+        jdbcTemplate.query(sql.toString(), new RowMapper<Director>() {
+            @Override
+            public Director mapRow(ResultSet resultSet, int i) throws SQLException {
+                result.put(resultSet.getString("name"),resultSet.getInt("count"));
+                return null;
+            }
+        }, actorName);
+
         return result;
     }
 }

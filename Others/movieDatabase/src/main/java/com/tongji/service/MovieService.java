@@ -22,7 +22,11 @@ public interface MovieService
 
     Movie detail(Integer id);
 
-    Map<String, Object> getReview(Integer movieId);
+    List<Map<String, Object>> getReview(Integer movieId);
 
     Map<String, Integer> actorToDirector(String actorName);
+
+    Map<String, Integer> directorToActor(String directorName);
+
+    Map<String, Integer> actorToActor(String actorName);
 }
