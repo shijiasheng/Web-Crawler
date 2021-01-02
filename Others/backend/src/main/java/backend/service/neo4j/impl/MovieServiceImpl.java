@@ -40,28 +40,52 @@ public class MovieServiceImpl implements MovieService
     }
 
     @Override
-    public List<ReturnDirectorResult> getDirectorByActor(String actor)
+    public List<ReturnDirectorResult> getDirectorByActor(String actor, int skip, int limit)
     {
         System.out.println(actor);
-        List<ReturnDirectorResult> res = this.movieMapper.getDirectorByActor(actor);
+        List<ReturnDirectorResult> res = this.movieMapper.getDirectorByActor(actor, skip, limit);
         System.out.println(res);
         return res;
     }
 
     @Override
-    public List<ReturnActorResult> getActorByDirector(String director)
+    public int getDirectorByActorCount(String actor)
+    {
+        return this.movieMapper.getDirectorByActorCount(actor);
+    }
+
+    @Override
+    public List<ReturnActorResult> getActorByDirector(String director, int skip, int limit)
     {
         System.out.println(director);
-        List<ReturnActorResult> res = this.movieMapper.getActorByDirector(director);
+        List<ReturnActorResult> res = this.movieMapper.getActorByDirector(director, skip, limit);
         System.out.println(res);
         return res;
     }
 
     @Override
-    public List<ReturnActorResult> getActorByActor(String actor)
+    public int getActorByDirectorCount(String director)
+    {
+        System.out.println(director);
+        int res = this.movieMapper.getActorByDirectorCount(director);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
+    public List<ReturnActorResult> getActorByActor(String actor, int skip, int limit)
     {
         System.out.println(actor);
-        List<ReturnActorResult> res = this.movieMapper.getActorByActor(actor);
+        List<ReturnActorResult> res = this.movieMapper.getActorByActor(actor, skip, limit);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
+    public int getActorByActorCount(String actor)
+    {
+        System.out.println(actor);
+        int res = this.movieMapper.getActorByActorCount(actor);
         System.out.println(res);
         return res;
     }
@@ -432,7 +456,6 @@ public class MovieServiceImpl implements MovieService
         long totalTime = timeHelper.getTime();
         return new ReturnDTO(totalTime, queryTime, 0, 0, 0, returnStasticDTO);
     }
-
 
 
 }

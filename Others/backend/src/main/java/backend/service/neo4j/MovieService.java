@@ -24,11 +24,17 @@ public interface MovieService
 
     List<ReturnMovieResult> getMovie(SearchCommand searchCommand);
 
-    List<ReturnDirectorResult> getDirectorByActor(String actor);
+    List<ReturnDirectorResult> getDirectorByActor(String actor, int skip, int limit);
 
-    List<ReturnActorResult> getActorByDirector(String director);
+    int getDirectorByActorCount(String actor);
 
-    List<ReturnActorResult> getActorByActor(String actor);
+    List<ReturnActorResult> getActorByDirector(String director, int skip, int limit);
+
+    int getActorByDirectorCount(String director);
+
+    List<ReturnActorResult> getActorByActor(String actor,int skip,int limit);
+
+    int getActorByActorCount(String actor);
 
 //    ReturnDTO getMovieByProductId(String id);
 

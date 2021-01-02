@@ -22,11 +22,11 @@ public interface MovieMapper
 
     List<ReturnMovieResult> getMovie(@Param("searchCommand") SearchCommand searchCommand);
 
-    List<ReturnDirectorResult> getDirectorByActor(String actor);
+    List<ReturnDirectorResult> getDirectorByActor(@Param("actor") String actor, @Param("skip") int skip, @Param("limit") int limit);
 
-    List<ReturnActorResult> getActorByDirector(String director);
+    List<ReturnActorResult> getActorByDirector(@Param("director")String director,@Param("skip")int skip,@Param("limit")int limit);
 
-    List<ReturnActorResult> getActorByActor(String actor);
+    List<ReturnActorResult> getActorByActor(@Param("actor") String actor, @Param("skip") int skip, @Param("limit") int limit);
 
     List<ReturnMovieResult> getMovieByDirector(String director);
 
@@ -56,4 +56,9 @@ public interface MovieMapper
 
     List<Stastic> getTime(@Param("getTimeDTO") GetTimeDTO getTimeDTO);
 
+    int getDirectorByActorCount(String actor);
+
+    int getActorByDirectorCount(String director);
+
+    int getActorByActorCount(String actor);
 }

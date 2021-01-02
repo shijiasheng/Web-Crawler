@@ -45,7 +45,14 @@ public class MovieController
     @ApiOperation(value = "获取某电影的详细信息")
     public CommonResult<DetailMovieResult> getDetailMovie(@RequestBody String product_id)
     {
-        return CommonResult.success(movieService.getDetailMovie(product_id));
+
+        long start = System.currentTimeMillis();
+        DetailMovieResult detailMovieResult = movieService.getDetailMovie(product_id);
+        long end = System.currentTimeMillis();
+
+        System.out.print("time ");
+        System.out.println(end - start);
+        return CommonResult.success(detailMovieResult, (end - start), 1);
     }
 
 
@@ -71,7 +78,7 @@ public class MovieController
         searchCommand.setWeek(map.getOrDefault("week", ""));
         searchCommand.setDirector(map.getOrDefault("director", ""));
         searchCommand.setActor(map.getOrDefault("actor", ""));
-        searchCommand.setIs_supporting(map.getOrDefault("is_supporting", ""));
+        searchCommand.setIs_supporting(map.getOrDefault("isSupporting", ""));
         searchCommand.setGenre(map.getOrDefault("genre", ""));
         searchCommand.setStar(map.getOrDefault("star", ""));
 
@@ -114,35 +121,68 @@ public class MovieController
         {
             searchCommand.setSearchQuarter(0);
         }
-        long end = System.currentTimeMillis();
         int total = movieService.getMovieCount(searchCommand);
+
+        List<ReturnMovieResult> res = movieService.getMovie(searchCommand);
+        long end = System.currentTimeMillis();
+
         System.out.print("time ");
         System.out.println(end - start);
         System.out.print("total ");
         System.out.println(total);
-        return CommonResult.success(movieService.getMovie(searchCommand), (end - start), total);
+        return CommonResult.success(res, (end - start), total);
 
     }
 
     @PostMapping(value = {"/getDirectorByActor"})
     @ApiOperation(value = "输入演员，返回导演，合作次数")
-    public CommonResult<List<ReturnDirectorResult>> getDirectorByActor(@RequestBody String actor)
+    public CommonResult<List<ReturnDirectorResult>> getDirectorByActor(@RequestBody Map<String, String> map)
     {
-        return CommonResult.success(movieService.getDirectorByActor(actor));
+        long start = System.currentTimeMillis();
+
+        String actor = map.get("actorName");
+        int pageSize = Integer.parseInt(map.get("pageSize"));
+        int pageNum = Integer.parseInt(map.get("pageNum"));
+        int skip = pageSize * (pageNum - 1);
+        int total = movieService.getDirectorByActorCount(actor);
+        List<ReturnDirectorResult> results = movieService.getDirectorByActor(actor, skip, pageSize);
+        long end = System.currentTimeMillis();
+
+        return CommonResult.success(results, (end - start), total);
     }
 
     @PostMapping(value = {"/getActorByDirector"})
     @ApiOperation(value = "输入导演，返回演员，合作次数")
-    public CommonResult<List<ReturnActorResult>> getActorByDirector(@RequestBody String director)
+    public CommonResult<List<ReturnActorResult>> getActorByDirector(@RequestBody Map<String, String> map)
     {
-        return CommonResult.success(movieService.getActorByDirector(director));
+        long start = System.currentTimeMillis();
+
+        String director = map.get("directorName");
+        int pageSize = Integer.parseInt(map.get("pageSize"));
+        int pageNum = Integer.parseInt(map.get("pageNum"));
+        int skip = pageSize * (pageNum - 1);
+        int total = movieService.getActorByDirectorCount(director);
+        List<ReturnActorResult> results = movieService.getActorByDirector(director, skip, pageSize);
+        long end = System.currentTimeMillis();
+
+        return CommonResult.success(results, (end - start), total);
     }
 
     @PostMapping(value = {"/getActorByActor"})
     @ApiOperation(value = "输入演员，返回演员，合作次数")
-    public CommonResult<List<ReturnActorResult>> getActorByActor(@RequestBody String actor)
+    public CommonResult<List<ReturnActorResult>> getActorByActor(@RequestBody Map<String, String> map)
     {
-        return CommonResult.success(movieService.getActorByActor(actor));
+        long start = System.currentTimeMillis();
+
+        String actor = map.get("actorName");
+        int pageSize = Integer.parseInt(map.get("pageSize"));
+        int pageNum = Integer.parseInt(map.get("pageNum"));
+        int skip = pageSize * (pageNum - 1);
+        int total = movieService.getActorByActorCount(actor);
+        List<ReturnActorResult> results = movieService.getActorByActor(actor, skip, pageSize);
+        long end = System.currentTimeMillis();
+
+        return CommonResult.success(results, (end - start), total);
     }
 
 //    @PostMapping(value = {"/getMovieByDirector"})

@@ -1109,6 +1109,10 @@
         count
         as
         count
+        skip
+        #{skip}
+        limit
+        #{limit}
     </select>
     <select id="getMovieCount" resultType="java.lang.Integer">
         MATCH
@@ -1203,6 +1207,10 @@
         count
         as
         count
+        skip
+        #{skip}
+        limit
+        #{limit}
     </select>
     <select id="getActorByActor" resultType="common.ReturnActorResult">
         MATCH
@@ -1221,5 +1229,45 @@
         count
         as
         count
+        skip
+        #{skip}
+        limit
+        #{limit}
+    </select>
+    <select id="getDirectorByActorCount" resultType="java.lang.Integer">
+        MATCH
+        (d:director)-[r:director_actor_corporate]-(a:actor)
+        WHERE
+        a.name=
+        #{actor}
+        return
+        count
+        (
+        d
+        )
+    </select>
+    <select id="getActorByDirectorCount" resultType="java.lang.Integer">
+        MATCH
+        (d:director)-[r:director_actor_corporate]-(a:actor)
+        WHERE
+        d.name=
+        #{director}
+        return
+        count
+        (
+        a
+        )
+    </select>
+    <select id="getActorByActorCount" resultType="java.lang.Integer">
+        MATCH
+        (d:actor)-[r:actor_actor_corporate]-(a:actor)
+        WHERE
+        d.name=
+        #{actor}
+        return
+        count
+        (
+        a
+        )
     </select>
 </mapper>
