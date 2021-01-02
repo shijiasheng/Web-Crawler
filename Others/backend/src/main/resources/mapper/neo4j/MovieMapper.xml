@@ -1186,4 +1186,40 @@
         m
         )
     </select>
+    <select id="getActorByDirector" resultType="common.ReturnActorResult">
+        MATCH
+        (d:director)-[r:director_actor_corporate]-(a:actor)
+        WHERE
+        d.name=
+        #{director}
+        return
+        a
+        .
+        name
+        as
+        name,
+        r
+        .
+        count
+        as
+        count
+    </select>
+    <select id="getActorByActor" resultType="common.ReturnActorResult">
+        MATCH
+        (d:actor)-[r:actor_actor_corporate]-(a:actor)
+        WHERE
+        d.name=
+        #{actor}
+        return
+        a
+        .
+        name
+        as
+        name,
+        r
+        .
+        count
+        as
+        count
+    </select>
 </mapper>

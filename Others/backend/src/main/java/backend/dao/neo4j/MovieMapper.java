@@ -1,12 +1,9 @@
 package backend.dao.neo4j;
 
 import backend.pojo.neo4j.*;
-import common.DetailMovieResult;
+import common.*;
 import common.GetDTO.*;
 import common.ReturnDTO.ReturnCooperationDTO;
-import common.ReturnDirectorResult;
-import common.ReturnMovieResult;
-import common.SearchCommand;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.tools.ant.taskdefs.Get;
@@ -26,6 +23,10 @@ public interface MovieMapper
     List<ReturnMovieResult> getMovie(@Param("searchCommand") SearchCommand searchCommand);
 
     List<ReturnDirectorResult> getDirectorByActor(String actor);
+
+    List<ReturnActorResult> getActorByDirector(String director);
+
+    List<ReturnActorResult> getActorByActor(String actor);
 
     List<ReturnMovieResult> getMovieByDirector(String director);
 

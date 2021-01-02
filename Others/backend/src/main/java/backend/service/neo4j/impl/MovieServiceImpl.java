@@ -49,6 +49,24 @@ public class MovieServiceImpl implements MovieService
     }
 
     @Override
+    public List<ReturnActorResult> getActorByDirector(String director)
+    {
+        System.out.println(director);
+        List<ReturnActorResult> res = this.movieMapper.getActorByDirector(director);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
+    public List<ReturnActorResult> getActorByActor(String actor)
+    {
+        System.out.println(actor);
+        List<ReturnActorResult> res = this.movieMapper.getActorByActor(actor);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
     public List<ReturnMovieResult> getMovieByDirector(String director)
     {
         System.out.println(director);

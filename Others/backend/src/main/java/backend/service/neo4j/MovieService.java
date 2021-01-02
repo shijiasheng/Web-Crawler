@@ -1,14 +1,11 @@
 package backend.service.neo4j;
 
 import backend.pojo.neo4j.Movie;
-import common.DetailMovieResult;
+import common.*;
 import common.GetDTO.*;
 import common.ReturnDTO.ReturnCooperationDTO;
 import common.ReturnDTO.ReturnDTO;
 import common.ReturnDTO.ReturnStasticDTO;
-import common.ReturnDirectorResult;
-import common.ReturnMovieResult;
-import common.SearchCommand;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -24,9 +21,14 @@ public interface MovieService
     List<ReturnMovieResult> getMovieByDirector(String director);
 
     int getMovieCount(SearchCommand searchCommand);
+
     List<ReturnMovieResult> getMovie(SearchCommand searchCommand);
 
     List<ReturnDirectorResult> getDirectorByActor(String actor);
+
+    List<ReturnActorResult> getActorByDirector(String director);
+
+    List<ReturnActorResult> getActorByActor(String actor);
 
 //    ReturnDTO getMovieByProductId(String id);
 
