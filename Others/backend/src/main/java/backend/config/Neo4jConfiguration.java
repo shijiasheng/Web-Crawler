@@ -20,7 +20,7 @@ public class Neo4jConfiguration {
     static final String PACKAGE = "backend.dao.neo4j";
     static final String MAPPER_LOCATION = "classpath:mapper/neo4j/*.xml";
 
-    private String url="jdbc:neo4j:bolt://119.29.56.81:7687";
+    private String url="jdbc:neo4j:bolt://101.132.33.87:7687";
 
     private String userName="neo4j";
 
