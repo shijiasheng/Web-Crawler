@@ -1026,8 +1026,10 @@
             (m:movie)-[r:act]-(a:actor)
             WHERE
             a.name=#{searchCommand.actor}
-            and
-            r.is_suooprting=#{searchCommand.is_supporting}
+            <if test="searchCommand.is_supporting != ''">
+                and
+                r.is_suooprting=#{searchCommand.is_supporting}
+            </if>
             WITH m
         </if>
         <if test="searchCommand.genre != ''">
@@ -1131,8 +1133,10 @@
             (m:movie)-[r:act]-(a:actor)
             WHERE
             a.name=#{searchCommand.actor}
-            and
-            r.is_suooprting=#{searchCommand.is_supporting}
+            <if test="searchCommand.is_supporting != ''">
+                and
+                r.is_suooprting=#{searchCommand.is_supporting}
+            </if>
             WITH m
         </if>
         <if test="searchCommand.genre != ''">
@@ -1277,13 +1281,19 @@
         m.product_id=
         #{productId}
         return
-        r.user_id
+        r
+        .
+        user_id
         as
         user_id,
-        r.score
+        r
+        .
+        score
         as
         score,
-        r.star
+        r
+        .
+        star
         as
         star
     </select>
@@ -1294,13 +1304,19 @@
         m.product_id=
         #{productId}
         return
-        r.user_id
+        r
+        .
+        user_id
         as
         user_id,
-        r.score
+        r
+        .
+        score
         as
         score,
-        r.star
+        r
+        .
+        star
         as
         star
     </select>

@@ -120,6 +120,7 @@ public class MovieServiceImpl implements MovieService
     @Override
     public int getMovieCount(SearchCommand searchCommand)
     {
+        System.out.println(searchCommand);
         return this.movieMapper.getMovieCount(searchCommand);
     }
 
