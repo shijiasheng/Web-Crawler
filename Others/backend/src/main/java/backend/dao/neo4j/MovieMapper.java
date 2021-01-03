@@ -65,4 +65,8 @@ public interface MovieMapper
     List<ReturnReviewResult> getReview(@Param("productId") String productId);
 
     List<ReturnReviewResult> getSeriesReview(@Param("productId") String productId);
+
+    Integer getMonthStatistics(String month);
+
+    Integer getWeekStatistics(String week);
 }

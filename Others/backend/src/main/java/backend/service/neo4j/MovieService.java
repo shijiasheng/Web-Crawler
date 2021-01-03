@@ -63,4 +63,8 @@ public interface MovieService
     List<ReturnReviewResult> getReview(String productId);
 
     List<ReturnReviewResult> getSeriesReview(String productId);
+
+    Integer getMonthStatistics(String month);
+
+    Integer getWeekStatistics(String toString);
 }

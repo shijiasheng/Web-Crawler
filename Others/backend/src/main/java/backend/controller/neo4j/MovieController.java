@@ -196,6 +196,32 @@ public class MovieController
         return CommonResult.success(results, (end - start), 0);
     }
 
+    @PostMapping(value = {"/getMonthStatistics"})
+    @ApiOperation(value = "查询所有月份电影")
+    public CommonResult<List<Integer>> getMonthStatistics()
+    {
+        List<Integer> lis = new LinkedList<>();
+        for (int month = 1; month <= 12; month++)
+        {
+            lis.add(movieService.getMonthStatistics(Integer.toString(month)));
+        }
+//        Integer results = movieService.getStatistics(month);
+        return CommonResult.success(lis);
+    }
+
+    @PostMapping(value = {"/getWeekStatistics"})
+    @ApiOperation(value = "查询所有星期电影")
+    public CommonResult<List<Integer>> getWeekStatistics()
+    {
+        List<Integer> lis = new LinkedList<>();
+        for (int week = 0; week <= 6; week++)
+        {
+            lis.add(movieService.getWeekStatistics(Integer.toString(week)));
+        }
+//        Integer results = movieService.getStatistics(month);
+        return CommonResult.success(lis);
+    }
+
     @PostMapping(value = {"/getReview"})
     @ApiOperation(value = "输入一个product_id，返回关于他所有的评论")
     public CommonResult<List<ReturnReviewResult>> getReview(@RequestBody Map<String, String> map)

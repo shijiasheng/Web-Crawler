@@ -1111,7 +1111,8 @@
         count
         as
         count
-        order by
+        order
+        by
         count
         desc
         skip
@@ -1214,7 +1215,8 @@
         count
         as
         count
-        order by
+        order
+        by
         count
         desc
         skip
@@ -1239,7 +1241,8 @@
         count
         as
         count
-        order by
+        order
+        by
         count
         desc
         skip
@@ -1328,5 +1331,37 @@
         star
         as
         star
+    </select>
+    <select id="getMonthStatistics" resultType="java.lang.Integer">
+        match
+        (m:movie)-[:is_time]-(t:time)
+        where t.month=
+        #{month}
+        return
+        count
+        (
+        distinct
+        (
+        m
+        .
+        product_id
+        )
+        )
+    </select>
+    <select id="getWeekStatistics" resultType="java.lang.Integer">
+        match
+        (m:movie)-[:is_time]-(t:time)
+        where t.week=
+        #{week}
+        return
+        count
+        (
+        distinct
+        (
+        m
+        .
+        product_id
+        )
+        )
     </select>
 </mapper>

@@ -48,6 +48,18 @@ public class MovieServiceImpl implements MovieService
     }
 
     @Override
+    public Integer getMonthStatistics(String month)
+    {
+        return this.movieMapper.getMonthStatistics(month);
+    }
+
+    @Override
+    public Integer getWeekStatistics(String week)
+    {
+        return this.movieMapper.getWeekStatistics(week);
+    }
+
+    @Override
     public List<ReturnMovieResult> getMovie(SearchCommand searchCommand)
     {
 
