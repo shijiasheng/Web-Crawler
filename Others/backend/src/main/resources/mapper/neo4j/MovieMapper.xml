@@ -1094,7 +1094,7 @@
     </select>
     <select id="getDirectorByActor" resultType="common.ReturnDirectorResult">
         MATCH
-        (d:director)-[r:director_actor_corporate]-(a:actor)
+        (d:director)-[r:director_actor_corporate]-&gt;(a:actor)
         WHERE
         a.name=
         #{actor}
@@ -1192,7 +1192,7 @@
     </select>
     <select id="getActorByDirector" resultType="common.ReturnActorResult">
         MATCH
-        (d:director)-[r:director_actor_corporate]-(a:actor)
+        (d:director)&lt;-[r:director_actor_corporate]-(a:actor)
         WHERE
         d.name=
         #{director}
@@ -1214,7 +1214,7 @@
     </select>
     <select id="getActorByActor" resultType="common.ReturnActorResult">
         MATCH
-        (d:actor)-[r:actor_actor_corporate]-(a:actor)
+        (d:actor)&lt;-[r:actor_actor_corporate]-(a:actor)
         WHERE
         d.name=
         #{actor}
@@ -1236,7 +1236,7 @@
     </select>
     <select id="getDirectorByActorCount" resultType="java.lang.Integer">
         MATCH
-        (d:director)-[r:director_actor_corporate]-(a:actor)
+        (d:director)-[r:director_actor_corporate]-&gt;(a:actor)
         WHERE
         a.name=
         #{actor}
@@ -1248,7 +1248,7 @@
     </select>
     <select id="getActorByDirectorCount" resultType="java.lang.Integer">
         MATCH
-        (d:director)-[r:director_actor_corporate]-(a:actor)
+        (d:director)&lt;-[r:director_actor_corporate]-(a:actor)
         WHERE
         d.name=
         #{director}
@@ -1260,7 +1260,7 @@
     </select>
     <select id="getActorByActorCount" resultType="java.lang.Integer">
         MATCH
-        (d:actor)-[r:actor_actor_corporate]-(a:actor)
+        (d:actor)&lt;-[r:actor_actor_corporate]-(a:actor)
         WHERE
         d.name=
         #{actor}
@@ -1269,5 +1269,39 @@
         (
         a
         )
+    </select>
+    <select id="getReview" resultType="common.ReturnReviewResult">
+        MATCH
+        (m:movie)-[:review_to]-(r:review)
+        WHERE
+        m.product_id=
+        #{productId}
+        return
+        r.user_id
+        as
+        user_id,
+        r.score
+        as
+        score,
+        r.star
+        as
+        star
+    </select>
+    <select id="getSeriesReview" resultType="common.ReturnReviewResult">
+        MATCH
+        (m:movie)-[:is_series]-(:series)-[:review_to]-(r:review)
+        WHERE
+        m.product_id=
+        #{productId}
+        return
+        r.user_id
+        as
+        user_id,
+        r.score
+        as
+        score,
+        r.star
+        as
+        star
     </select>
 </mapper>

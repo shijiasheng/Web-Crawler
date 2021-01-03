@@ -60,4 +60,7 @@ public interface MovieService
 
     DetailMovieResult getDetailMovie(String product_id);
 
+    List<ReturnReviewResult> getReview(String productId);
+
+    List<ReturnReviewResult> getSeriesReview(String productId);
 }

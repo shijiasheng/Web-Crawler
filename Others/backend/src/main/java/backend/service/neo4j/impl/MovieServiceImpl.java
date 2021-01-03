@@ -30,6 +30,24 @@ public class MovieServiceImpl implements MovieService
     }
 
     @Override
+    public List<ReturnReviewResult> getReview(String productId)
+    {
+        System.out.println(productId);
+        List<ReturnReviewResult> res = this.movieMapper.getReview(productId);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
+    public List<ReturnReviewResult> getSeriesReview(String productId)
+    {
+        System.out.println(productId);
+        List<ReturnReviewResult> res = this.movieMapper.getSeriesReview(productId);
+        System.out.println(res);
+        return res;
+    }
+
+    @Override
     public List<ReturnMovieResult> getMovie(SearchCommand searchCommand)
     {
 

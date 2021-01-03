@@ -24,7 +24,7 @@ public interface MovieMapper
 
     List<ReturnDirectorResult> getDirectorByActor(@Param("actor") String actor, @Param("skip") int skip, @Param("limit") int limit);
 
-    List<ReturnActorResult> getActorByDirector(@Param("director")String director,@Param("skip")int skip,@Param("limit")int limit);
+    List<ReturnActorResult> getActorByDirector(@Param("director") String director, @Param("skip") int skip, @Param("limit") int limit);
 
     List<ReturnActorResult> getActorByActor(@Param("actor") String actor, @Param("skip") int skip, @Param("limit") int limit);
 
@@ -61,4 +61,8 @@ public interface MovieMapper
     int getActorByDirectorCount(String director);
 
     int getActorByActorCount(String actor);
+
+    List<ReturnReviewResult> getReview(@Param("productId") String productId);
+
+    List<ReturnReviewResult> getSeriesReview(@Param("productId") String productId);
 }

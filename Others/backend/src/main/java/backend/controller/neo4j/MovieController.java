@@ -78,7 +78,18 @@ public class MovieController
         searchCommand.setWeek(map.getOrDefault("week", ""));
         searchCommand.setDirector(map.getOrDefault("director", ""));
         searchCommand.setActor(map.getOrDefault("actor", ""));
-        searchCommand.setIs_supporting(map.getOrDefault("isSupporting", ""));
+
+        if ("true".equals(map.get("isStarring")))
+        {
+            searchCommand.setIs_supporting("1");
+        } else if ("false".equals(map.get("isStarring")))
+        {
+            searchCommand.setIs_supporting("0");
+        } else
+        {
+            searchCommand.setIs_supporting("");
+        }
+
         searchCommand.setGenre(map.getOrDefault("genre", ""));
         searchCommand.setStar(map.getOrDefault("star", ""));
 
@@ -183,6 +194,44 @@ public class MovieController
         long end = System.currentTimeMillis();
 
         return CommonResult.success(results, (end - start), total);
+    }
+
+    @PostMapping(value = {"/getReview"})
+    @ApiOperation(value = "输入一个product_id，返回关于他所有的评论")
+    public CommonResult<List<ReturnReviewResult>> getReview(@RequestBody Map<String, String> map)
+    {
+        long start = System.currentTimeMillis();
+
+        String productId = map.get("product_id");
+        int pageSize = Integer.parseInt(map.get("pageSize"));
+        int pageNum = Integer.parseInt(map.get("pageNum"));
+        int skip = pageSize * (pageNum - 1);
+        List<ReturnReviewResult> results1 = movieService.getReview(productId);
+        List<ReturnReviewResult> results2 = movieService.getSeriesReview(productId);
+        results1.addAll(results2);
+        List<ReturnReviewResult> result = new LinkedList<>();
+        for (int i = skip; i < results1.size() && i < skip + pageSize; i++)
+        {
+            result.add(results1.get(i));
+        }
+        long end = System.currentTimeMillis();
+        for (ReturnReviewResult returnReviewResult : result)
+        {
+            double star = Double.parseDouble(returnReviewResult.getStar());
+            if (star > 0.95)
+            {
+                returnReviewResult.setStar("好评");
+            } else if (star < 0.05)
+            {
+                returnReviewResult.setStar("差评");
+            } else
+            {
+                returnReviewResult.setStar("中立");
+            }
+        }
+        System.out.println(results1);
+        int total = results1.size();
+        return CommonResult.success(result, (end - start), total);
     }
 
 //    @PostMapping(value = {"/getMovieByDirector"})
