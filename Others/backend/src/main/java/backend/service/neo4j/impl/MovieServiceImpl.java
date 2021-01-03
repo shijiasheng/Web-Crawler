@@ -23,27 +23,27 @@ public class MovieServiceImpl implements MovieService
     @Override
     public DetailMovieResult getDetailMovie(String product_id)
     {
-        System.out.println(product_id);
+//        System.out.println(product_id);
         DetailMovieResult res = this.movieMapper.getDetailMovie(product_id);
-        System.out.println(res);
+//        System.out.println(res);
         return res;
     }
 
     @Override
     public List<ReturnReviewResult> getReview(String productId)
     {
-        System.out.println(productId);
+//        System.out.println(productId);
         List<ReturnReviewResult> res = this.movieMapper.getReview(productId);
-        System.out.println(res);
+//        System.out.println(res);
         return res;
     }
 
     @Override
     public List<ReturnReviewResult> getSeriesReview(String productId)
     {
-        System.out.println(productId);
+//        System.out.println(productId);
         List<ReturnReviewResult> res = this.movieMapper.getSeriesReview(productId);
-        System.out.println(res);
+//        System.out.println(res);
         return res;
     }
 
@@ -51,18 +51,18 @@ public class MovieServiceImpl implements MovieService
     public List<ReturnMovieResult> getMovie(SearchCommand searchCommand)
     {
 
-        System.out.println(searchCommand);
+//        System.out.println(searchCommand);
         List<ReturnMovieResult> res = this.movieMapper.getMovie(searchCommand);
-        System.out.println(res);
+//        System.out.println(res);
         return res;
     }
 
     @Override
     public List<ReturnDirectorResult> getDirectorByActor(String actor, int skip, int limit)
     {
-        System.out.println(actor);
+//        System.out.println(actor);
         List<ReturnDirectorResult> res = this.movieMapper.getDirectorByActor(actor, skip, limit);
-        System.out.println(res);
+//        System.out.println(res);
         return res;
     }
 
@@ -75,9 +75,9 @@ public class MovieServiceImpl implements MovieService
     @Override
     public List<ReturnActorResult> getActorByDirector(String director, int skip, int limit)
     {
-        System.out.println(director);
+//        System.out.println(director);
         List<ReturnActorResult> res = this.movieMapper.getActorByDirector(director, skip, limit);
-        System.out.println(res);
+//        System.out.println(res);
         return res;
     }
 
@@ -93,9 +93,9 @@ public class MovieServiceImpl implements MovieService
     @Override
     public List<ReturnActorResult> getActorByActor(String actor, int skip, int limit)
     {
-        System.out.println(actor);
+//        System.out.println(actor);
         List<ReturnActorResult> res = this.movieMapper.getActorByActor(actor, skip, limit);
-        System.out.println(res);
+//        System.out.println(res);
         return res;
     }
 

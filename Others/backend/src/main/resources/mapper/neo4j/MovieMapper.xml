@@ -1111,6 +1111,9 @@
         count
         as
         count
+        order by
+        count
+        desc
         skip
         #{skip}
         limit
@@ -1211,6 +1214,9 @@
         count
         as
         count
+        order by
+        count
+        desc
         skip
         #{skip}
         limit
@@ -1233,6 +1239,9 @@
         count
         as
         count
+        order by
+        count
+        desc
         skip
         #{skip}
         limit

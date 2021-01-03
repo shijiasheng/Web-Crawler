@@ -1,176 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="721060d5-6dc4-4097-a5bf-2c5ae559c4ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/movieDatabase.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/MyApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/common/api/CommonPage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/common/api/CommonResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/common/api/IErrorCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/common/api/ResultCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/common/exception/ApiException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/common/exception/Asserts.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/common/exception/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/controller/MovieController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/dto/SearchInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/ActorMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/DirectorActorMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/DirectorMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/GenreMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/MovieActorMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/MovieDirectorMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/MovieGenreMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/MovieMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/ReviewMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/mapper/TimeMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/Actor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/ActorExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/Director.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/DirectorActor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/DirectorActorExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/DirectorExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/Genre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/GenreExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/Movie.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/MovieActor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/MovieActorExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/MovieDirector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/MovieDirectorExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/MovieExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/MovieGenre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/MovieGenreExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/Review.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/ReviewExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/Time.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/model/TimeExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/service/MovieService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/service/TestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/service/impl/MovieServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/utils/CommentGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/utils/Generator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/utils/GlobalCorsConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/java/com/tongji/utils/Swagger2Config.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/ActorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/DirectorActorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/DirectorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/GenreMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/MovieActorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/MovieDirectorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/MovieGenreMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/MovieMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/ReviewMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/com/tongji/mapper/TimeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/generator.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/main/resources/generatorConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/src/test/java/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/MyApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/common/api/CommonPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/common/api/CommonResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/common/api/IErrorCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/common/api/ResultCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/common/exception/ApiException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/common/exception/Asserts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/common/exception/GlobalExceptionHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/controller/MovieController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/dto/SearchInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/ActorMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/ActorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/DirectorActorMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/DirectorActorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/DirectorMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/DirectorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/GenreMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/GenreMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/MovieActorMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/MovieActorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/MovieDirectorMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/MovieDirectorMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/MovieGenreMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/MovieGenreMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/MovieMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/MovieMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/ReviewMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/ReviewMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/TimeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/mapper/TimeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/Actor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/ActorExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/ActorExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/ActorExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/ActorExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/Director.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorActor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorActorExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorActorExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorActorExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorActorExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/DirectorExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/Genre.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/GenreExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/GenreExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/GenreExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/GenreExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/Movie.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieActor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieActorExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieActorExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieActorExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieActorExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieDirector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieDirectorExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieDirectorExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieDirectorExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieDirectorExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieGenre.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieGenreExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieGenreExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieGenreExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/MovieGenreExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/Review.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/ReviewExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/ReviewExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/ReviewExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/ReviewExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/Time.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/TimeExample$Criteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/TimeExample$Criterion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/TimeExample$GeneratedCriteria.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/model/TimeExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/MovieService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/service/impl/MovieServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/utils/CommentGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/utils/Generator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/utils/GlobalCorsConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/com/tongji/utils/Swagger2Config.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/generator.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/classes/generatorConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/movie.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/movieDatabase-1.0-SNAPSHOT.jar.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../movieDatabase/target/test-classes/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/backend/controller/neo4j/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/backend/controller/neo4j/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/backend/service/neo4j/impl/MovieServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/backend/service/neo4j/impl/MovieServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/mapper/neo4j/MovieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/resources/mapper/neo4j/MovieMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,8 +23,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/tongji/service/TestService.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/tongji/service/impl/MovieServiceImpl.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/test/java/Main.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/tongji/service/impl/MovieServiceImpl.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1mHU1ciRfKyAxqmrrYXrzwoBxNo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -305,6 +143,18 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="91" key="#Deployment" timestamp="1609150431659">

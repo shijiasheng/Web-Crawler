@@ -149,51 +149,51 @@ public class MovieController
     @ApiOperation(value = "输入演员，返回导演，合作次数")
     public CommonResult<List<ReturnDirectorResult>> getDirectorByActor(@RequestBody Map<String, String> map)
     {
-        long start = System.currentTimeMillis();
 
         String actor = map.get("actorName");
         int pageSize = Integer.parseInt(map.get("pageSize"));
         int pageNum = Integer.parseInt(map.get("pageNum"));
         int skip = pageSize * (pageNum - 1);
-        int total = movieService.getDirectorByActorCount(actor);
+//        int total = movieService.getDirectorByActorCount(actor);
+        long start = System.currentTimeMillis();
         List<ReturnDirectorResult> results = movieService.getDirectorByActor(actor, skip, pageSize);
         long end = System.currentTimeMillis();
 
-        return CommonResult.success(results, (end - start), total);
+        return CommonResult.success(results, (end - start), 0);
     }
 
     @PostMapping(value = {"/getActorByDirector"})
     @ApiOperation(value = "输入导演，返回演员，合作次数")
     public CommonResult<List<ReturnActorResult>> getActorByDirector(@RequestBody Map<String, String> map)
     {
-        long start = System.currentTimeMillis();
 
         String director = map.get("directorName");
         int pageSize = Integer.parseInt(map.get("pageSize"));
         int pageNum = Integer.parseInt(map.get("pageNum"));
         int skip = pageSize * (pageNum - 1);
-        int total = movieService.getActorByDirectorCount(director);
+//        int total = movieService.getActorByDirectorCount(director);
+        long start = System.currentTimeMillis();
         List<ReturnActorResult> results = movieService.getActorByDirector(director, skip, pageSize);
         long end = System.currentTimeMillis();
 
-        return CommonResult.success(results, (end - start), total);
+        return CommonResult.success(results, (end - start), 0);
     }
 
     @PostMapping(value = {"/getActorByActor"})
     @ApiOperation(value = "输入演员，返回演员，合作次数")
     public CommonResult<List<ReturnActorResult>> getActorByActor(@RequestBody Map<String, String> map)
     {
-        long start = System.currentTimeMillis();
 
         String actor = map.get("actorName");
         int pageSize = Integer.parseInt(map.get("pageSize"));
         int pageNum = Integer.parseInt(map.get("pageNum"));
         int skip = pageSize * (pageNum - 1);
-        int total = movieService.getActorByActorCount(actor);
+//        int total = movieService.getActorByActorCount(actor);
+        long start = System.currentTimeMillis();
         List<ReturnActorResult> results = movieService.getActorByActor(actor, skip, pageSize);
         long end = System.currentTimeMillis();
 
-        return CommonResult.success(results, (end - start), total);
+        return CommonResult.success(results, (end - start), 0);
     }
 
     @PostMapping(value = {"/getReview"})
