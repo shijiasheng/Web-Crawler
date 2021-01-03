@@ -1096,7 +1096,7 @@
     </select>
     <select id="getDirectorByActor" resultType="common.ReturnDirectorResult">
         MATCH
-        (d:director)-[r:director_actor_corporate]-&gt;(a:actor)
+        (d:director)-[r:director_actor_corporate]-(a:actor)
         WHERE
         a.name=
         #{actor}

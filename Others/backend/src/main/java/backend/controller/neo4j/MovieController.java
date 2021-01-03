@@ -156,7 +156,9 @@ public class MovieController
         int skip = pageSize * (pageNum - 1);
 //        int total = movieService.getDirectorByActorCount(actor);
         long start = System.currentTimeMillis();
+//        System.out.println(actor);
         List<ReturnDirectorResult> results = movieService.getDirectorByActor(actor, skip, pageSize);
+//        System.out.println(results);
         long end = System.currentTimeMillis();
 
         return CommonResult.success(results, (end - start), 0);

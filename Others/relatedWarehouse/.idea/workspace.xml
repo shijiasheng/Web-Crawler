@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="721060d5-6dc4-4097-a5bf-2c5ae559c4ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../backend/src/main/java/backend/controller/neo4j/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/backend/controller/neo4j/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/backend/service/neo4j/impl/MovieServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/backend/service/neo4j/impl/MovieServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/mapper/neo4j/MovieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/resources/mapper/neo4j/MovieMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
